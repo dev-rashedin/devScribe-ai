@@ -2,6 +2,7 @@ import Benefits from '../component/Benefits';
 import ClientFeedback from '../component/ClientFeedback';
 import Hero from '../component/Hero';
 import Services from '../component/Services';
+import FAQ from '../component/FAQ';
 
 const Home = () => {
   return (
@@ -9,7 +10,8 @@ const Home = () => {
       <Hero />
       <Services />
       <Benefits />
-      <ClientFeedback/>
+      <ClientFeedback />
+      <FAQ/>
     </div>
   );
 };
