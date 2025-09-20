@@ -41,3 +41,7 @@ declare type FAQItem = {
 };
 
 
+declare interface HomeSectionHeadingProps {title: string, subtitle?: string, ref: React.RefObject<HTMLDivElement | null>}
+
+
+

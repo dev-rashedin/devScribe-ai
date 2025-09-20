@@ -7,6 +7,8 @@ import {
 import { TimelineContent } from '../component/ui/TimelineAnimation';
 import { LuPlus } from '../data/icons';
 import { useRef } from 'react';
+import {revealVariants} from '../lib/utils';
+import HomeSectionHeading from './ui/HomeSectionHeading';
 
 const faqData: FAQItem[] = [
   {
@@ -53,26 +55,15 @@ const faqData: FAQItem[] = [
 
 export default function FAQ() {
   const faqsRef = useRef<HTMLDivElement>(null);
-  const revealVariants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      transition: {
-        delay: i * 0.4,
-        duration: 0.5,
-      },
-    }),
-    hidden: {
-      filter: 'blur(10px)',
-      y: -20,
-      opacity: 0,
-    },
-  };
+
 
   return (
     <div className='bg-blackNWhite py-16 lg:py-24' ref={faqsRef}>
-      <h2 className='text-center pb-12 lg:pb-20'>Frequently Asked Questions</h2>
+      <HomeSectionHeading
+        title='Your Questions, Answered'
+        subtitle='Explore our most asked questions to understand how DevScribe-AI can support you, your team, and your business.'
+        ref={faqsRef}
+      />
       <div className='boundary px-6! md:px-8! lg:px-0 h-full grid lg:grid-cols-12 gap-10  lg:gap-1 xl:gap-5'>
         <section className='lg:col-span-8 md:pr-16'>
           <TimelineContent
@@ -129,7 +120,6 @@ export default function FAQ() {
             </Accordion>
           </div>
         </section>
-
 
         {/* right side : purpose and mission */}
         <section className='lg:col-span-4 w-full'>
