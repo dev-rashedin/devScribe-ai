@@ -35,4 +35,13 @@ declare interface SponsorLogo {
   href: string;
 }
 
+declare type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+
+declare interface HomeSectionHeadingProps {title: string, subtitle?: string, ref: React.RefObject<HTMLDivElement | null>}
+
+
 

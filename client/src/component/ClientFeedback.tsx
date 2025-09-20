@@ -1,55 +1,21 @@
-'use client';
 import { TimelineContent } from './ui/TimelineAnimation';
 import { useRef } from 'react';
 import { Alex, Rika, Reacher, Alicia, Steven, Angelina, Guillermo } from '../data/assets';
+import { revealVariants } from '../lib/utils';
+import HomeSectionHeading from './ui/HomeSectionHeading';
 
 function ClientFeedback() {
   const testimonialRef = useRef<HTMLDivElement>(null);
 
-  const revealVariants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      transition: {
-        delay: i * 0.4,
-        duration: 0.5,
-      },
-    }),
-    hidden: {
-      filter: 'blur(10px)',
-      y: -20,
-      opacity: 0,
-    },
-  };
-
+ 
   return (
     <section
       className='relative h-full boundary rounded-lg mt-16 overflow-hidden'
       ref={testimonialRef}
     >
-      <article className='max-w-screen- mx-auto text-center space-y-2 mb-8'>
-        <TimelineContent
-          as='h2'
-          animationNum={0}
-          customVariants={revealVariants}
-          timelineRef={testimonialRef}
-        >
-          Trusted by Thousands
-        </TimelineContent>
-        <TimelineContent
-          as='p'
-          className='mx-auto md:text-lg text-muted'
-          animationNum={1}
-          customVariants={revealVariants}
-          timelineRef={testimonialRef}
-        >
-          Here's what our users — developers, writers, and content creators —
-          think about DevScribe-AI
-        </TimelineContent>
-      </article>
-
-      <div className='lg:grid lg:grid-cols-3 gap-2 flex flex-col w-full lg:py-10 pt-10 pb-4 lg:px-10 px-4'>
+     <HomeSectionHeading title="Trusted by Thousands" subtitle="Here's what our users — developers, writers, and content creators — think about DevScribe-AI" ref={testimonialRef} />
+  
+      <div className='lg:grid lg:grid-cols-3 gap-2 flex flex-col w-full pb-4 lg:px-10 px-4'>
         <div className='md:flex lg:flex-col lg:space-y-2 h-full lg:gap-0 gap-2'>
           <TimelineContent
             animationNum={0}

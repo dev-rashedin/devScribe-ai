@@ -8,7 +8,7 @@ html {
 @layer base {
   body {
     font-family: 'Inter', sans-serif;
-    background-color: hsl(60, 100%, 97.95%);
+    background-color: hsl(60, 100%, 96%);
     color: hsl(0, 0%, 0%);
 
     h1{
@@ -55,6 +55,10 @@ html {
     .bg-footer {
       background-color: hsl(60, 76%, 96%);
     }
+
+    .bg-blackNWhite {
+    background-color: hsl(0, 0%, 100%);
+  }
 
     .bg-card {
       background-color: hsl(0, 0%, 100%);
@@ -106,7 +110,7 @@ html {
       color: hsl(220, 11%, 17%);
     }
     .text-muted {
-      color: hsl(0, 0%, 87%);
+      color: hsl(0, 0%, 75%);
     }
 
     .text-brand {
@@ -125,6 +129,10 @@ html {
     .bg-footer {
       background-color: hsl(0, 0%, 17%);
     }
+
+    .bg-blackNWhite {
+    background-color: hsl(0, 0%, 0%);
+  }
 
     .bg-card {
       background-color: hsl(0 0% 10%);
@@ -215,6 +223,7 @@ html {
   .bg-primary {
     background-color: hsl(221, 97%, 54%);
   }
+  
 
   .primary-outline {
     border-color: hsl(215, 50%, 40%);
@@ -225,7 +234,7 @@ html {
   }
 
   .bg-faded-pearl {
-    background: hsl(60, 100%, 97.95%);
+    background: hsl(60, 100%, 96%);
   }
 
  
