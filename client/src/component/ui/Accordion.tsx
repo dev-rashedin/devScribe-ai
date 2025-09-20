@@ -204,7 +204,7 @@ export function AccordionHeader({
     <motion.div
       data-active={isActive || undefined}
       className={cn(
-        'p-4 cursor-pointer w-full transition-all font-semibold  text-neutral-500   data-[active]:bg-neutral-100  hover:bg-neutral-100 hover:text-black flex justify-between gap-2 items-center',
+        'p-4 cursor-pointer w-full transition-all font-semibold  text-muted data-[active]:bg-neutral-100  hover:bg-neutral-100 hover:text-primary! flex justify-between gap-2 items-center',
         className
       )}
       onClick={handleClick}
