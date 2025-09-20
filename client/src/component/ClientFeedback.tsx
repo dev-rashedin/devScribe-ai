@@ -28,7 +28,7 @@ function ClientFeedback() {
       className='relative h-full boundary rounded-lg mt-16 overflow-hidden'
       ref={testimonialRef}
     >
-      <article className='max-w-screen- mx-auto text-center space-y-2 mb-8'>
+      <article className='max-w-screen mx-auto text-center space-y-2 mb-8'>
         <TimelineContent
           as='h2'
           animationNum={0}

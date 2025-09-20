@@ -35,4 +35,9 @@ declare interface SponsorLogo {
   href: string;
 }
 
+declare type FAQItem = {
+  question: string;
+  answer: string;
+};
+
 
