@@ -1,4 +1,3 @@
-'use client';
 import { TimelineContent } from './ui/TimelineAnimation';
 import { useRef } from 'react';
 import { Alex, Rika, Reacher, Alicia, Steven, Angelina, Guillermo } from '../data/assets';

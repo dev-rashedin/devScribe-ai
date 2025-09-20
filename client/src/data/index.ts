@@ -66,9 +66,6 @@ export const services2 = [
 ];
 
 
-
-
-
 export const socialLinks = [
   {
     href: 'https://github.com/dev-rashedin',
@@ -142,3 +139,47 @@ export const sponsorLogos : SponsorLogo[] = [
     href: masterclass,
   },
 ]
+
+
+export const faqData: FAQItem[] = [
+  {
+    question: 'CONSUMERS',
+    answer:
+      'We specialize in custom AI solutions including chatbots, predictive analytics, computer vision, NLP, and automation workflows tailored to your needs.',
+  },
+  {
+    question: 'SMALL & MEDIUM BUSINESSES',
+    answer:
+      'Absolutely! We offer seamless integration with CRMs, ERPs, databases, APIs, and other third-party tools your business relies on.',
+  },
+  {
+    question: 'GOVERNMENT & PUBLIC SECTORS',
+    answer:
+      "We conduct thorough testing and offer ongoing optimization post-launch. If something's off, we'll tweak it until it delivers results.",
+  },
+  {
+    question: 'LARGE ENTERPRISES',
+    answer:
+      'Yes, we provide clear documentation and offer team training to help you and your staff understand and make the most of the AI systems we implement.',
+  },
+  {
+    question: 'BANKS & CREDIT UNIONS',
+    answer:
+      'We offer flexible pricing based on project complexity and duration—ranging from fixed project fees to retainer and hourly models.',
+  },
+  {
+    question: 'HEALTHCARE PROVIDERS',
+    answer:
+      'We deliver AI-powered diagnostics, patient monitoring, and workflow automation while ensuring compliance with healthcare regulations like HIPAA.',
+  },
+  {
+    question: 'EDUCATIONAL INSTITUTIONS',
+    answer:
+      'Our AI tools help schools and universities with personalized learning, grading automation, student engagement, and research analytics.',
+  },
+  {
+    question: 'E-COMMERCE & RETAIL',
+    answer:
+      'We provide intelligent product recommendations, customer behavior analysis, and automated support to boost sales and enhance customer experience.',
+  },
+];

@@ -15,7 +15,7 @@ const Hero = () => {
         {/* hero text and buttons */}
         <div className='max-w-3xl flex flex-col justify-center items-center text-center  xl:items-start xl:text-left '>
           {/* tagline for large screen */}
-          <p className='hidden xl:block bg-amber-100 text-amber-600 font-semibold  px-4 py-1 rounded-full mb-2'>
+          <p className='hidden xl:block bg-amber-100 text-amber-500 font-semibold  px-4 py-1 rounded-full mb-2'>
             Your ultimate productivity tool
           </p>
           <h1>AI Assistant for</h1>
