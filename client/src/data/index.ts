@@ -183,3 +183,36 @@ export const faqData: FAQItem[] = [
       'We provide intelligent product recommendations, customer behavior analysis, and automated support to boost sales and enhance customer experience.',
   },
 ];
+
+export const benefitsData = [
+  {
+    title: 'Save Time Instantly',
+    description:
+      'Automate code explanations, document summaries, and article generation to free up hours in your workflow.',
+  },
+  {
+    title: 'Reduce Errors & Confusion',
+    description:
+      'Get precise AI-powered insights for your code, emails, and content to avoid mistakes and misunderstandings.',
+  },
+  {
+    title: 'Boost Productivity',
+    description:
+      'Focus on creative and critical tasks while AI handles repetitive or complex operations efficiently.',
+  },
+  {
+    title: 'Professional-Ready Output',
+    description:
+      'Generate clean, polished content and code improvements suitable for portfolio, reports, or client delivery.',
+  },
+  {
+    title: 'Accessible & Easy to Use',
+    description:
+      'Intuitive interface designed for developers, writers, and teams with no steep learning curve.',
+  },
+  {
+    title: 'Seamless Integration',
+    description:
+      'Works well with your existing workflow, supporting multiple tools, formats, and platforms.',
+  },
+];
