@@ -3,7 +3,6 @@ import { FiCode, FiEdit3, FiFileText, FiMail, FiPenTool, FiUserCheck,  } from '.
 import { HomeSectionHeading, StickyScroll } from './ui';
 
 
-
 const services = [
   {
     title: 'Code Explainer',

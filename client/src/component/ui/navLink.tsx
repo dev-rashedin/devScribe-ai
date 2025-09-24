@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router'; // your links array
 import { links } from '../../data';
 import { IoIosArrowDown, IoIosArrowUp } from '../../data/icons';
-import AnimatedBorder from './AnimatedBorder';
-import ContactDropdown from './ContactDropdown';
+import {AnimatedBorder, ContactDropdown} from './index';
 
 const NavLinks = () => {
   const [open, setOpen] = useState(false);

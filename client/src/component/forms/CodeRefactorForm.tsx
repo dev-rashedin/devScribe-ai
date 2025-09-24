@@ -2,10 +2,7 @@ import { useActionState } from 'react';
 import { useState } from 'react';
 import { refactor } from '../../actions';
 import Error from '../Error';
-import CodeExplanation from '../CodeExplanation';
-import LoadingDots from '../ui/LoadingDots';
-import LanguageSelect from '../ui/LanguageSelect';
-import Button from '../ui/CustomButton';
+import { LoadingDots, Button, CodeExplanation, LanguageSelect } from '../ui';
 
 const CodeRefactorForm = () => {
   const [formState, formAction, isPending] = useActionState(refactor, null);

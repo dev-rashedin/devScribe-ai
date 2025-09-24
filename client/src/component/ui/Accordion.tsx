@@ -1,7 +1,7 @@
 
-import { cn } from '../../lib/utils';
 import React, { ReactNode, useCallback } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { cn } from '../../lib/utils';
 import {IoChevronDownSharp} from '../../data/icons';
 
 /**

@@ -2,7 +2,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/shades-of-purple.css";
-import CopyButton from "./ui/CopyButton";
+import {CopyButton} from "./ui";
 
 
 const CodeExplanation = ({ explanation }: TExplanation) => {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { socialLinks } from '../../data';
 import { IoIosArrowDown, IoIosArrowUp } from '../../data/icons';
-import AnimatedBorder from './AnimatedBorder';
+import {AnimatedBorder} from './index';
+
 
 const ContactDropdown = ({ screen = 'large' }: { screen?: string }) => {
   const [open, setOpen] = useState(false);

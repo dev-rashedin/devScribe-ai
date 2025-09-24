@@ -1,8 +1,7 @@
-import { TimelineContent } from './ui/TimelineAnimation';
 import { useRef } from 'react';
 import { Alex, Rika, Reacher, Alicia, Steven, Angelina, Guillermo } from '../data/assets';
 import { revealVariants } from '../lib/utils';
-import HomeSectionHeading from './ui/HomeSectionHeading';
+import { TimelineContent, HomeSectionHeading } from './ui';
 
 function ClientFeedback() {
   const testimonialRef = useRef<HTMLDivElement>(null);

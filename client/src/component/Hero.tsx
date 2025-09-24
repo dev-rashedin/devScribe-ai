@@ -1,10 +1,7 @@
-'use client';
-
-import { sponsorLogos } from '../data';
-import Button from './ui/CustomButton';
-import HighlightedText from './ui/HighlightedText';
 import Marquee from 'react-fast-marquee';
+import { sponsorLogos } from '../data';
 import {banner} from '../data/assets';
+import {Button, HighlightedText} from './ui';
 
 const repeatedLogos = Array.from({ length: 3 }, () => sponsorLogos).flat();
 

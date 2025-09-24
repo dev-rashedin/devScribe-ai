@@ -2,9 +2,9 @@ import { useActionState } from 'react';
 import { useState } from 'react';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
-import LoadingDots from '../ui/LoadingDots';
-import Button from '../ui/CustomButton';
-import CodeExplanation from '../CodeExplanation';
+import {LoadingDots, Button, CodeExplanation} from '../ui';
+
+
 
 const ArticleGeneratorForm = () => {
   const [formState, formAction, isPending] = useActionState(writeArticle, null);

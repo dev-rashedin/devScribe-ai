@@ -7,9 +7,7 @@ import {
   IoIosArrowUp,
   RiMenu3Fill,
 } from '../../data/icons';
-import ContactDropdown from './ContactDropdown';
-import AnimatedBorder from './AnimatedBorder';
-import ThemeSwitcher from './ThemeSwitcher';
+import {ContactDropdown, AnimatedBorder, ThemeSwitcher} from './index';
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);

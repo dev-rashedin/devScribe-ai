@@ -1,8 +1,7 @@
-import { TimelineContent } from './ui/TimelineAnimation';
 import { useRef } from 'react';
-import { revealVariants } from '../lib/utils';
-import HomeSectionHeading from './ui/HomeSectionHeading';
 import { benefitsData } from '../data';
+import { revealVariants } from '../lib/utils';
+import { TimelineContent, HomeSectionHeading } from './ui';
 
 
 

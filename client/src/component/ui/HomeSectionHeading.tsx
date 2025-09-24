@@ -1,5 +1,5 @@
 import { revealVariants } from "../../lib/utils"
-import { TimelineContent } from "./TimelineAnimation"
+import { TimelineContent } from "./index"
 
 
 const HomeSectionHeading = ({title, subtitle, ref} : HomeSectionHeadingProps) => {

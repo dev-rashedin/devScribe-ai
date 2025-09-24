@@ -1,10 +1,15 @@
-import { Accordion } from "./Accordion";
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
+} from './Accordion';
 import AnimatedBorder from "./AnimatedBorder";
 import Blob from "./Blob";
-import CodeExplainForm from "../forms/CodeExplainForm";
+import CodeExplanation from "../CodeExplanation";
 import ContactDropdown from "./ContactDropdown";
 import CopyButton from "./CopyButton";
-import CustomButton from "./CustomButton";
+import Button from "./CustomButton";
 import { Highlight } from "./HeroHighlight";
 import HighlightedText from './HighlightedText'
 import HomeSectionHeading from "./HomeSectionHeading";
@@ -22,12 +27,15 @@ import { TimelineContent } from "./TimelineAnimation";
 
 export {
   Accordion,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
   AnimatedBorder,
   Blob,
-  CodeExplainForm,
+  CodeExplanation,
   ContactDropdown,
   CopyButton,
-  CustomButton,
+  Button,
   Highlight,
   HighlightedText,
   HomeSectionHeading,
@@ -41,5 +49,5 @@ export {
   CardHeader,
   CardContent,
   ThemeSwitcher,
-  TimelineContent
-}
+  TimelineContent,
+};

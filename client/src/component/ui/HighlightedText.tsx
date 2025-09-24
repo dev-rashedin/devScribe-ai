@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Highlight } from "./HeroHighlight";
+import { Highlight } from "./index";
 
 
 const HighlightedText = ({label, className} : {label: string, className?: string}) => {

@@ -1,8 +1,4 @@
-import NavLinks from './ui/navLink';
-import MobileMenu from './ui/MobileMenu';
-import ThemeSwitcher from './ui/ThemeSwitcher';
-import Blob from './ui/Blob';
-import Logo from './ui/Logo';
+import { NavLinks, MobileMenu, ThemeSwitcher, Blob, Logo } from './ui';
 
 const Navbar = () => {
   return (

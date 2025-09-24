@@ -4,11 +4,10 @@ import Lottie from 'lottie-react';
 import { CgArrowTopRight } from 'react-icons/cg';
 import { Link } from 'react-router';
 import { cn } from '../../lib/utils';
-// import animationData from '../../assets/ai-animation.json';
 
 
 
-declare interface ServiceContent {
+ interface ServiceContent {
   title: string;
   desc: string;
   icon: IconType;

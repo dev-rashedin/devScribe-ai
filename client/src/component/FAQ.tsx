@@ -1,15 +1,16 @@
+import { useRef } from 'react';
+import { LuPlus } from '../data/icons';
+import { faqData } from '../data';
+import {revealVariants} from '../lib/utils';
 import {
   Accordion,
   AccordionHeader,
   AccordionItem,
   AccordionPanel,
-} from '../component/ui/Accordion';
-import { TimelineContent } from '../component/ui/TimelineAnimation';
-import { LuPlus } from '../data/icons';
-import { useRef } from 'react';
-import {revealVariants} from '../lib/utils';
-import HomeSectionHeading from './ui/HomeSectionHeading';
-import { faqData } from '../data';
+  TimelineContent,
+  HomeSectionHeading,
+} from './ui';
+
 
 
 
