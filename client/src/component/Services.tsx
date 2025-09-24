@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { FiCode, FiEdit3, FiFileText, FiMail, FiPenTool, FiUserCheck,  } from '../data/icons';
-import HomeSectionHeading from './ui/HomeSectionHeading';
-import { StickyScroll } from './ui/StickyScroll';
+import { HomeSectionHeading, StickyScroll } from './ui';
+
 
 
 const services = [
