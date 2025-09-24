@@ -12,6 +12,7 @@ import Alicia from '../assets/clients/dev4.jpg'
 import Angelina from '../assets/clients/dev5.jpg'
 import Steven from '../assets/clients/dev6.jpg'
 import Guillermo from '../assets/clients/dev7.png'
+import LoginSVG from '../assets/login.svg';
 
 
 
@@ -30,6 +31,7 @@ export {
   Alicia,
   Steven,
   Angelina,
-  Guillermo
+  Guillermo,
+  LoginSVG
 
 }
