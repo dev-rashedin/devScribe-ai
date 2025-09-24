@@ -9,7 +9,7 @@ const Button = ({
   className = '',
 }: ButtonProps) => {
   let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out  ${
-    type === 'login' ? 'w-full py-4' : 'w-36 py-2 h-11'
+    type === 'login' ? 'w-full py-4' : 'w-40 py-2 h-11'
   } ${className}`;
 
   if (type === 'primary' || type === 'login') {

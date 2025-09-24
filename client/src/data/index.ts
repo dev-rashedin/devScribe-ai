@@ -27,7 +27,6 @@ import {
   gartner,
   masterclass
 } from './assets';
-import { BenefitData, FAQItem, PlanData, SponsorLogo } from '@/types';
 
 
 export const services2 = [
@@ -195,7 +194,7 @@ export const faqData: FAQItem[] = [
 ];
 
 
-export const benefitsData : BenefitData[] = [
+export const benefitsData = [
   {
     title: 'Save Time Instantly',
     icon: BiTime,
@@ -234,7 +233,7 @@ export const benefitsData : BenefitData[] = [
   },
 ];
 
-export const PlansData: PlanData[] = [
+export const PlansData = [
   {
     name: 'Starter',
     description:
