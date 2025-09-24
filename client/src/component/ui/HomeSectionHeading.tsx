@@ -4,7 +4,7 @@ import { TimelineContent } from "./index"
 
 const HomeSectionHeading = ({title, subtitle, ref} : HomeSectionHeadingProps) => {
   return (
-         <article className='max-w-screen mx-auto text-center space-y-2 mb-16 lg:mb-20'>
+         <article className='max-w-screen mx-auto text-center space-y-4 mb-16 lg:mb-24'>
             <TimelineContent
               as='h2'
               animationNum={0}

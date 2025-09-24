@@ -87,10 +87,14 @@ const Services = () => {
   return (
     <main id='services' className='w-full' ref={servicesRef}>
       <h2 className='text-center mb-12 lg:mb-28'></h2>
-      <HomeSectionHeading title='Explore Our Services' ref={servicesRef} />
+      <HomeSectionHeading
+        title='Explore Our Services'
+        subtitle='Explore AI-powered tools designed to simplify code, streamline writing, and enhance productivity for every creator.'
+        ref={servicesRef}
+      />
       <div className=''>
         <section className=' w-full'>
-          <StickyScroll content={services} />
+          <StickyScroll content={services} ref={servicesRef} />
         </section>
       </div>
     </main>

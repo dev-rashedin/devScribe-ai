@@ -3,7 +3,8 @@ import { IconType } from 'react-icons';
 import Lottie from 'lottie-react';
 import { CgArrowTopRight } from 'react-icons/cg';
 import { Link } from 'react-router';
-import { cn } from '../../lib/utils';
+import { cn, revealVariants } from '../../lib/utils';
+import { TimelineContent } from './TimelineAnimation';
 
 
 
@@ -17,9 +18,11 @@ import { cn } from '../../lib/utils';
 }
 
 export const StickyScroll = ({
+  ref,
   content,
   contentClassName,
 }: {
+  ref: React.RefObject<HTMLDivElement | null>;
   content: ServiceContent[];
   contentClassName?: string;
 }) => {
@@ -70,7 +73,10 @@ export const StickyScroll = ({
     <section ref={containerRef} className='relative flex w-full'>
       {/* Left sticky column */}
       <div className='hidden lg:flex lg:flex-col w-1/2 h-screen sticky top-20 p-12 items-end bg-service'>
-        <div
+        <TimelineContent
+          animationNum={0}
+                      timelineRef={ref}
+                      customVariants={revealVariants}
           className={cn(
             'relative h-[200px] w-[360px] rounded-xl overflow-hidden flex flex-col items-center justify-center primary-gradient',
             contentClassName
@@ -87,17 +93,20 @@ export const StickyScroll = ({
               </div>
             );
           })()}
-        </div>
-        <div className='mt-6'>
+        </TimelineContent>
+        <TimelineContent animationNum={1} timelineRef={ref} customVariants={revealVariants} className='mt-6'>
           <Lottie animationData={animationData} style={{ height: '400px' }} />
-        </div>
+        </TimelineContent>
       </div>
 
       {/* Right scrollable column */}
       <div className='w-full lg:w-1/2 px-6'>
         <div className='max-w-xl xl:max-w-2xl mx-auto'>
           {content.map((item, index) => (
-            <div
+            <TimelineContent
+              animationNum={index + 2}
+              timelineRef={ref}
+              customVariants={revealVariants}
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
@@ -121,7 +130,7 @@ export const StickyScroll = ({
                   <CgArrowTopRight className='text-2xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-in' />
                 </Link>
               </div>
-            </div>
+            </TimelineContent>
           ))}
           <div className='h-40' />
         </div>
