@@ -73,12 +73,9 @@ export const StickyScroll = ({
       <div className='hidden lg:flex lg:flex-col w-1/2 h-screen sticky top-20 p-12 items-end bg-service'>
         <div
           className={cn(
-            'relative h-[200px] w-[360px] rounded-xl overflow-hidden flex flex-col items-center justify-center',
+            'relative h-[200px] w-[360px] rounded-xl overflow-hidden flex flex-col items-center justify-center primary-gradient',
             contentClassName
           )}
-          style={{
-            background: 'linear-gradient(to bottom right, #06b6d4, #10b981)',
-          }}
         >
           {(() => {
             const Icon = content[activeCard].icon;
