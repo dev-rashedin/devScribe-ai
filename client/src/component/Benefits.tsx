@@ -1,9 +1,8 @@
 import { useRef } from 'react';
+import { revealVariants } from '../lib/utils';
 import { benefitsData } from '../data';
 import { BenefitsSVG } from '../data/assets';
-import { revealVariants } from '../lib/utils';
 import { TimelineContent, HomeSectionHeading } from './ui';
-import { BiTime } from 'react-icons/bi';
 
 
 
@@ -34,14 +33,15 @@ const Benefits = () => {
               animationNum={index}
               timelineRef={benefitsRef}
               customVariants={revealVariants}
-              className='bg-card border border-gray-400 border-r-2 border-b-2 p-6 rounded-xl shadow flex flex-col justify-between space-y-3'
+              className='bg-card border border-gray-400 hover:border-gray-600 p-6 rounded-xl shadow flex flex-col justify-between space-y-3 group'
             >
               <h3 className='text-xl font-bold text-primary flex items-center gap-2'>
-                <span><BiTime/></span>
+                <benefit.icon size={25} />
                 {benefit.title}
               </h3>
               <p className='text-sm sm:text-base text-primary/80'>
                 {benefit.description}
+        
               </p>
             </TimelineContent>
           ))}

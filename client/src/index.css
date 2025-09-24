@@ -3,6 +3,7 @@
 
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 @layer base {
@@ -63,6 +64,12 @@ html {
     .bg-card {
       background-color: hsl(0, 0%, 100%);
     }
+
+    .bg-card:hover {
+      background-color: hsl(0, 0%, 98%);
+    }
+    
+
     .bg-card-secondary {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 0%);
@@ -136,6 +143,10 @@ html {
 
     .bg-card {
       background-color: hsl(0 0% 10%);
+    }
+
+    .bg-card:hover {
+      background-color: hsl(0, 0%, 8%);
     }
 
     .bg-card-secondary {
