@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import NumberFlow from '@number-flow/react';
 import {
@@ -21,14 +21,14 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
   return (
     <div className='flex justify-center'>
       {/* plan switch buttons */}
-      <div className='relative z-50 mx-auto flex w-fit rounded-full bg-neutral-50 border border-gray-200 p-1'>
+      <div className='relative z-50 mx-auto flex w-fit rounded-full border bg-card border-gray-500 p-1'>
         {/* monthly plan */}
         <button
           onClick={() => handleSwitch('0')}
           className={`relative z-10 w-fit sm:h-12 h-10 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
             selected === '0'
               ? 'text-white'
-              : 'text-muted-foreground hover:text-black'
+              : 'text-muted'
           }`}
         >
           {selected === '0' && (
@@ -46,7 +46,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
           className={`relative z-10 w-fit sm:h-12 h-8 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
             selected === '1'
               ? 'text-white'
-              : 'text-muted-foreground hover:text-black'
+              : 'text-muted'
           }`}
         >
           {selected === '1' && (
@@ -70,17 +70,15 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
 
 export default function Subscription() {
   const [isYearly, setIsYearly] = useState(false);
-  const pricingRef = useRef<HTMLDivElement>(null);
 
 
   const togglePricingPeriod = (value: string) =>
     setIsYearly(Number.parseInt(value) === 1);
 
   return (
-    <div className='px-4 pt-20 min-h-screen mx-auto relative' ref={pricingRef}>
-      <div className='absolute top-0 left-[10%] right-[10%] w-[80%] h-full z-0' />
+    <div className='px-4 min-h-screen'>
 
-      <div className='text-center mb-6 max-w-5xl mx-auto'>
+      <div className='text-center pt-10 mb-6 max-w-5xl mx-auto'>
         <div className='lg:flex lg:justify-center gap-2'>
           <h1>Plans that works</h1>
           <h1 className='md:hidden'> best for your</h1>
@@ -89,7 +87,7 @@ export default function Subscription() {
           </div>
         </div>
 
-        <p className='mt-6 text-muted lg:text-lg'>
+        <p className='mt-4 text-muted lg:text-lg'>
           Trusted by millions, We help teams all around the world, Explore which
           option is right for you.
         </p>
@@ -104,32 +102,32 @@ export default function Subscription() {
           <div key={index}>
             <Card
               className={`relative border-neutral-200 ${
-                plan.popular ? 'ring-2 ring-blue-500 bg-blue-50' : 'bg-white '
+                plan.popular ? 'ring-2 ring-blue-500 bg-card' : 'bg-card'
               }`}
             >
               <CardHeader className='text-left'>
                 <div className='flex justify-between'>
-                  <h3 className='text-3xl font-semibold text-gray-900 mb-2'>
+                  <h3 className='text-3xl font-semibold  mb-2'>
                     {plan.name}
                   </h3>
                   {plan.popular && (
                     <div className=''>
-                      <span className='bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium'>
+                      <span className='bg-primary text-white px-3 py-1 rounded-full text-sm font-medium'>
                         Popular
                       </span>
                     </div>
                   )}
                 </div>
-                <p className='text-sm text-gray-600 mb-4'>{plan.description}</p>
+                <p className='text-sm text-muted mb-4'>{plan.description}</p>
                 <div className='flex items-baseline'>
-                  <span className='text-4xl font-semibold text-gray-900'>
+                  <span className='text-4xl font-semibold'>
                     $
                     <NumberFlow
                       value={isYearly ? plan.yearlyPrice : plan.price}
                       className='text-4xl font-semibold'
                     />
                   </span>
-                  <span className='text-gray-600 ml-1'>
+                  <span className='text-muted ml-1'>
                     /{isYearly ? 'year' : 'month'}
                   </span>
                 </div>
@@ -137,11 +135,11 @@ export default function Subscription() {
 
               <CardContent className='pt-0'>
                 <button
-                  className={`w-full mb-6 p-4 text-xl rounded-xl ${
+                  className={`w-full mb-6 p-4 text-xl rounded-xl cursor-pointer ${
                     plan.popular
                       ? 'bg-gradient-to-t from-blue-500 to-blue-600  shadow-lg shadow-blue-500 border border-blue-400 text-white'
                       : plan.buttonVariant === 'outline'
-                      ? 'bg-gradient-to-t from-neutral-900 to-neutral-600  shadow-lg shadow-neutral-900 border border-neutral-700 text-white'
+                      ? 'bg-gradient-to-t from-neutral-900 to-neutral-600 text-white shadow-lg shadow-neutral-900 border border-neutral-700 '
                       : ''
                   }`}
                 >
@@ -150,10 +148,10 @@ export default function Subscription() {
                 <ul className='space-y-2 font-semibold py-5'>
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className='flex items-center'>
-                      <span className='text-neutral-800 grid place-content-center mt-0.5 mr-3'>
-                        {feature.icon}
+                      <span className=' grid place-content-center mr-3'>
+                        {<feature.icon size={20} />}
                       </span>
-                      <span className='text-sm text-gray-600'>
+                      <span className='text-sm text-muted'>
                         {feature.text}
                       </span>
                     </li>
@@ -161,16 +159,16 @@ export default function Subscription() {
                 </ul>
 
                 <div className='space-y-3 pt-4 border-t border-neutral-200'>
-                  <h4 className='font-medium text-base text-gray-900 mb-3'>
+                  <h4 className='font-medium text-base mb-3'>
                     {plan.includes[0]}
                   </h4>
                   <ul className='space-y-2 font-semibold'>
                     {plan.includes.slice(1).map((feature, featureIndex) => (
                       <li key={featureIndex} className='flex items-center'>
-                        <span className='h-6 w-6 bg-green-50 border border-blue-500 rounded-full grid place-content-center mt-0.5 mr-3'>
-                          <LuCheckCheck className='h-4 w-4 text-blue-500 ' />
+                        <span className='h-6 w-6 bg-blue-100 border border-blue-500 rounded-full grid place-content-center mt-0.5 mr-3'>
+                          <LuCheckCheck className='h-4 w-4 text-brand ' />
                         </span>
-                        <span className='text-sm text-gray-600'>{feature}</span>
+                        <span className='text-sm text-muted'>{feature}</span>
                       </li>
                     ))}
                   </ul>

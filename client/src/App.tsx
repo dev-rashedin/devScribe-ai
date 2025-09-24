@@ -9,6 +9,8 @@ const App = () => {
   const noHeaderFooter =
     location.pathname.includes('login') ||
     location.pathname.includes('register');
+  
+  const subScriptionPage = location.pathname.includes('subscription');
 
   return (
     <main className=' relative'>
@@ -18,7 +20,7 @@ const App = () => {
         <Outlet />
       </section>
 
-      {noHeaderFooter || <Footer />}
+      {(noHeaderFooter || subScriptionPage) || <Footer />}
     </main>
   );
 };
