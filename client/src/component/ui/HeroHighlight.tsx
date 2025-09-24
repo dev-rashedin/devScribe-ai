@@ -1,8 +1,6 @@
-import { motion, } from 'motion/react';
+import { motion } from 'motion/react';
 import React from 'react';
 import { cn } from '../../lib/utils';
-
-
 
 export const Highlight = ({
   children,
@@ -12,29 +10,28 @@ export const Highlight = ({
   className?: string;
 }) => {
   return (
-    <motion.span
-      initial={{
-        backgroundSize: '0% 100%',
-      }}
-      animate={{
-        backgroundSize: '100% 100%',
-      }}
-      transition={{
-        duration: 2,
-        ease: 'linear',
-        delay: 0.5,
-      }}
+    <motion.div
+      initial={{ backgroundSize: '0% 100%' }}
+      animate={{ backgroundSize: '100% 100%' }}
+      transition={{ duration: 2, ease: 'easeInOut' }}
       style={{
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'left center',
-        display: 'inline',
+        display: 'inline-block',
       }}
       className={cn(
         `relative inline-block rounded-lg primary-gradient px-1 pb-1`,
         className
       )}
     >
-      {children}
-    </motion.span>
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3, ease: 'easeInOut' }}
+        style={{ display: 'inline-block', transformOrigin: 'left' }}
+      >
+        {children}
+      </motion.span>
+    </motion.div>
   );
 };

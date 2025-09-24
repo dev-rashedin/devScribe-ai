@@ -1,7 +1,7 @@
-import Marquee from 'react-fast-marquee';
 import { sponsorLogos } from '../data';
-import {banner} from '../data/assets';
+import Marquee from 'react-fast-marquee';
 import {Button, HighlightedText} from './ui';
+import {banner} from '../data/assets';
 
 const repeatedLogos = Array.from({ length: 3 }, () => sponsorLogos).flat();
 
@@ -50,7 +50,7 @@ const Hero = () => {
       </section>
 
       {/* bottom marquee */}
-      <section className='w-[100%] xl:mb-0 py-4  bg-faded-pearl'>
+      <section className='w-[100%] xl:mb-0 py-4 h-20  bg-faded-pearl'>
           <Marquee direction='left' speed={80} gradient={false}>
             {repeatedLogos.map((logo) => (
               <img
