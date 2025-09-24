@@ -45,4 +45,10 @@ declare interface HomeSectionHeadingProps {title: string, subtitle?: string, ref
 
 declare interface SizeProps { size?: 'sm' | 'md' | 'lg' }
 
+declare interface BenefitData {
+  title: string;
+  icon: IconType;
+  description: string;
+}
+
 

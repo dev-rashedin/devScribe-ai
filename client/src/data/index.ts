@@ -149,48 +149,49 @@ export const sponsorLogos : SponsorLogo[] = [
 
 export const faqData: FAQItem[] = [
   {
-    question: 'CONSUMERS',
+    question: 'DEVELOPERS',
     answer:
-      'We specialize in custom AI solutions including chatbots, predictive analytics, computer vision, NLP, and automation workflows tailored to your needs.',
+      'DevScribe-AI assists developers with code explanation, debugging hints, and refactoring support. Our AI helps simplify complex logic, reduce errors, and improve code readability while saving valuable development time.',
   },
   {
-    question: 'SMALL & MEDIUM BUSINESSES',
+    question: 'WRITERS & CONTENT CREATORS',
     answer:
-      'Absolutely! We offer seamless integration with CRMs, ERPs, databases, APIs, and other third-party tools your business relies on.',
+      'From article generation to content summarization, our AI boosts writing productivity. Writers can draft faster, refine tone, and maintain clarity—whether for blogs, technical docs, or professional communication.',
   },
   {
-    question: 'GOVERNMENT & PUBLIC SECTORS',
+    question: 'SMALL & MEDIUM TEAMS',
     answer:
-      "We conduct thorough testing and offer ongoing optimization post-launch. If something's off, we'll tweak it until it delivers results.",
+      'We integrate smoothly into existing workflows, supporting collaboration on projects. Teams can rely on AI for documentation, note-taking, task summaries, and streamlined communication across projects.',
   },
   {
-    question: 'LARGE ENTERPRISES',
+    question: 'ENTERPRISES',
     answer:
-      'Yes, we provide clear documentation and offer team training to help you and your staff understand and make the most of the AI systems we implement.',
+      'For large-scale teams, we deliver scalable AI solutions with advanced customization. We also provide onboarding support, training, and ongoing optimization to ensure maximum value and adoption.',
   },
   {
-    question: 'BANKS & CREDIT UNIONS',
+    question: 'STUDENTS & EDUCATORS',
     answer:
-      'We offer flexible pricing based on project complexity and duration—ranging from fixed project fees to retainer and hourly models.',
+      'Our tools simplify learning with personalized explanations, writing assistance, and project summaries. Educators benefit from grading support, plagiarism checks, and structured lesson content creation.',
   },
   {
-    question: 'HEALTHCARE PROVIDERS',
+    question: 'STARTUPS',
     answer:
-      'We deliver AI-powered diagnostics, patient monitoring, and workflow automation while ensuring compliance with healthcare regulations like HIPAA.',
+      'Startups leverage DevScribe-AI to speed up product documentation, generate polished pitches, and automate communication tasks. This allows small teams to focus on innovation rather than repetitive work.',
   },
   {
-    question: 'EDUCATIONAL INSTITUTIONS',
+    question: 'FREELANCERS',
     answer:
-      'Our AI tools help schools and universities with personalized learning, grading automation, student engagement, and research analytics.',
+      'Freelancers save time with AI-powered project notes, client-ready reports, and quick content drafts. Whether coding or writing, our tools help maintain quality output under tight deadlines.',
   },
   {
-    question: 'E-COMMERCE & RETAIL',
+    question: 'AGENCIES',
     answer:
-      'We provide intelligent product recommendations, customer behavior analysis, and automated support to boost sales and enhance customer experience.',
+      'Marketing and development agencies use our AI to scale output without scaling teams. From campaign content to technical deliverables, DevScribe-AI ensures consistency, speed, and reliability.',
   },
 ];
 
-export const benefitsData = [
+
+export const benefitsData : BenefitData[] = [
   {
     title: 'Save Time Instantly',
     icon: BiTime,
