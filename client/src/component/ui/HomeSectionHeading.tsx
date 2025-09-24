@@ -1,6 +1,11 @@
 import { revealVariants } from "../../lib/utils"
 import { TimelineContent } from "./index"
 
+interface HomeSectionHeadingProps {
+  title: string;
+  subtitle?: string;
+  ref: React.RefObject<HTMLDivElement | null>;
+}
 
 const HomeSectionHeading = ({title, subtitle, ref} : HomeSectionHeadingProps) => {
   return (

@@ -1,81 +1,14 @@
-import { Card, CardContent, CardHeader } from '../component/ui/SubscriptionCard';
-import { TimelineContent } from '../component/ui/TimelineAnimation';
-import NumberFlow from '@number-flow/react';
-import { motion } from 'motion/react';
 import { useRef, useState } from 'react';
+import { motion } from 'motion/react';
+import NumberFlow from '@number-flow/react';
 import {
-  FiBriefcase,
-  LuCheckCheck,
-  LuDatabase,
-  LuServer,
-} from '../data/icons';
-
-const plans = [
-  {
-    name: 'Starter',
-    description:
-      'Great for small businesses and startups looking to get started with AI',
-    price: 12,
-    yearlyPrice: 99,
-    buttonText: 'Get started',
-    buttonVariant: 'outline' as const,
-    features: [
-      {
-        text: 'Up to 10 boards per workspace',
-        icon: <FiBriefcase size={20} />,
-      },
-      { text: 'Up to 10GB storage', icon: <LuDatabase size={20} /> },
-      { text: 'Limited analytics', icon: <LuServer size={20} /> },
-    ],
-    includes: [
-      'Free includes:',
-      'Unlimted Cards',
-      'Custom background & stickers',
-      '2-factor authentication',
-    ],
-  },
-  {
-    name: 'Business',
-    description:
-      'Best value for growing businesses that need more advanced features',
-    price: 48,
-    yearlyPrice: 399,
-    buttonText: 'Get started',
-    buttonVariant: 'default' as const,
-    popular: true,
-    features: [
-      { text: 'Unlimted boards', icon: <FiBriefcase size={20} /> },
-      { text: 'Storage (250MB/file)', icon: <LuDatabase size={20} /> },
-      { text: '100 workspace command runs', icon: <LuServer size={20} /> },
-    ],
-    includes: [
-      'Everything in Starter, plus:',
-      'Advanced checklists',
-      'Custom fields',
-      'Servedless functions',
-    ],
-  },
-  {
-    name: 'Enterprise',
-    description:
-      'Advanced plan with enhanced security and unlimited access for large teams',
-    price: 96,
-    yearlyPrice: 899,
-    buttonText: 'Get started',
-    buttonVariant: 'outline' as const,
-    features: [
-      { text: 'Unlimited board', icon: <FiBriefcase size={20} /> },
-      { text: 'Unlimited storage ', icon: <LuDatabase size={20} /> },
-      { text: 'Unlimited workspaces', icon: <LuServer size={20} /> },
-    ],
-    includes: [
-      'Everything in Business, plus:',
-      'Multi-board management',
-      'Multi-board guest',
-      'Attachment permissions',
-    ],
-  },
-];
+  Card,
+  CardContent,
+  CardHeader,
+  HighlightedText,
+} from '../component/ui';
+import { LuCheckCheck } from '../data/icons';
+import { PlansData } from '../data';
 
 const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
   const [selected, setSelected] = useState('0');
@@ -87,7 +20,9 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
 
   return (
     <div className='flex justify-center'>
+      {/* plan switch buttons */}
       <div className='relative z-50 mx-auto flex w-fit rounded-full bg-neutral-50 border border-gray-200 p-1'>
+        {/* monthly plan */}
         <button
           onClick={() => handleSwitch('0')}
           className={`relative z-10 w-fit sm:h-12 h-10 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
@@ -105,7 +40,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
           )}
           <span className='relative'>Monthly</span>
         </button>
-
+        {/* yearly plan */}
         <button
           onClick={() => handleSwitch('1')}
           className={`relative z-10 w-fit sm:h-12 h-8 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
@@ -137,89 +72,36 @@ export default function Subscription() {
   const [isYearly, setIsYearly] = useState(false);
   const pricingRef = useRef<HTMLDivElement>(null);
 
-  const revealVariants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      transition: {
-        delay: i * 0.4,
-        duration: 0.5,
-      },
-    }),
-    hidden: {
-      filter: 'blur(10px)',
-      y: -20,
-      opacity: 0,
-    },
-  };
 
   const togglePricingPeriod = (value: string) =>
     setIsYearly(Number.parseInt(value) === 1);
 
   return (
     <div className='px-4 pt-20 min-h-screen mx-auto relative' ref={pricingRef}>
-      <div
-        className='absolute top-0 left-[10%] right-[10%] w-[80%] h-full z-0'
-        //   style={{
-        //     backgroundImage: `
-        //   radial-gradient(circle at center, #206ce8 0%, transparent 70%)
-        // `,
-        //     opacity: 0.6,
-        //     mixBlendMode: 'multiply',
-        //   }}
-      />
+      <div className='absolute top-0 left-[10%] right-[10%] w-[80%] h-full z-0' />
 
-      <div className='text-center mb-6 max-w-3xl mx-auto'>
-        <TimelineContent
-          as='h2'
-          animationNum={0}
-          timelineRef={pricingRef}
-          customVariants={revealVariants}
-          className='md:text-6xl sm:text-4xl text-3xl font-medium mb-4'
-        >
-          Plans that works <br />{' '}
-          <TimelineContent
-            as='span'
-            animationNum={1}
-            timelineRef={pricingRef}
-            customVariants={revealVariants}
-            className=' px-2 py-1 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 capitalize inline-block mt-1'
-          >
-            best for your
-          </TimelineContent>
-        </TimelineContent>
+      <div className='text-center mb-6 max-w-5xl mx-auto'>
+        <div className='lg:flex lg:justify-center gap-2'>
+          <h1>Plans that works</h1>
+          <h1 className='md:hidden'> best for your</h1>
+          <div className='hidden md:block'>
+            <HighlightedText label='best for you' />
+          </div>
+        </div>
 
-        <TimelineContent
-          as='p'
-          animationNum={2}
-          timelineRef={pricingRef}
-          customVariants={revealVariants}
-          className='sm:text-base text-sm text-muted sm:w-[70%] w-[80%] mx-auto'
-        >
+        <p className='mt-6 text-muted lg:text-lg'>
           Trusted by millions, We help teams all around the world, Explore which
           option is right for you.
-        </TimelineContent>
+        </p>
       </div>
 
-      <TimelineContent
-        as='div'
-        animationNum={3}
-        timelineRef={pricingRef}
-        customVariants={revealVariants}
-      >
+      <div>
         <PricingSwitch onSwitch={togglePricingPeriod} />
-      </TimelineContent>
+      </div>
 
       <div className='grid md:grid-cols-3 max-w-7xl gap-4 py-6 mx-auto'>
-        {plans.map((plan, index) => (
-          <TimelineContent
-            key={plan.name}
-            as='div'
-            animationNum={4 + index}
-            timelineRef={pricingRef}
-            customVariants={revealVariants}
-          >
+        {PlansData.map((plan, index) => (
+          <div key={index}>
             <Card
               className={`relative border-neutral-200 ${
                 plan.popular ? 'ring-2 ring-blue-500 bg-blue-50' : 'bg-white '
@@ -295,14 +177,11 @@ export default function Subscription() {
                 </div>
               </CardContent>
             </Card>
-          </TimelineContent>
+          </div>
         ))}
       </div>
     </div>
   );
 }
 
-// const Subscription = () => {
-//   return <div>Subscription</div>;
-// };
-// export default Subscription;
+

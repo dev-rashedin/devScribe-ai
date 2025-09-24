@@ -41,7 +41,7 @@ declare type FAQItem = {
 };
 
 
-declare interface HomeSectionHeadingProps {title: string, subtitle?: string, ref: React.RefObject<HTMLDivElement | null>}
+
 
 declare interface SizeProps { size?: 'sm' | 'md' | 'lg' }
 
@@ -49,6 +49,23 @@ declare interface BenefitData {
   title: string;
   icon: IconType;
   description: string;
+}
+
+declare interface PlanFeature {
+  text: string;
+  icon: IconType; 
+}
+
+export interface PlanData {
+  name: string;
+  description: string;
+  price: number;
+  yearlyPrice: number;
+  buttonText: string;
+  buttonVariant: 'outline' | 'default';
+  features: PlanFeature[];
+  includes: string[];
+  popular?: boolean; 
 }
 
 

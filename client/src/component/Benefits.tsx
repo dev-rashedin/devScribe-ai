@@ -6,6 +6,7 @@ import { TimelineContent, HomeSectionHeading } from './ui';
 
 
 
+
 const Benefits = () => {
   const benefitsRef = useRef<HTMLDivElement>(null);
 

@@ -15,6 +15,9 @@ import {
   MdOutput,
   MdOutlineIntegrationInstructions,
   SlGraph,
+  FiBriefcase,
+  LuDatabase,
+  LuServer,
 } from './icons';
 import {
   helloFresh,
@@ -24,6 +27,7 @@ import {
   gartner,
   masterclass
 } from './assets';
+import { BenefitData, FAQItem, PlanData, SponsorLogo } from '@/types';
 
 
 export const services2 = [
@@ -229,3 +233,71 @@ export const benefitsData : BenefitData[] = [
       'Works well with your existing workflow, supporting multiple tools, formats, and platforms.',
   },
 ];
+
+export const PlansData: PlanData[] = [
+  {
+    name: 'Starter',
+    description:
+      'Great for small businesses and startups looking to get started with AI',
+    price: 12,
+    yearlyPrice: 99,
+    buttonText: 'Get started',
+    buttonVariant: 'outline' as const,
+    features: [
+      {
+        text: 'Up to 10 boards per workspace',
+        icon: FiBriefcase,
+      },
+      { text: 'Up to 10GB storage', icon: LuDatabase },
+      { text: 'Limited analytics', icon: LuServer },
+    ],
+    includes: [
+      'Free includes:',
+      'Unlimted Cards',
+      'Custom background & stickers',
+      '2-factor authentication',
+    ],
+  },
+  {
+    name: 'Business',
+    description:
+      'Best value for growing businesses that need more advanced features',
+    price: 48,
+    yearlyPrice: 399,
+    buttonText: 'Get started',
+    buttonVariant: 'default' as const,
+    popular: true,
+    features: [
+      { text: 'Unlimted boards', icon: FiBriefcase },
+      { text: 'Storage (250MB/file)', icon: LuDatabase },
+      { text: '100 workspace command runs', icon: LuServer },
+    ],
+    includes: [
+      'Everything in Starter, plus:',
+      'Advanced checklists',
+      'Custom fields',
+      'Servedless functions',
+    ],
+  },
+  {
+    name: 'Enterprise',
+    description:
+      'Advanced plan with enhanced security and unlimited access for large teams',
+    price: 96,
+    yearlyPrice: 899,
+    buttonText: 'Get started',
+    buttonVariant: 'outline' as const,
+    features: [
+      { text: 'Unlimited board', icon: FiBriefcase },
+      { text: 'Unlimited storage ', icon: LuDatabase },
+      { text: 'Unlimited workspaces', icon: LuServer },
+    ],
+    includes: [
+      'Everything in Business, plus:',
+      'Multi-board management',
+      'Multi-board guest',
+      'Attachment permissions',
+    ],
+  },
+];
+

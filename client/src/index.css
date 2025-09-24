@@ -12,7 +12,7 @@ html {
     background-color: hsl(60, 100%, 96%);
     color: hsl(0, 0%, 0%);
 
-    h1{
+    h1 {
       @apply text-5xl md:text-6xl xl:text-7xl font-bold leading-tight;
     }
 
@@ -58,8 +58,8 @@ html {
     }
 
     .bg-blackNWhite {
-    background-color: hsl(0, 0%, 100%);
-  }
+      background-color: hsl(0, 0%, 100%);
+    }
 
     .bg-card {
       background-color: hsl(0, 0%, 100%);
@@ -68,7 +68,6 @@ html {
     .bg-card:hover {
       background-color: hsl(0, 0%, 98%);
     }
-    
 
     .bg-card-secondary {
       color: hsl(0, 0%, 100%);
@@ -87,16 +86,28 @@ html {
       background-color: hsl(0, 0%, 98%);
       @apply w-full max-w-5xl mx-auto p-12 rounded-2xl shadow;
     }
-      .blob-gradient {
-    @apply bg-gradient-to-t from-blue-300 via-blue-400 to-blue-500 rounded-full blur-[180px] opacity-30;
-  }
+    .blob-gradient {
+      @apply bg-gradient-to-t from-blue-300 via-blue-400 to-blue-500 rounded-full blur-[180px] opacity-30;
+    }
 
-  .grid-line-color {
-  background: linear-gradient(to right, rgba(107,114,128,0.2) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(107,114,128,0.2) 1px, transparent 1px);
-  background-size: 50px 56px;
-  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 120%);
-}
+    .grid-line-color {
+      background: linear-gradient(
+          to right,
+          rgba(107, 114, 128, 0.2) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(107, 114, 128, 0.2) 1px,
+          transparent 1px
+        );
+      background-size: 50px 56px;
+      mask-image: radial-gradient(
+        ellipse 80% 50% at 50% 0%,
+        #000 70%,
+        transparent 120%
+      );
+    }
   }
 
   /* Dark mode */
@@ -138,8 +149,8 @@ html {
     }
 
     .bg-blackNWhite {
-    background-color: hsl(0, 0%, 0%);
-  }
+      background-color: hsl(0, 0%, 0%);
+    }
 
     .bg-card {
       background-color: hsl(0 0% 10%);
@@ -154,7 +165,7 @@ html {
       background-color: hsl(60, 100%, 98%);
     }
 
-      .bg-service {
+    .bg-service {
       background-color: hsl(198, 98%, 53%);
     }
 
@@ -169,13 +180,12 @@ html {
       }
     }
 
-     .blob-gradient {
-    @apply bg-gradient-to-t from-blue-500 via-blue-600 to-blue-700 rounded-full blur-[180px] opacity-10;
-  }
+    .blob-gradient {
+      @apply bg-gradient-to-t from-blue-500 via-blue-600 to-blue-700 rounded-full blur-[180px] opacity-10;
+    }
   }
 
- 
-/* prose */
+  /* prose */
   .prose p {
     margin-bottom: 1.05em;
   }
@@ -234,7 +244,6 @@ html {
   .bg-primary {
     background-color: hsl(221, 97%, 54%);
   }
-  
 
   .primary-outline {
     border-color: hsl(215, 50%, 40%);
@@ -248,13 +257,9 @@ html {
     background: hsl(60, 100%, 96%);
   }
 
- 
-
   .border-primary {
     border-color: hsl(215, 52%, 40%);
   }
-
-
 
   .text-area {
     @apply border rounded-lg w-full p-3 font-mono text-sm bg-transparent min-h-[250px] placeholder:text-gray-400 placeholder:text-base;
@@ -264,5 +269,7 @@ html {
     @apply bg-gradient-to-tr from-blue-600 via-blue-500 to-blue-400;
   }
 
-
+  .description {
+    @apply max-w-xl xl:max-w-2xl md:text-lg xl:text-xl mt-6 xl:mt-8;
+  }
 }
