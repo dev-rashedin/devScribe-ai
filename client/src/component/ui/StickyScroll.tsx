@@ -101,7 +101,7 @@ export const StickyScroll = ({
 
       {/* Right scrollable column */}
       <div className='w-full lg:w-1/2 px-6'>
-        <div className='max-w-xl xl:max-w-2xl mx-auto'>
+        <div className='max-w-xl xl:max-w-2xl mx-auto '>
           {content.map((item, index) => (
             <TimelineContent
               animationNum={index + 2}
@@ -111,9 +111,8 @@ export const StickyScroll = ({
                 cardRefs.current[index] = el;
               }}
               key={item.title + index}
-              className='my-8 border primary-border bg-card rounded-lg shadow p-6 lg:border-none lg:mt-[40vh] lg:mb-[90vh]  lg:bg-transparent lg:p-0 lg:shadow-none  relative'
+              className='my-8 border border-r-2 border-b-2 primary-border bg-card rounded-lg shadow p-6 lg:border-none lg:mt-[40vh] lg:mb-[90vh]  lg:bg-transparent lg:p-0 lg:shadow-none relative '
             >
-              <div className='absolute top-1  left-1 -z-10 rounded-lg bg-service-card w-full h-full lg:hidden'></div>
               <div className='flex items-center gap-4'>
                 <span className='lg:hidden'>{<item.icon size={30} />}</span>
                 <h2 className='text-2xl font-bold '>{item.title}</h2>

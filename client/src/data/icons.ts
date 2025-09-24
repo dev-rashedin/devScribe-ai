@@ -19,6 +19,7 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { CgArrowTopRight } from 'react-icons/cg';
 import { HiMiniArrowTopRightOnSquare } from 'react-icons/hi2';
 import { LuCheckCheck, LuDatabase, LuServer, LuPlus } from 'react-icons/lu';
+import { BiTime } from 'react-icons/bi';
 
 export {
   FaGithub,
@@ -45,4 +46,5 @@ export {
   LuServer,
   IoChevronDownSharp,
   LuPlus,
+  BiTime,
 };

@@ -9,7 +9,7 @@ function ClientFeedback() {
  
   return (
     <section
-      className='relative h-full boundary rounded-lg mt-16 overflow-hidden'
+      className='relative boundary rounded-lg  overflow-hidden'
       ref={testimonialRef}
     >
      <HomeSectionHeading title="Trusted by Thousands" subtitle="Here's what our users — developers, writers, and content creators — think about DevScribe-AI" ref={testimonialRef} />

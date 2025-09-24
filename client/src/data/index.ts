@@ -9,6 +9,7 @@ import {
   FiEdit3,
   FiMail,
   FiUserCheck,
+  BiTime,
 } from './icons';
 import {
   helloFresh,
@@ -187,6 +188,7 @@ export const faqData: FAQItem[] = [
 export const benefitsData = [
   {
     title: 'Save Time Instantly',
+    icon: BiTime,
     description:
       'Automate code explanations, document summaries, and article generation to free up hours in your workflow.',
   },
