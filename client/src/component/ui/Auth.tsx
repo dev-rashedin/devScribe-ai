@@ -44,13 +44,17 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
   
   const { googleLogin, githubLogin } = useAuth();
 
-  const handleSocialLogin = (provider: string) => {
-    if (provider === 'Google') {
-      googleLogin();
-    } else if (provider === 'Github') {
-      githubLogin();
-    }
+  const handleSocialLogin = async (provider: string) => {
+   try {
+     if (provider === 'Google') {
+      await googleLogin();
+     } else if (provider === 'Github') {
+      await githubLogin();
+     }
      navigate(from);
+   } catch (error) {
+    console.error(error);
+   }
   };
 
   return (
@@ -72,6 +76,4 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
   );
 };
 
-export const userProfile = () => {
-  
-}
+

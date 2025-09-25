@@ -10,13 +10,15 @@ const Button = ({
   className = '',
 }: ButtonProps) => {
   let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out  ${
-    type === 'login' ? 'w-full py-4' : type === 'nav-login' ? 'w-20 py-1' : 'w-40 py-2 h-11'
+    type === 'login' ? 'w-full py-4' : type === 'nav-login' || type === 'logout' ? 'w-20 py-2 text-xs' : 'w-40 py-2 h-11'
   } ${className}`;
 
   if (type === 'primary' || type === 'login' || type === 'nav-login') {
     buttonClass += ' text-white bg-primary';
   } else if (type === 'secondary') {
     buttonClass += ' text-brand bg-transparent border-2 border-primary';
+  } else if (type === 'logout') {
+    buttonClass += ' text-white bg-amber-700';
   }
 
   const content = (
@@ -27,8 +29,8 @@ const Button = ({
       <span className='relative z-10'>{label}</span>
       <span
         className={`absolute inset-0 w-0 rounded-lg ${
-          type === 'primary' || type === 'login'
-            ? 'bg-blue-800'
+          type === 'primary' || type === 'login' || type === 'nav-login'
+            ? 'bg-blue-800' : type === 'logout' ? 'bg-amber-900' 
             : 'bg-secondary'
         } transition-[width] duration-500 ease-in-out group-hover:w-full origin-left z-0`}
       />

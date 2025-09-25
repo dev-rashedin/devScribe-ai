@@ -20,33 +20,34 @@ const Navbar = () => {
         <NavLinks />
 
         {/* user profile or login */}
-        <div className='flex-center gap-2'>
+        <div className='flex items-center justify-end gap-2 w-48'>
           {user ? (
             <div className='flex gap-2 items-center'>
-              <div className='relative'>
-                {!open && (
-                  <div
-                    onClick={() => setOpen(!open)}
-                    className='size-8 lg:size-9 mt-1.5 border primary-border rounded-full cursor-pointer'
-                  >
-                    <img
-                      referrerPolicy='no-referrer'
-                      className='rounded-full'
-                      src={user.photoURL as string}
-                      alt='User Pic'
-                    />
-                  </div>
-                )}
-
+              <div className='flex-center gap-2 mt-[5px]'>
                 {open && (
                   <div>
-                    <Button type='nav-login' label='Sign Out' onClick={logOutUser}></Button>
+                    <Button
+                      type='logout'
+                      label='Sign Out'
+                      onClick={logOutUser}
+                    ></Button>{' '}
                   </div>
                 )}
+                <div
+                  onClick={() => setOpen(!open)}
+                  className='size-8 lg:size-8.5  border primary-border rounded-full cursor-pointer'
+                >
+                  <img
+                    referrerPolicy='no-referrer'
+                    className='rounded-full'
+                    src={user.photoURL as string}
+                    alt='User Pic'
+                  />
+                </div>
               </div>
             </div>
           ) : (
-            <div className=' mt-1.5'>
+            <div className=' mt-[5px]'>
               <Link to='/signin'>
                 <Button type='nav-login' label='Sign In'></Button>
               </Link>
