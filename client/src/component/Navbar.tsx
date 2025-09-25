@@ -39,7 +39,7 @@ const Navbar = () => {
                   <img
                     referrerPolicy='no-referrer'
                     className='rounded-full'
-                    src={user.photoURL as string}
+                    src={user.photoURL ? user.photoURL as string : '/avatar.png'}
                     alt='User Pic'
                   />
                 </div>

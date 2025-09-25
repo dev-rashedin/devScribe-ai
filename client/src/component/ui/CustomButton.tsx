@@ -13,7 +13,7 @@ const Button = ({
 }: ButtonProps) => {
   let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50  ${
     type === 'submit'
-      ? 'w-full py-3'
+      ? 'w-full h-12'
       : type === 'login' || type === 'logout'
       ? 'w-20 py-2 text-xs'
       : 'w-40 py-2 h-11'

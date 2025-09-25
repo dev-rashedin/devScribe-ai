@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -15,24 +15,27 @@ import { useState } from "react";
 type FormData = z.infer<typeof schema>;
 
 const Login = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const {createUser} = useAuth();
+  const {createUser, logInUser} = useAuth();
 
   const isSignUp = location.pathname.includes('/signup');
   const authType = isSignUp ? 'Sign Up' : 'Sign In';
+  const from = location?.state || '/';
 
-  console.log('isChecked', isChecked);
+  const resolver = isSignUp ? {
+      resolver: zodResolver(schema),
+    } : {};
   
 
     const {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm<FormData>({
-      resolver: zodResolver(schema),
-    });
+      reset
+    } = useForm<FormData>(resolver);
   
   const onSubmit = async (data: unknown) => {
     const { email, password } = data as FormData;
@@ -43,10 +46,16 @@ const Login = () => {
 
       const res = await createUser(email, password);
       console.log('res', res);
+      navigate('/signin')
       
-    } else {
-      console.log('Sign In', data);
     }
+    
+    if (isSignUp === false) {
+      console.log('Sign In', data);
+      await logInUser(email, password);
+      navigate(from);
+    }
+    reset();
   } catch (error) {
     console.error(error);
   } finally {
