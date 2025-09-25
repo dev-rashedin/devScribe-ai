@@ -21,7 +21,7 @@ export const AuthInput = ({ type, name, isSignUp, register, errors }: AuthInputP
   return (
     <div className='relative w-full'>
       <input
-        className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white my-2.5'
+        className='w-full px-8 py-3.5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white my-2.5'
         {...register(name)}
         type={type === 'password' && showPassword ? 'text' : type}
         placeholder={
@@ -84,10 +84,11 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
   return (
     <button
       onClick={() => handleSocialLogin(provider)}
-      className='w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer my-2.5'
+      disabled={loading}
+      className='w-full max-w-xs font-bold shadow-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer my-2.5 h-12 disabled:cursor-not-allowed disabled:bg-gray-400'
     >
       {loading ? (
-        <ImSpinner9 />
+        <ImSpinner9 size={20} className='animate-spin ' />
       ) : (
         <>
           <div className='bg-white p-1 rounded-full'>

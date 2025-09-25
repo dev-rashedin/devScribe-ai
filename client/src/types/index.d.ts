@@ -36,6 +36,8 @@ declare interface ButtonProps {
   label: string;
   type: string;
   href?: string;
+  loading?: boolean;
+  isChecked?: boolean;
   isSubmit?: boolean;
   onClick?: () => void;
   className?: string;

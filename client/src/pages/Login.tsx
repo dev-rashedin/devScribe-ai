@@ -9,14 +9,22 @@ import { LoginSVG } from "../data/assets";
 import { AuthInput } from "../component/ui";
 import { AuthButton } from "../component/ui";
 import { schema } from "../utils";
+import useAuth from "../hooks";
+import { useState } from "react";
 
 type FormData = z.infer<typeof schema>;
 
 const Login = () => {
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const {createUser} = useAuth();
 
   const isSignUp = location.pathname.includes('/signup');
   const authType = isSignUp ? 'Sign Up' : 'Sign In';
+
+  console.log('isChecked', isChecked);
+  
 
     const {
       register,
@@ -26,10 +34,25 @@ const Login = () => {
       resolver: zodResolver(schema),
     });
   
+  const onSubmit = async (data: unknown) => {
+    const { email, password } = data as FormData;
+  try {
+    setLoading(true);
+    if (isSignUp) {
+      console.log('Sign Up', data);
 
-    const onSubmit = (data: unknown) => {
-      console.log(data);
-    };
+      const res = await createUser(email, password);
+      console.log('res', res);
+      
+    } else {
+      console.log('Sign In', data);
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
@@ -80,12 +103,24 @@ const Login = () => {
                     errors={errors}
                   />
 
-                  <Button label={authType} type='submit' className='mt-3' />
+                  <Button
+                    loading={loading}
+                    isChecked={isSignUp ? isChecked : true}
+                    label={authType}
+                    type='submit'
+                    isSubmit={true}
+                    className='mt-3'
+                  />
                 </form>
                 {/* terms and conditions */}
                 {location.pathname.includes('/signup') && (
                   <div className='my-6 flex items-start justify-center gap-[1px] text-xs text-gray-600 text-center'>
-                    <input type='checkbox' />
+                    <input
+                      type='checkbox'
+                      checked={isChecked}
+                      onChange={(e) => setIsChecked(e.target.checked)}
+                      className="accent-blue-500"
+                    />
                     <p>
                       I agree to abide by DevScribe's
                       <a
