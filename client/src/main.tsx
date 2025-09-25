@@ -5,7 +5,8 @@ import App from './App'
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
-import { ThemeProvider } from './providers/ThemeProvider';
+import  ThemeProvider  from './providers/ThemeProvider';
+import AuthProvider from './providers/AuthProvider';
 import Home from './pages/Home';
 import CodeExplainForm from './component/forms/CodeExplainForm';
 import Summarizer from './pages/Summarizer';
@@ -42,10 +43,12 @@ if (!rootElement) throw new Error('Root element not found');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
-      <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </ThemeProvider>
+    </AuthProvider>
   </StrictMode>
 );

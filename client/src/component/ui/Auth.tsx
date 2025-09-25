@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { FcGoogle, FaGithub, FaEye, FaEyeSlash } from '../../data/icons';
+import useAuth from '../..//hooks';
+import { useLocation, useNavigate } from 'react-router';
+
+ 
 
 export const AuthInput = ({ type }: { type: string }) => {
   const [showPassword, setShowPassword] = useState(false);
+ 
 
   return (
     <div className='relative w-full'>
@@ -30,10 +35,27 @@ export const AuthInput = ({ type }: { type: string }) => {
   );
 };
 
-export const AuthButton = ({ type, provider, onClick }: AuthButtonProps) => {
+export const AuthButton = ({ type, provider }: AuthButtonProps) => {
+
+  const location = useLocation();
+    const navigate = useNavigate();
+
+  const from = location?.state || '/';
+  
+  const { googleLogin, githubLogin } = useAuth();
+
+  const handleSocialLogin = (provider: string) => {
+    if (provider === 'Google') {
+      googleLogin();
+    } else if (provider === 'Github') {
+      githubLogin();
+    }
+     navigate(from);
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={() => handleSocialLogin(provider)}
       className='w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer my-2.5'
     >
       <div className='bg-white p-1 rounded-full'>

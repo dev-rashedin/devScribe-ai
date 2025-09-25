@@ -5,7 +5,7 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [dark, setDark] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       // 1. Check localStorage
@@ -36,3 +36,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     </ThemeContext.Provider>
   );
 };
+
+
+export default ThemeProvider;
