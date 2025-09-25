@@ -22,7 +22,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'subscription', element: <Subscription /> },
-      { path: 'login', element: <Login /> },
+      { path: 'signin', element: <Login /> },
+      { path: 'signup', element: <Login /> },
       {
         path: 'services', children: [
           { path: 'code-explainer', element: <CodeExplainForm/> },

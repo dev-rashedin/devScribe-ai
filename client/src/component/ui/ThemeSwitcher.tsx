@@ -1,4 +1,4 @@
-import { useTheme } from '../../utils/useTheme';
+import { useTheme } from '../../hooks';
 import { FiMoon, IoSunnyOutline } from '../../data/icons';
 
 const ThemeSwitcher = () => {

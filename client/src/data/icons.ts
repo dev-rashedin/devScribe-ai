@@ -27,6 +27,7 @@ import {
 } from 'react-icons/md';
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
+import { FcGoogle } from 'react-icons/fc';
 
 export {
   FaGithub,
@@ -58,6 +59,7 @@ export {
   GoRocket,
   MdOutput,
   MdOutlineIntegrationInstructions,
-  SlGraph
+  SlGraph,
+  FcGoogle
 
 };

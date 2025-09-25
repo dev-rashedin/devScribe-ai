@@ -16,7 +16,7 @@ import {
 } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import { getASecureRandomPassword } from '../utils';
-import { axiosApi } from '../api/axiosApi';
+import { axiosApi } from '../api';
 import { AuthContext } from '../utils';
 
 interface AuthProviderProps {
