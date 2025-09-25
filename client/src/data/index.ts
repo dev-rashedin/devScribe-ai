@@ -116,7 +116,7 @@ export const links = [
     ],
   },
   { title: 'Blogs', path: 'https://blog.rashedin.dev' },
-  { title: 'Login', path: '/login' },
+  { title: 'Login', path: '/signin' },
 ];
 
 

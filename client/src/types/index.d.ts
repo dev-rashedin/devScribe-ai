@@ -19,8 +19,6 @@ declare interface AuthContextType {
   resetUserPass: (email: string) => Promise<void>;
 }
 
-
-
 declare interface ExplanationData {
   explanation: string;
   language: string;
@@ -55,8 +53,6 @@ declare type FAQItem = {
 };
 
 
-
-
 declare interface SizeProps { size?: 'sm' | 'md' | 'lg' }
 
 
@@ -68,6 +64,12 @@ declare interface FirebaseConfig {
   messagingSenderId: string;
   appId: string;
   measurementId: string;
+}
+
+declare interface AuthButtonProps {
+  type: string;
+  provider: string;
+  onClick: () => void;
 }
 
 

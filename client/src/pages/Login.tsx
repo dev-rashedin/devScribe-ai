@@ -4,7 +4,7 @@ import Logo from "../component/ui/Logo";
 import { LoginSVG } from "../data/assets";
 import { AuthInput } from "../component/ui";
 import { AuthButton } from "../component/ui";
-import auth from "@/firebase/firebase.config";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const location = useLocation();
@@ -14,7 +14,10 @@ const Login = () => {
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
-      <div className='max-w-screen-xl m-0 sm:m-10 bg-faded-pearl shadow sm:rounded-lg flex justify-center flex-1'>
+      <Helmet>
+        <title>DevScribe-AI || {authType}</title>
+      </Helmet>
+      <div className='max-w-screen-xl m-0 md:m-3 lg:m-5 xl:m-7 bg-faded-pearl shadow sm:rounded-lg flex justify-center flex-1'>
         {/* left side form */}
         <div className='lg:w-1/2 p-6 sm:p-12'>
           <div className='flex-center'>
@@ -24,8 +27,8 @@ const Login = () => {
             <h1 className='text-2xl xl:text-3xl font-extrabold'>{authType}</h1>
             <div className='w-full flex-1 mt-8'>
               <div className='flex flex-col items-center'>
-                <AuthButton type={authType} provider='Google'/>
-                <AuthButton type={authType} provider='Github'/>
+                <AuthButton type={authType} provider='Google' onClick={() => {}} />
+                <AuthButton type={authType} provider='Github' onClick={() => {}} />
               </div>
               {/* sign in or up with email and password */}
               <div className='my-8 border-b text-center'>
@@ -75,12 +78,22 @@ const Login = () => {
                 {isSignUp ? (
                   <div className='mt-6 text-sm text-gray-600 text-center'>
                     Already have an account?
-                    <Link to='/signin' className="ml-2 font-semibold hover:underline">Sign In</Link>
+                    <Link
+                      to='/signin'
+                      className='ml-2 font-semibold hover:underline'
+                    >
+                      Sign In
+                    </Link>
                   </div>
                 ) : (
                   <div className='mt-6 text-sm text-gray-600 text-center'>
                     Don't have an account?
-                    <Link to='/signup' className="ml-2 font-semibold hover:underline">Sign Up</Link>
+                    <Link
+                      to='/signup'
+                      className='ml-2 font-semibold hover:underline'
+                    >
+                      Sign Up
+                    </Link>
                   </div>
                 )}
               </div>

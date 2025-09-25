@@ -9,6 +9,7 @@ import {
 } from '../component/ui';
 import { LuCheckCheck } from '../data/icons';
 import { PlansData } from '../data';
+import { Helmet } from 'react-helmet-async';
 
 const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
   const [selected, setSelected] = useState('0');
@@ -77,7 +78,9 @@ export default function Subscription() {
 
   return (
     <div className='px-4 min-h-screen'>
-
+ <Helmet>
+        <title>DevScribe-AI || Subscription</title>
+      </Helmet>
       <div className='text-center pt-10 mb-6 max-w-5xl mx-auto'>
         <div className='lg:flex lg:justify-center gap-2'>
           <h1>Plans that works</h1>

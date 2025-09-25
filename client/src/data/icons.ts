@@ -1,4 +1,11 @@
-import { FaGithub, FaLinkedin, FaFacebook, FaDiscord } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaDiscord,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa';
 import {
   FiCode,
   FiFileText,
@@ -60,6 +67,7 @@ export {
   MdOutput,
   MdOutlineIntegrationInstructions,
   SlGraph,
-  FcGoogle
-
+  FcGoogle,
+  FaEye,
+  FaEyeSlash,
 };
