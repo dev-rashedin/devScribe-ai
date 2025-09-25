@@ -12,6 +12,7 @@
   "dependencies": {
     "@number-flow/react": "^0.5.10",
     "clsx": "^2.1.1",
+    "firebase": "^12.3.0",
     "highlight.js": "^11.11.1",
     "lottie-react": "^2.4.1",
     "motion": "^12.23.12",
