@@ -27,8 +27,8 @@ const Login = () => {
             <h1 className='text-2xl xl:text-3xl font-extrabold'>{authType}</h1>
             <div className='w-full flex-1 mt-8'>
               <div className='flex flex-col items-center'>
-                <AuthButton type={authType} provider='Google' onClick={() => {}} />
-                <AuthButton type={authType} provider='Github' onClick={() => {}} />
+                <AuthButton type={authType} provider='Google'  />
+                <AuthButton type={authType} provider='Github' />
               </div>
               {/* sign in or up with email and password */}
               <div className='my-8 border-b text-center'>

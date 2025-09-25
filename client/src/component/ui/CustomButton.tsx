@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import {MdPersonAddAlt1} from '../../data/icons'
 
 const Button = ({
   label,
@@ -9,10 +10,10 @@ const Button = ({
   className = '',
 }: ButtonProps) => {
   let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out  ${
-    type === 'login' ? 'w-full py-4' : 'w-40 py-2 h-11'
+    type === 'login' ? 'w-full py-4' : type === 'nav-login' ? 'w-20 py-1' : 'w-40 py-2 h-11'
   } ${className}`;
 
-  if (type === 'primary' || type === 'login') {
+  if (type === 'primary' || type === 'login' || type === 'nav-login') {
     buttonClass += ' text-white bg-primary';
   } else if (type === 'secondary') {
     buttonClass += ' text-brand bg-transparent border-2 border-primary';
@@ -21,18 +22,7 @@ const Button = ({
   const content = (
     <div className='flex-center gap-4'>
       {type === 'login' && (
-        <svg
-          className='w-6 h-6 -ml-2'
-          fill='none'
-          stroke='currentColor'
-          strokeWidth='2'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        >
-          <path d='M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2' />
-          <circle cx='8.5' cy='7' r='4' />
-          <path d='M20 8v6M23 11h-6' />
-        </svg>
+       <MdPersonAddAlt1 size={26} className='z-10'/>
       )}
       <span className='relative z-10'>{label}</span>
       <span

@@ -71,3 +71,7 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
     </button>
   );
 };
+
+export const userProfile = () => {
+  
+}

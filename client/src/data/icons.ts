@@ -31,6 +31,7 @@ import {
   MdErrorOutline,
   MdOutput,
   MdOutlineIntegrationInstructions,
+  MdPersonAddAlt1,
 } from 'react-icons/md';
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
@@ -70,4 +71,5 @@ export {
   FcGoogle,
   FaEye,
   FaEyeSlash,
+  MdPersonAddAlt1,
 };

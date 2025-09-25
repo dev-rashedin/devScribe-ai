@@ -69,7 +69,6 @@ declare interface FirebaseConfig {
 declare interface AuthButtonProps {
   type: string;
   provider: string;
-  onClick: () => void;
 }
 
 
