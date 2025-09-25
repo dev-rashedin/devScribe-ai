@@ -1,16 +1,35 @@
 import { Link, useLocation } from "react-router";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Helmet } from "react-helmet-async";
 import Button from "../component/ui/CustomButton";
 import Logo from "../component/ui/Logo";
 import { LoginSVG } from "../data/assets";
 import { AuthInput } from "../component/ui";
 import { AuthButton } from "../component/ui";
-import { Helmet } from "react-helmet-async";
+import { schema } from "../utils";
+
+type FormData = z.infer<typeof schema>;
 
 const Login = () => {
   const location = useLocation();
 
   const isSignUp = location.pathname.includes('/signup');
   const authType = isSignUp ? 'Sign Up' : 'Sign In';
+
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<FormData>({
+      resolver: zodResolver(schema),
+    });
+  
+
+    const onSubmit = (data: unknown) => {
+      console.log(data);
+    };
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
@@ -27,7 +46,7 @@ const Login = () => {
             <h1 className='text-2xl xl:text-3xl font-extrabold'>{authType}</h1>
             <div className='w-full flex-1 mt-8'>
               <div className='flex flex-col items-center'>
-                <AuthButton type={authType} provider='Google'  />
+                <AuthButton type={authType} provider='Google' />
                 <AuthButton type={authType} provider='Github' />
               </div>
               {/* sign in or up with email and password */}
@@ -38,17 +57,31 @@ const Login = () => {
               </div>
 
               <div className='mx-auto max-w-xs'>
-                {location.pathname.includes('/signup') && (
-                  <AuthInput type='text' />
-                )}
-                <AuthInput type='email' />
-                <AuthInput type='password' />
-                <Button
-                  label='Sign In'
-                  type='login'
-                  href='/login'
-                  className='mt-3'
-                />
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  {location.pathname.includes('/signup') && (
+                    <AuthInput
+                      type='text'
+                      name='username'
+                      register={register}
+                      errors={errors}
+                    />
+                  )}
+                  <AuthInput
+                    type='email'
+                    name='email'
+                    register={register}
+                    errors={errors}
+                  />
+                  <AuthInput
+                    type='password'
+                    name='password'
+                    isSignUp={isSignUp}
+                    register={register}
+                    errors={errors}
+                  />
+
+                  <Button label={authType} type='submit' className='mt-3' />
+                </form>
                 {/* terms and conditions */}
                 {location.pathname.includes('/signup') && (
                   <div className='my-6 flex items-start justify-center gap-[1px] text-xs text-gray-600 text-center'>

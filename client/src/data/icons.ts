@@ -36,6 +36,7 @@ import {
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
 import { FcGoogle } from 'react-icons/fc';
+import { ImSpinner9 } from 'react-icons/im';
 
 export {
   FaGithub,
@@ -72,4 +73,5 @@ export {
   FaEye,
   FaEyeSlash,
   MdPersonAddAlt1,
+  ImSpinner9,
 };

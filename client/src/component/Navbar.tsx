@@ -8,7 +8,6 @@ const Navbar = () => {
   const { user, logOutUser } = useAuth();
 
   console.log('user', user);
-  
 
   return (
     <main className='bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center bg-navbar/10 z-50'>
@@ -49,7 +48,7 @@ const Navbar = () => {
           ) : (
             <div className=' mt-[5px]'>
               <Link to='/signin'>
-                <Button type='nav-login' label='Sign In'></Button>
+                <Button type='login' label='Sign In'></Button>
               </Link>
             </div>
           )}
