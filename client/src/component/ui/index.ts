@@ -22,6 +22,7 @@ import { StickyScroll } from "./StickyScroll";
 import { Card, CardHeader, CardContent } from "./SubscriptionCard"
 import ThemeSwitcher from "./ThemeSwitcher";
 import { TimelineContent } from "./TimelineAnimation";
+import {AuthInput, AuthButton} from './Auth';
 
 
 
@@ -50,4 +51,6 @@ export {
   CardContent,
   ThemeSwitcher,
   TimelineContent,
+  AuthInput,
+  AuthButton,
 };

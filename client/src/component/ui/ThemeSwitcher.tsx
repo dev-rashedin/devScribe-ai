@@ -1,9 +1,8 @@
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from '../../hooks';
 import { FiMoon, IoSunnyOutline } from '../../data/icons';
 
-
 const ThemeSwitcher = () => {
-    const { dark, toggleDark } = useTheme();
+  const { dark, toggleDark } = useTheme();
   return (
     <button onClick={toggleDark} className='cursor-pointer'>
       {dark ? (
@@ -13,5 +12,5 @@ const ThemeSwitcher = () => {
       )}
     </button>
   );
-}
-export default ThemeSwitcher
+};
+export default ThemeSwitcher;

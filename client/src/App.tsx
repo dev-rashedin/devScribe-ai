@@ -7,8 +7,8 @@ const App = () => {
   const location = useLocation();
 
   const noHeaderFooter =
-    location.pathname.includes('login') ||
-    location.pathname.includes('register');
+    location.pathname.includes('signin') ||
+    location.pathname.includes('signup');
   
   const subScriptionPage = location.pathname.includes('subscription');
 

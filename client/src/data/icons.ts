@@ -1,4 +1,11 @@
-import { FaGithub, FaLinkedin, FaFacebook, FaDiscord } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaDiscord,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa';
 import {
   FiCode,
   FiFileText,
@@ -24,9 +31,12 @@ import {
   MdErrorOutline,
   MdOutput,
   MdOutlineIntegrationInstructions,
+  MdPersonAddAlt1,
 } from 'react-icons/md';
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
+import { FcGoogle } from 'react-icons/fc';
+import { ImSpinner9 } from 'react-icons/im';
 
 export {
   FaGithub,
@@ -58,6 +68,10 @@ export {
   GoRocket,
   MdOutput,
   MdOutlineIntegrationInstructions,
-  SlGraph
-
+  SlGraph,
+  FcGoogle,
+  FaEye,
+  FaEyeSlash,
+  MdPersonAddAlt1,
+  ImSpinner9,
 };

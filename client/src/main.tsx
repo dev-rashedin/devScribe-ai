@@ -4,7 +4,9 @@ import './index.css'
 import App from './App'
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router';
-import { ThemeProvider } from './providers/ThemeProvider';
+import { HelmetProvider } from 'react-helmet-async';
+import  ThemeProvider  from './providers/ThemeProvider';
+import AuthProvider from './providers/AuthProvider';
 import Home from './pages/Home';
 import CodeExplainForm from './component/forms/CodeExplainForm';
 import Summarizer from './pages/Summarizer';
@@ -22,7 +24,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'subscription', element: <Subscription /> },
-      { path: 'login', element: <Login /> },
+      { path: 'signin', element: <Login /> },
+      { path: 'signup', element: <Login /> },
       {
         path: 'services', children: [
           { path: 'code-explainer', element: <CodeExplainForm/> },
@@ -34,11 +37,18 @@ const router = createBrowserRouter([
   },
 ]);
 
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Root element not found');
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
-    <RouterProvider router={router} />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </ThemeProvider>
+    </AuthProvider>
   </StrictMode>
 );
