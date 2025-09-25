@@ -46,6 +46,15 @@ declare type FAQItem = {
 declare interface SizeProps { size?: 'sm' | 'md' | 'lg' }
 
 
+declare interface FirebaseConfig {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId: string;
+}
 
 
 
