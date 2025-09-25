@@ -8,7 +8,7 @@ const repeatedLogos = Array.from({ length: 3 }, () => sponsorLogos).flat();
 const Hero = () => {
   return (
     <main className='h-[91.3vh] overflow-y-hidden  flex-col-center'>
-      <section className='boundary h-[80vh]  flex flex-col-reverse items-center justify-center w-full xl:px-6  xl:flex-row xl:items-center xl:justify-between '>
+      <section className='boundary lg:h-[80vh]  flex flex-col-reverse items-center justify-center w-full xl:px-6  xl:flex-row xl:items-center xl:justify-between '>
         {/* hero text and buttons */}
         <div className='max-w-3xl flex flex-col justify-center items-center text-center  xl:items-start xl:text-left '>
           {/* tagline for large screen */}
