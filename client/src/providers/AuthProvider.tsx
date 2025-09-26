@@ -13,6 +13,7 @@ import {
   updatePassword,
   updateProfile,
   User,
+  UserCredential,
 } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import { getASecureRandomPassword } from '../utils';
@@ -32,8 +33,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   // --- AUTH FUNCTIONS ---
 
-  const createUser = async (email: string, password: string) => {
+  const createUser = async (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
     setLoading(true);
+
     try {
       return await createUserWithEmailAndPassword(auth, email, password);
     } finally {

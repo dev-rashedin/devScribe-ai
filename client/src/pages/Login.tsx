@@ -11,6 +11,8 @@ import { AuthInput } from "../component/ui";
 import { AuthButton } from "../component/ui";
 import { schema } from "../utils";
 import {useAuth} from "../hooks";
+import { createUserInDatabase } from "../api";
+import { UserCredential } from "firebase/auth";
 
 
 type FormData = z.infer<typeof schema>;
@@ -45,9 +47,18 @@ const Login = () => {
     if (isSignUp) {
       console.log('Sign Up', data);
 
-      const res = await createUser(email, password);
+      const res = await createUser(email, password) as UserCredential;
 
-      // await createUser(uid: res.user.uid, email, password);
+      const user = res.user 
+
+      const userInfo = {
+        uid: user.uid,
+        email: user.email || '',
+        displayName: user.displayName || 'New User',
+        photoURL: user.photoURL || 'https://www.gravatar.com/avatar/?d=mp',
+      };
+
+      await createUserInDatabase(userInfo);
       console.log('res', res);
       navigate('/signin')
       
