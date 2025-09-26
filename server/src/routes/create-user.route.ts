@@ -1,8 +1,7 @@
-// createUser.route.ts
 import express, { Request, Response } from 'express';
 import { asyncHandler, BadRequestError } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
-import { User } from '../models/user';
+import { User } from '../models/users.model';
 
 const createUserRouter = express.Router();
 
@@ -15,23 +14,32 @@ createUserRouter.post(
       throw new BadRequestError('Please provide uid, email, and displayName');
     }
 
-    // Service logic inline
-    let user = await User.findOne({ uid });
-    if (!user) {
-      user = new User({
-        uid,
-        email,
-        displayName,
-        photoURL,
-        subscription: 'free',
-        role: 'user',
+    // checking if user already exists
+    const existingUser = await User.findOne({ uid });
+    if (existingUser) {
+      return res.status(StatusCodes.CONFLICT).json({
+        success: false,
+        message: 'User already exists',
+        user: existingUser,
       });
-      await user.save();
     }
 
-    res.status(StatusCodes.CREATED).json({
+    // storing user in database
+    const newUser = new User({
+      uid,
+      email,
+      displayName,
+      photoURL,
+      subscription: 'free',
+      role: 'user',
+    });
+
+    await newUser.save();
+
+   return res.status(StatusCodes.CREATED).json({
+      success: true,
       message: 'User created successfully',
-      user,
+      user: newUser,
     });
   })
 );

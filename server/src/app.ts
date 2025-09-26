@@ -11,6 +11,7 @@ import { corsOption, limiter } from './lib/utils';
 import articleWriterRoute from './routes/article-writer.route';
 import authRouter from './routes/auth.route';
 import verifyToken from './middleware/verifyToken';
+import createUserRouter from './routes/create-user.route';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/api', authRouter);
+app.use('/api', createUserRouter);
 app.use('/api', verifyToken, codeAnalyzerRouter);
 app.use('/api', verifyToken, codeRefactorRouter);
 app.use('/api', verifyToken, articleWriterRoute);
