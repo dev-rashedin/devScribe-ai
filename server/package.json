@@ -20,6 +20,7 @@
     "helmet": "^8.1.0",
     "http-status-toolkit": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.2",
     "openai": "^5.19.1"
   },
   "devDependencies": {

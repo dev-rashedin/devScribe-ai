@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { AuthContext, ThemeContext } from '../utils';
-import useAxiosSecure from './useAxiosSecure'
 
 const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -20,5 +19,4 @@ const useAuth = (): AuthContextType => {
 export {
   useTheme,
   useAuth,
-  useAxiosSecure,
 }

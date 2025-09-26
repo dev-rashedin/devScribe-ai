@@ -9,8 +9,6 @@ import {LoadingDots, Button, CodeExplanation} from '../ui';
 const ArticleGeneratorForm = () => {
   const [formState, formAction, isPending] = useActionState(writeArticle, null);
   const [topic, setTopic] = useState('');
-
-  console.log('formState', formState);
   
 
   return (
