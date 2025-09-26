@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUser extends Document {
-  uid: string; // Firebase UID
+  uid: string; 
   email: string;
   displayName: string;
   photoURL?: string;
   role: 'user' | 'admin';
   subscription: 'free' | 'premium';
-  premiumExpiresAt?: number | null; // timestamp for subscription expiry
-  history: mongoose.Types.ObjectId[]; // references to history collection
+  premiumExpiresAt?: number | null;
+  history: mongoose.Types.ObjectId[]; 
   createdAt: Date;
   updatedAt: Date;
 }
