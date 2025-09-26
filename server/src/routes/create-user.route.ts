@@ -2,7 +2,7 @@
 import express, { Request, Response } from 'express';
 import { asyncHandler, BadRequestError } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
-import { createUserService } from '../services/createUser.service';
+import { User } from '../models/user';
 
 const createUserRouter = express.Router();
 
@@ -15,7 +15,19 @@ createUserRouter.post(
       throw new BadRequestError('Please provide uid, email, and displayName');
     }
 
-    const user = await createUserService({ uid, email, displayName, photoURL });
+    // Service logic inline
+    let user = await User.findOne({ uid });
+    if (!user) {
+      user = new User({
+        uid,
+        email,
+        displayName,
+        photoURL,
+        subscription: 'free',
+        role: 'user',
+      });
+      await user.save();
+    }
 
     res.status(StatusCodes.CREATED).json({
       message: 'User created successfully',
