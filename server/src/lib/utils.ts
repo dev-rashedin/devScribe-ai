@@ -1,12 +1,16 @@
-import 'dotenv/config';
 import cors from 'cors';
 import OpenAI from 'openai';
 import rateLimit from 'express-rate-limit';
+import config from '../config';
 
 
 // cors option
 
-const allowedOrigins = ['http://localhost:5173', process.env.CLIENT_URL || ''];
+console.log('cors option - client urls', config.client_url);
+
+const allowedOrigins = [config.client_url, 'http://localhost:5173'].filter(
+  Boolean
+);
 
 export const corsOption: cors.CorsOptions = {
   origin: (origin, callback) => {
@@ -29,15 +33,14 @@ export const limiter = rateLimit({
 
 
 // openai
-const API_KEY = process.env.OPENAI_API_KEY;
 
-if (!API_KEY) {
+if (!config.api_key) {
   throw new Error('OPENAI_API_KEY is missing in environment variables');
 }
 
 export const client = new OpenAI({
   baseURL: 'https://api.studio.nebius.com/v1/',
-  apiKey: API_KEY,
+  apiKey: config.api_key,
 });
 
 

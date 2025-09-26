@@ -104,11 +104,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      // console.log(currentUser)
+      console.log(currentUser)
 
       if (currentUser) {
         // get token and store client
         const userInfo = { email: currentUser.email };
+        console.log('userInfo', userInfo);
+
+        console.log('axiosApi', axiosApi);
+        
+        
         axiosApi
           .post('/jwt', userInfo)
           .then((res: { data: { token: string } }) => {

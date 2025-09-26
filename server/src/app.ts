@@ -9,6 +9,7 @@ import codeAnalyzerRouter from './routes/code-analyze.route';
 import codeRefactorRouter from './routes/code-refactor.route';
 import { corsOption, limiter } from './lib/utils';
 import articleWriterRoute from './routes/article-writer.route';
+import authRouter from './routes/auth.route';
 
 const app = express();
 
@@ -21,11 +22,12 @@ console.log('cors option', corsOption);
 
 
 // body parser
-app.use('/jwt', authRouter);
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // routes
+app.use('/api', authRouter);
 app.use('/api', codeAnalyzerRouter);
 app.use('/api', codeRefactorRouter);
 app.use('/api', articleWriterRoute);

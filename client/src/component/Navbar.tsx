@@ -7,7 +7,6 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOutUser } = useAuth();
 
-  console.log('user', user);
 
   return (
     <main className='bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center bg-navbar/10 z-50'>

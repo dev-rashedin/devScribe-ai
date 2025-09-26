@@ -1,10 +1,13 @@
+import { Request, Response } from 'express';
 import express from 'express';
-import { generateJwtToken } from '../controllers/auth.controller';
+import jwt from 'jsonwebtoken';
 import { BadRequestError } from 'express-error-toolkit';
+import config from '../config';
+import { StatusCodes } from 'http-status-toolkit';
 
 const authRouter = express.Router();
 
-authRouter.post('/', (req: Request, res: Response) => {
+authRouter.post('/jwt', (req: Request, res: Response) => {
   const user = req.body;
 
   if (!user || !user.email) {
@@ -16,6 +19,6 @@ authRouter.post('/', (req: Request, res: Response) => {
   });
 
   res.status(StatusCodes.OK).send({ token });
-};);
+});
 
 export default authRouter;
