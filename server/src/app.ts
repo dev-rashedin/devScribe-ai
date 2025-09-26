@@ -4,14 +4,16 @@ import cors from 'cors';
 import { notFoundHandler, globalErrorHandler } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import helmet from 'helmet';
-
-import codeAnalyzerRouter from './routes/code-analyze.route';
-import codeRefactorRouter from './routes/code-refactor.route';
 import { corsOption, limiter } from './lib/utils';
-import articleWriterRoute from './routes/article-writer.route';
-import authRouter from './routes/auth.route';
 import verifyToken from './middleware/verifyToken';
-import createUserRouter from './routes/create-user.route';
+import {
+  codeAnalyzerRouter,
+  codeRefactorRouter,
+  articleWriterRoute,
+  createUserRouter,
+  authRouter,
+} from './routes';
+
 
 const app = express();
 
@@ -21,7 +23,6 @@ app.use(cors(corsOption));
 app.use(limiter);
 
 console.log('cors option', corsOption);
-
 
 // body parser
 

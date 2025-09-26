@@ -48,8 +48,27 @@ axiosSecureApi.interceptors.response.use(
   }
 );
 
+const createUser = async (userInfo: UserInfo) => {
+  try {
+    const res = await axiosApi.post('/users', userInfo);
+
+    console.log('res in the create user api', res);
+    
+   
+    if (res.data.user) {
+      console.log('User added to the database');
+    }
+
+    return res;
+  } catch (error: unknown) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export {
   axiosApi,
-  axiosSecureApi
+  axiosSecureApi,
+  createUser
 }
 

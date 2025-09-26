@@ -46,12 +46,12 @@ const Login = () => {
       console.log('Sign Up', data);
 
       const res = await createUser(email, password);
+
+      // await createUser(uid: res.user.uid, email, password);
       console.log('res', res);
       navigate('/signin')
       
-    }
-    
-    if (isSignUp === false) {
+    } else {
       console.log('Sign In', data);
       await logInUser(email, password);
       navigate(from);
