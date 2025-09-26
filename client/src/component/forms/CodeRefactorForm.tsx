@@ -27,6 +27,7 @@ const CodeRefactorForm = () => {
           label={isPending ? 'Refactoring...' : 'Refactor Code'}
           type='primary'
           isSubmit
+          isChecked
           className='mt-4'
         />
 

@@ -210,7 +210,7 @@ html {
   }
 
   .prose table {
-    border: 1px solid hsl(0, 0%, 85%);
+    /* border: 1px solid hsl(0, 0%, 85%); */
   }
 
   .prose code {

@@ -21,12 +21,12 @@ const Hero = () => {
             <HighlightedText label='Developers & Writers' />
           </div>
 
-          <p className='max-w-xl xl:max-w-2xl md:text-lg xl:text-xl text-muted mt-6 xl:mt-8'>
+          <p className='max-w-xl xl:max-w-2xl lg:text-lg text-muted mt-6 '>
             Explain code, refactor smarter, summarize documents, write articles,
             craft emails, and polish your resume — all in one place.
           </p>
 
-          <div className='flex-center gap-4 mt-8 xl:mt-12'>
+          <div className='flex-center gap-4 mt-8 '>
             <Button label='Get Started' type='primary' />
             <Button
               label='Explore Services'

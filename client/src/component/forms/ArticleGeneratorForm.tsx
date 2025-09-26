@@ -29,6 +29,7 @@ const ArticleGeneratorForm = () => {
           label={isPending ? 'Generating...' : 'Generate Article'}
           type='primary'
           isSubmit
+          isChecked
         />
 
         {/* results */}

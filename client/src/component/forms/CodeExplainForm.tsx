@@ -34,6 +34,7 @@ const CodeExplainForm = () => {
           label={isPending ? 'Explaining...' : 'Explain Code'}
           type='primary'
           isSubmit
+          isChecked
           className='mt-4'
         />
 
