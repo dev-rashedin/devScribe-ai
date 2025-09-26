@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { FcGoogle, FaGithub, FaEye, FaEyeSlash, ImSpinner9 } from '../../data/icons';
-import useAuth from '../..//hooks';
+import {useAuth} from '../..//hooks';
 import { useLocation, useNavigate } from 'react-router';
 
 

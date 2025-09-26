@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { NavLinks, MobileMenu, ThemeSwitcher, Blob, Logo, Button } from './ui';
-import useAuth from '../hooks';
+import {useAuth} from '../hooks';
 import { useState } from 'react';
 
 const Navbar = () => {

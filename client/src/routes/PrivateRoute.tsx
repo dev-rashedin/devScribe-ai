@@ -1,5 +1,5 @@
 import { JSX } from 'react'
-import useAuth from '../hooks'
+import {useAuth} from '../hooks'
 import { Navigate, useLocation } from 'react-router'
 
 

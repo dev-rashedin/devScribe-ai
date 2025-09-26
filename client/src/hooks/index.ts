@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { AuthContext, ThemeContext } from '../utils';
+import useAxiosSecure from './useAxiosSecure'
 
-export const useTheme = (): ThemeContextType => {
+const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) throw new Error('useTheme must be used within ThemeProvider');
   return context;
@@ -14,4 +15,10 @@ const useAuth = (): AuthContextType => {
   }
   return auth;
 };
-export default useAuth;
+
+
+export {
+  useTheme,
+  useAuth,
+  useAxiosSecure,
+}

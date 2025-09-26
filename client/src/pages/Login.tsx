@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,8 +10,8 @@ import { LoginSVG } from "../data/assets";
 import { AuthInput } from "../component/ui";
 import { AuthButton } from "../component/ui";
 import { schema } from "../utils";
-import useAuth from "../hooks";
-import { useState } from "react";
+import {useAuth} from "../hooks";
+
 
 type FormData = z.infer<typeof schema>;
 
