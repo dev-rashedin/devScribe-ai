@@ -21,6 +21,7 @@ console.log('cors option', corsOption);
 
 
 // body parser
+app.use('/jwt', authRouter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 

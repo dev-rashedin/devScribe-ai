@@ -19,6 +19,7 @@
     "express-rate-limit": "^8.1.0",
     "helmet": "^8.1.0",
     "http-status-toolkit": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "openai": "^5.19.1"
   },
   "devDependencies": {
