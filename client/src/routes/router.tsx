@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router';
-
+import RootLayout from '../layout/RootLayout';
+import ServiceLayout from '../layout/ServiceLayout';
 import Home from '../pages/Home';
 import CodeExplainForm from '../component/forms/CodeExplainForm';
 import Summarizer from '../pages/Summarizer';
@@ -8,25 +9,34 @@ import Login from '../pages/Login';
 import Subscription from '../pages/Subscription';
 import CodeRefactorForm from '../component/forms/CodeRefactorForm';
 import ArticleGeneratorForm from '../component/forms/ArticleGeneratorForm';
-import RootLayout from '../layout/RootLayout';
+import PrivateRoute from './PrivateRoute';
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       { path: 'subscription', element: <Subscription /> },
       { path: 'signin', element: <Login /> },
       { path: 'signup', element: <Login /> },
-      {
-        path: 'services', children: [
-          { path: 'code-explainer', element: <CodeExplainForm/> },
-          { path: 'doc-summarizer', element: <Summarizer /> },
-          { path: 'code-refactor', element: <CodeRefactorForm /> },
-          {path: 'article-generator', element: <ArticleGeneratorForm/>},
-      ]},
+    ],
+  },
+  {
+    path: '/services',
+    element: (
+      <PrivateRoute>
+        <ServiceLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: 'code-explainer', element: <CodeExplainForm /> },
+      { path: 'doc-summarizer', element: <Summarizer /> },
+      { path: 'code-refactor', element: <CodeRefactorForm /> },
+      { path: 'article-generator', element: <ArticleGeneratorForm /> },
     ],
   },
 ]);

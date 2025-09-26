@@ -10,13 +10,15 @@ const PrivateRoute = ({ children } : {children: JSX.Element}) => {
   // loading state
   if (loading) {
     return (
-      <div className='text-center flex justify-center items-center min-h-[70vh]'>
-        <div className='flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96'>
+      <div className='h-screen flex-center '>
+        <div className='flex flex-col m-8 rounded shadow-md max-w-3xl w-full h-[80vh] animate-pulse'>
           <div className='h-48 rounded-t bg-gray-700'></div>
-          <div className='flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-900'>
-            <div className='w-full h-6 rounded bg-gray-700'></div>
-            <div className='w-full h-6 rounded bg-gray-700'></div>
-            <div className='w-3/4 h-6 rounded bg-gray-700'></div>
+          <div className='flex-1 space-y-4 p-4 sm:p-8 bg-gray-900'>
+            <div className='w-full h-40 rounded bg-gray-700'></div>
+            <div className='w-full h-28 rounded bg-gray-700'></div>
+            <div className='w-full h-16 rounded bg-gray-700'></div>
+            <div className='w-11/12 h-8 rounded bg-gray-700'></div>
+            <div className='w-3/4 h-8 rounded bg-gray-700'></div>
           </div>
         </div>
       </div>
@@ -27,7 +29,7 @@ const PrivateRoute = ({ children } : {children: JSX.Element}) => {
   if (user)
   { return children }
 
-  return <Navigate to='/login' state={location.pathname} replace />
+  return <Navigate to='/signin' state={location.pathname} replace />
 }
 
 export default PrivateRoute
