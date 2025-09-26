@@ -1,9 +1,9 @@
 import { Outlet, useLocation } from 'react-router';
-import Navbar from './component/Navbar';
-import Footer from './component/Footer';
-import Blob from './component/ui/Blob';
+import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
+import Blob from '../component/ui/Blob';
 
-const App = () => {
+const RootLayout = () => {
   const location = useLocation();
 
   const noHeaderFooter =
@@ -24,4 +24,4 @@ const App = () => {
     </main>
   );
 };
-export default App;
+export default RootLayout;

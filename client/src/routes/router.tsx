@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router';
 
 import Home from '../pages/Home';
 import CodeExplainForm from '../component/forms/CodeExplainForm';
@@ -8,11 +8,12 @@ import Login from '../pages/Login';
 import Subscription from '../pages/Subscription';
 import CodeRefactorForm from '../component/forms/CodeRefactorForm';
 import ArticleGeneratorForm from '../component/forms/ArticleGeneratorForm';
+import RootLayout from '../layout/RootLayout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <RootLayout />,
     errorElement: <ErrorPage/>,
     children: [
       { index: true, element: <Home /> },
