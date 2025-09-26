@@ -6,12 +6,11 @@ import {
 } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
-import verifyToken from '../middleware/verifyToken'
 
 const articleWriterRoute = express.Router();
 
 articleWriterRoute.post(
-  '/generate-article', verifyToken,
+  '/generate-article',
   asyncHandler(async (req: Request, res: Response) => {
     const { topic } = req.body;
 

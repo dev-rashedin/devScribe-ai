@@ -10,6 +10,7 @@ import codeRefactorRouter from './routes/code-refactor.route';
 import { corsOption, limiter } from './lib/utils';
 import articleWriterRoute from './routes/article-writer.route';
 import authRouter from './routes/auth.route';
+import verifyToken from './middleware/verifyToken';
 
 const app = express();
 
@@ -28,9 +29,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/api', authRouter);
-app.use('/api', codeAnalyzerRouter);
-app.use('/api', codeRefactorRouter);
-app.use('/api', articleWriterRoute);
+app.use('/api', verifyToken, codeAnalyzerRouter);
+app.use('/api', verifyToken, codeRefactorRouter);
+app.use('/api', verifyToken, articleWriterRoute);
 
 // home route
 app.get('/', (_req: Request, res: Response) => {

@@ -10,6 +10,9 @@ const ArticleGeneratorForm = () => {
   const [formState, formAction, isPending] = useActionState(writeArticle, null);
   const [topic, setTopic] = useState('');
 
+  console.log('formState', formState);
+  
+
   return (
     <div className='pt-20'>
       <form action={formAction} className='form-ui'>

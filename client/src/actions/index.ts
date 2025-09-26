@@ -1,15 +1,16 @@
 'use server';
 
+import  {axiosSecureApi } from "../api";
+
 async function fetchAction(endpoint: string, body: object) {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}${endpoint}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    if (!res.ok) return { success: false, error: 'Failed to fetch results' };
-    const data = await res.json();
-    return { success: true, data };
+    const res = await axiosSecureApi.post(endpoint, body);
+
+    if (res.status < 200 || res.status >= 300) {
+      return { success: false, error: 'Failed to fetch results' };
+    }
+
+    return { success: true, data: res.data };
   } catch (err: unknown) {
     return {
       success: false,
