@@ -1,79 +1,81 @@
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Helmet } from "react-helmet-async";
-import Button from "../component/ui/CustomButton";
-import Logo from "../component/ui/Logo";
-import { LoginSVG } from "../data/assets";
-import { AuthInput } from "../component/ui";
-import { AuthButton } from "../component/ui";
-import { schema } from "../utils";
-import {useAuth} from "../hooks";
-import { createUserInDatabase } from "../api";
-import { UserCredential } from "firebase/auth";
-
+import { Helmet } from 'react-helmet-async';
+import Button from '../component/ui/CustomButton';
+import Logo from '../component/ui/Logo';
+import { LoginSVG } from '../data/assets';
+import { AuthInput } from '../component/ui';
+import { AuthButton } from '../component/ui';
+import { getUserInfo, imageUpload, schema, useImageFile } from '../utils';
+import { useAuth } from '../hooks';
+import { createUserInDatabase } from '../api';
+import { UserCredential } from 'firebase/auth';
 
 type FormData = z.infer<typeof schema>;
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const {createUser, logInUser} = useAuth();
+  const { imageFile, handleImageChange } = useImageFile();
+  const { createUser, logInUser, updateUserProfile, loading, setLoading } =
+    useAuth();
 
   const isSignUp = location.pathname.includes('/signup');
   const authType = isSignUp ? 'Sign Up' : 'Sign In';
   const from = location?.state || '/';
 
-  const resolver = isSignUp ? {
-      resolver: zodResolver(schema),
-    } : {};
-  
+  const resolver = isSignUp
+    ? {
+        resolver: zodResolver(schema),
+      }
+    : {};
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      reset
-    } = useForm<FormData>(resolver);
-  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>(resolver);
+
   const onSubmit = async (data: unknown) => {
-    const { email, password } = data as FormData;
-  try {
-    setLoading(true);
-    if (isSignUp) {
-      console.log('Sign Up', data);
+    try {
+      setLoading(true);
+      if (isSignUp) {
+        const { username, email, password } = data as FormData;
+        const image_url = await imageUpload(imageFile!);
+        console.log(image_url);
 
-      const res = await createUser(email, password) as UserCredential;
+        // user registration
+        const res = (await createUser(email, password)) as UserCredential;
+        console.log('res', res);
 
-      const user = res.user 
+        // Saving username and photo in Firebase
+        await updateUserProfile(username, image_url);
 
-      const userInfo = {
-        uid: user.uid,
-        email: user.email || '',
-        displayName: user.displayName || 'New User',
-        photoURL: user.photoURL || 'https://www.gravatar.com/avatar/?d=mp',
-      };
+        const userInfo = getUserInfo(res, image_url, username);
 
-      await createUserInDatabase(userInfo);
-      console.log('res', res);
-      navigate('/signin')
-      
-    } else {
-      console.log('Sign In', data);
-      await logInUser(email, password);
-      navigate(from);
+        const user = await createUserInDatabase(userInfo);
+
+        console.log('user', user);
+
+        navigate('/signin');
+      } else {
+        const { email, password } = data as FormData;
+
+        await logInUser(email, password);
+        navigate(from);
+      }
+      reset();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-    reset();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
@@ -105,20 +107,27 @@ const Login = () => {
                   {location.pathname.includes('/signup') && (
                     <AuthInput
                       type='text'
-                      name='username'
+                      id='username'
                       register={register}
                       errors={errors}
                     />
                   )}
                   <AuthInput
                     type='email'
-                    name='email'
+                    id='email'
+                    register={register}
+                    errors={errors}
+                    handleChange={handleImageChange}
+                  />
+                  <AuthInput
+                    type='file'
+                    id='photo'
                     register={register}
                     errors={errors}
                   />
                   <AuthInput
                     type='password'
-                    name='password'
+                    id='password'
                     isSignUp={isSignUp}
                     register={register}
                     errors={errors}
@@ -140,7 +149,7 @@ const Login = () => {
                       type='checkbox'
                       checked={isChecked}
                       onChange={(e) => setIsChecked(e.target.checked)}
-                      className="accent-blue-500"
+                      className='accent-blue-500'
                     />
                     <p>
                       I agree to abide by DevScribe's

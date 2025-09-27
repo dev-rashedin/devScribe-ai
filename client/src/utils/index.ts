@@ -1,4 +1,6 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import { UserCredential } from 'firebase/auth';
+import axios from 'axios';
 import { z } from 'zod';
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(
@@ -20,7 +22,6 @@ export function getASecureRandomPassword(): string {
   return password;
 }
 
-
 export const schema = z.object({
   username: z.string().min(1, 'Username is required'),
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
@@ -37,4 +38,43 @@ export const schema = z.object({
       'Password must contain at least one special character'
     ),
 });
+
+export const getUserInfo = (res: UserCredential, image_url: string, username: string) => {
+  const user = res.user;
+
+  const userInfo = {
+    uid: user.uid,
+    email: user.email || '',
+    displayName: user.displayName || username || 'New User',
+    photoURL: user.photoURL || image_url || 'https://www.gravatar.com/avatar/?d=mp',
+  };
+
+  return userInfo;
+};
+
+export const imageUpload = async (image: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append('image', image);
+  const { data } = await axios.post(
+    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+    formData
+  );
+
+  console.log(data);
+
+  return data.data.display_url;
+};
+
+
+export const useImageFile = () => {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    setImageFile(files[0]);
+  };
+
+  return { imageFile, handleImageChange, setImageFile };
+};
 

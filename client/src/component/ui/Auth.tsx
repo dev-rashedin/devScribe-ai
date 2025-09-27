@@ -1,29 +1,43 @@
 import { useState } from 'react';
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { FcGoogle, FaGithub, FaEye, FaEyeSlash, ImSpinner9 } from '../../data/icons';
-import {useAuth} from '../..//hooks';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import {
+  FcGoogle,
+  FaGithub,
+  FaEye,
+  FaEyeSlash,
+  ImSpinner9,
+} from '../../data/icons';
+import { useAuth } from '../..//hooks';
 import { useLocation, useNavigate } from 'react-router';
-
 
 interface AuthInputProps {
   type: string;
-  name: string; 
+  id: string;
   isSignUp?: boolean;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>;
   errors: FieldErrors<FieldValues>;
 }
 
-
-export const AuthInput = ({ type, name, isSignUp, register, errors }: AuthInputProps) => {
+export const AuthInput = ({
+  type,
+  id,
+  isSignUp,
+  handleChange = () => {},
+  register,
+  errors,
+}: AuthInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className='relative w-full'>
       <input
         className='w-full px-8 py-3.5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white my-2.5'
-        {...register(name)}
+        {...register(id)}
+        onChange={handleChange}
         type={type === 'password' && showPassword ? 'text' : type}
+  
         placeholder={
           type === 'password'
             ? 'Password'
@@ -36,11 +50,11 @@ export const AuthInput = ({ type, name, isSignUp, register, errors }: AuthInputP
             ? isSignUp
               ? 'new-password'
               : 'current-password'
-            : name
+            : id
         }
       />
-      {errors[name] && (
-        <p className='text-red-500 mt-2'>{errors[name]?.message as string}</p>
+      {errors[id] && (
+        <p className='text-red-500 mt-2'>{errors[id]?.message as string}</p>
       )}
       {type === 'password' && (
         <span
@@ -55,30 +69,29 @@ export const AuthInput = ({ type, name, isSignUp, register, errors }: AuthInputP
 };
 
 export const AuthButton = ({ type, provider }: AuthButtonProps) => {
-
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const from = location?.state || '/';
-  
+
   const { googleLogin, githubLogin } = useAuth();
 
   const handleSocialLogin = async (provider: string) => {
     try {
-     setLoading(true);
-     if (provider === 'Google') {
-       await googleLogin();     
-     } else if (provider === 'Github') {
-      await githubLogin();
+      setLoading(true);
+      if (provider === 'Google') {
+        await googleLogin();
+      } else if (provider === 'Github') {
+        await githubLogin();
       }
       setLoading(false);
-     navigate(from);
-   } catch (error) {
-    console.error(error);
-   } finally {
-    setLoading(false);
-   }
+      navigate(from);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -106,5 +119,3 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
     </button>
   );
 };
-
-

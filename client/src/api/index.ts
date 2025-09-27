@@ -50,7 +50,7 @@ axiosSecureApi.interceptors.response.use(
 
 const createUserInDatabase = async (userInfo: UserInfo) => {
   try {
-    const res = await axiosApi.post('/users', userInfo);
+    const res = await axiosApi.post('/create-user', userInfo);
 
     console.log('res in the create user api', res);
     
