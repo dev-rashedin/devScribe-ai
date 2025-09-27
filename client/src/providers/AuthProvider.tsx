@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState, useMemo } from 'react';
 import {
   createUserWithEmailAndPassword,
   EmailAuthProvider,
+  getRedirectResult,
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -9,6 +10,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
   updatePassword,
   updateProfile,
@@ -65,10 +67,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const githubLogin = async () => {
-    setLoading(true);
     try {
-      return await signInWithPopup(auth, githubProvider);
-    } finally {
+      setLoading(true);
+      await signInWithRedirect(auth, githubProvider);
+    const result = await getRedirectResult(auth);
+    if (result) {
+      return result; 
+    }
+
+  } 
+    finally {
       setLoading(false);
     }
   };

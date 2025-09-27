@@ -44,23 +44,6 @@ export const getUserInfo = (
   image_url: string,
   username: string
 ) => {
-  // let userInfo;
-
-  // if (res.providerId === 'github.com') {
-
-  //   const additionalInfo = getAdditionalUserInfo(res);
-
-  //   const user = additionalInfo!.profile
-  //   userInfo = {
-  //     uid: res.user.uid,
-  //     email: user!.email || '',
-  //     displayName: user!.name || 'New User',
-  //     photoURL:
-  //       user!.avatar_url || 'https://www.gravatar.com/avatar/?d=mp',
-  //   };
-
-  // }
-
   const user = res.user;
 
   const userInfo = {

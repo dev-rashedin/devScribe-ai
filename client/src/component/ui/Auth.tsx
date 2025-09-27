@@ -79,11 +79,10 @@ export const AuthInput = ({
 export const AuthButton = ({ type, provider }: AuthButtonProps) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const from = location?.state || '/';
 
-  const { googleLogin, githubLogin } = useAuth();
+  const { googleLogin, githubLogin, loading, setLoading } = useAuth();
 
   const handleSocialLogin = async (provider: string) => {
     try {
