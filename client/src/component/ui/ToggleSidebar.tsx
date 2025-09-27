@@ -6,7 +6,7 @@ const ToggleSidebar = ({ onClose }: { onClose: () => void }) => {
       onClick={onClose}
       className='cursor-w-resize'
     >
-      <FiSidebar className='size-5 text-gray-500 ' />
+      <FiSidebar className='size-5 text-gray-500 '  />
     </button>
   );
 };

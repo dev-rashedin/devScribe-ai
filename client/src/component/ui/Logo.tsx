@@ -15,7 +15,7 @@ const Logo = ({ size = 'md', isService = false } : LogoProps) => {
         className={`${size === 'lg' ? 'size-12' : 'size-10'} -mt-1`}
       />
       <h1
-        className={`${size === 'lg' ? 'text-3xl' : 'text-2xl'} font-bold mt-1`}
+        className={`font-bold mt-1 ${size === 'lg' ? 'text-3xl' : 'text-2xl'} ${isService ? 'hidden' : 'block'}`}
       >
         DevScribe AI
       </h1>
