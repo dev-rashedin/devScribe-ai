@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext, ThemeContext } from '../utils';
+import { useLocation } from 'react-router';
 
 const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -16,7 +17,17 @@ const useAuth = (): AuthContextType => {
 };
 
 
+const useServiceLocation = () => {
+  const location = useLocation();
+
+  const isService = location.pathname.includes('service');
+
+  return isService
+}
+
+
 export {
   useTheme,
   useAuth,
+  useServiceLocation
 }

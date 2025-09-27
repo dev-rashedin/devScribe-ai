@@ -1,9 +1,9 @@
-import { FiX, FiPlus } from 'react-icons/fi';
+import { FiPlus, FiX, FiUser } from 'react-icons/fi';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  serviceName: string; // e.g. "Code Explainer"
+  serviceName: string;
   chats: { _id: string; title: string }[];
   onNewChat: () => void;
 }
@@ -17,59 +17,65 @@ const Sidebar = ({
 }: SidebarProps) => {
   return (
     <aside
-      className={`fixed top-0 left-0 h-full w-72 bg-card border-r border-border shadow-md transition-transform duration-300 z-50 
-      ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      className={`h-full border-r bg-sidebar transition-all duration-300 
+        ${isOpen ? 'w-72' : 'w-16'} flex flex-col`}
     >
-      {/* Header */}
-      <div className='flex items-center justify-between px-4 py-3 border-b border-border'>
-        <h2 className='text-lg font-semibold'>{serviceName}</h2>
-        <button onClick={onClose} className='p-1 hover:text-primary'>
-          <FiX size={20} />
-        </button>
-      </div>
-
-      {/* New Chat Button */}
-      <div className='px-4 py-3'>
-        <button
-          onClick={onNewChat}
-          className='flex items-center gap-2 w-full px-3 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition'
-        >
-          <FiPlus size={18} /> New Chat
-        </button>
-      </div>
-
-      {/* Chats History */}
-      <div className='flex-1 overflow-y-auto px-2'>
-        {chats.length > 0 ? (
-          chats.map((chat) => (
-            <div
-              key={chat._id}
-              className='px-3 py-2 rounded hover:bg-muted cursor-pointer'
-            >
-              {chat.title}
-            </div>
-          ))
+      {/* Top Section */}
+      <div className='flex items-center justify-between p-3 border-b'>
+        {isOpen ? (
+          <span className='text-lg font-semibold'>{serviceName}</span>
         ) : (
-          <p className='text-sm text-muted px-3 mt-4'>No chats yet</p>
+          <span className='text-xl font-bold'>⚡</span> // logo icon
         )}
+        <button
+          onClick={onClose}
+          className=' bg-gray-300 hover:bg-gray-500 rounded-full p-1 cursor-pointer'
+        >
+          <FiX className='size-5 text-black hover:text-white' />
+        </button>
       </div>
 
-      {/* Footer / Profile */}
-      <div className='px-4 py-3 border-t border-border flex items-center justify-between'>
-        <div className='flex items-center gap-2'>
-          <img
-            src='https://www.gravatar.com/avatar/?d=mp'
-            alt='user'
-            className='w-8 h-8 rounded-full'
-          />
-          <div>
-            <p className='text-sm font-medium'>John Doe</p>
-            <p className='text-xs text-muted'>Free Plan</p>
+      {/* New Chat */}
+      <button
+        onClick={onNewChat}
+        className={`flex items-center gap-2 m-3 px-3 py-2 rounded-lg text-sm font-medium 
+        hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors
+        ${isOpen ? 'justify-start' : 'justify-center'}`}
+      >
+        <FiPlus />
+        {isOpen && 'New Chat'}
+      </button>
+
+      {/* Chat List */}
+      <div className='flex-1 overflow-y-auto px-2'>
+        {chats.map((chat) => (
+          <div
+            key={chat._id}
+            className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer 
+            hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors
+            ${isOpen ? 'justify-start' : 'justify-center'}`}
+          >
+            💬
+            {isOpen && <span className='truncate'>{chat.title}</span>}
           </div>
+        ))}
+      </div>
+
+      {/* User Profile */}
+      <div
+        className={`flex items-center gap-2 p-3 border-t 
+        ${isOpen ? 'justify-start' : 'justify-center'}`}
+      >
+        <div className='w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center'>
+          <FiUser />
         </div>
-        <button className='text-xs font-medium px-2 py-1 border rounded hover:bg-muted'>
-          Upgrade
-        </button>
+        {isOpen && (
+          <div className='flex flex-col text-sm'>
+            <span className='font-medium'>John Doe</span>
+            <span className='text-xs text-gray-500'>Free Plan</span>
+            <button className='text-blue-500 text-xs'>Upgrade</button>
+          </div>
+        )}
       </div>
     </aside>
   );

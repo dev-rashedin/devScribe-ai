@@ -8,7 +8,7 @@ const NavLinks = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className='hidden md:flex items-center gap-8 font-medium'>
+    <div className='hidden  md:flex items-center gap-8 font-medium'>
       <ul className='flex items-center gap-8'>
         {links.map((link) =>
           link.dropdown ? (

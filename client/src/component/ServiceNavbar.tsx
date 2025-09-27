@@ -3,21 +3,19 @@ import { Link } from 'react-router';
 import { NavLinks, MobileMenu, ThemeSwitcher, Blob, Logo, Button } from './ui';
 import { useAuth, useServiceLocation } from '../hooks';
 
-const Navbar = () => {
+const ServiceNavbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOutUser } = useAuth();
   const isService = useServiceLocation();
 
-
   return (
     <main
-      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-50 shadow`}
+      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-50 `}
     >
-      <nav className={`flex-between boundary`}>
+      <nav className='flex-between boundary'>
         {!isService && <Blob />}
 
-        {isService ? <div></div> : <Logo />}
-
+        <Logo />
         {/* links */}
         <NavLinks />
 
@@ -73,4 +71,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default ServiceNavbar;

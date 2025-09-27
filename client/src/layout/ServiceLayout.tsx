@@ -3,8 +3,10 @@ import { Outlet } from 'react-router';
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
 
+
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+ 
 
   // Example data (replace with backend data later)
   const chats = [
@@ -15,19 +17,19 @@ const ServiceLayout = () => {
 
   return (
     <main className='flex flex-col h-screen'>
-      <Navbar />
       <div className='flex flex-1'>
         {/* Sidebar */}
         <Sidebar
           isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
+          onClose={() => setIsSidebarOpen(!isSidebarOpen)}
           serviceName='Code Explainer'
           chats={chats}
           onNewChat={() => console.log('Start new chat')}
         />
 
         {/* Main content */}
-        <div className='flex-1 p-4 overflow-y-auto'>
+        <div className='flex-1 overflow-y-auto service-layout border-t border-yellow-100'>
+          <Navbar />
           <Outlet />
         </div>
       </div>
