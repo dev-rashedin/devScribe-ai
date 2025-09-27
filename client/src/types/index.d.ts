@@ -55,7 +55,7 @@ declare type FAQItem = {
 };
 
 
-declare interface SizeProps { size?: 'sm' | 'md' | 'lg' }
+declare interface LogoProps { size?: 'sm' | 'md' | 'lg', isService?: boolean }
 
 
 declare interface FirebaseConfig {

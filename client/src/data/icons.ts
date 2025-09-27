@@ -15,6 +15,9 @@ import {
   FiUserCheck,
   FiMoon,
   FiBriefcase,
+  FiPlus,
+  FiSidebar,
+  FiUser,
 } from 'react-icons/fi';
 import { RiMenu3Fill } from 'react-icons/ri';
 import {
@@ -74,4 +77,7 @@ export {
   FaEyeSlash,
   MdPersonAddAlt1,
   ImSpinner9,
+  FiPlus,
+  FiSidebar,
+  FiUser,
 };

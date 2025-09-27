@@ -1,4 +1,7 @@
-import { FiPlus, FiX, FiUser } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiPlus, FiX, FiUser } from '../data/icons';
+import { Logo } from './ui';
+import CloseIcon from './ui/ToggleSidebar';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -15,24 +18,31 @@ const Sidebar = ({
   chats,
   onNewChat,
 }: SidebarProps) => {
+
+  const [logoDisplay, setLogoDisplay] = useState(true);
+
   return (
     <aside
-      className={`h-full border-r bg-sidebar transition-all duration-300 
+      className={`h-full bg-sidebar shadow-2xl transition-all duration-300 
         ${isOpen ? 'w-72' : 'w-16'} flex flex-col`}
     >
       {/* Top Section */}
-      <div className='flex items-center justify-between p-3 border-b'>
-        {isOpen ? (
-          <span className='text-lg font-semibold'>{serviceName}</span>
-        ) : (
-          <span className='text-xl font-bold'>⚡</span> // logo icon
-        )}
-        <button
-          onClick={onClose}
-          className=' bg-gray-300 hover:bg-gray-500 rounded-full p-1 cursor-pointer'
-        >
-          <FiX className='size-5 text-black hover:text-white' />
-        </button>
+      <div className='flex items-center justify-between px-4'>
+        <section className='h-20 flex-center'>
+          {isOpen ? (
+            <div className='flex-between gap-4 lg:gap-8 text-lg font-semibold'>
+              <Logo isService />
+              <CloseIcon onClose={onClose} />
+            </div>
+          ) : (
+            <div className='text-xl font-bold' >
+                <img onMouseEnter={() => setLogoDisplay(false)} onMouseLeave={() => setLogoDisplay(true)} src='/logo.png' alt='logo' className={`size-8 cursor-pointer ${logoDisplay ? 'block' : 'hidden'}`} />
+                <div className={`${logoDisplay ? 'hidden' : 'block'}`}>
+                  <CloseIcon onClose={onClose} />
+                </div>
+            </div>
+          )}
+        </section>
       </div>
 
       {/* New Chat */}
