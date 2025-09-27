@@ -30,6 +30,8 @@ export const AuthInput = ({
 }: AuthInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
+  
+
   return (
     <div className='relative w-full'>
       <input

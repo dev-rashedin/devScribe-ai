@@ -6,6 +6,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import  ThemeProvider  from './providers/ThemeProvider';
 import AuthProvider from './providers/AuthProvider';
 import router from './routes/router';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -20,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
       <ThemeProvider>
         <HelmetProvider>
           <RouterProvider router={router} />
+          <ToastContainer />
         </HelmetProvider>
       </ThemeProvider>
     </AuthProvider>

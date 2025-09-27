@@ -51,14 +51,6 @@ axiosSecureApi.interceptors.response.use(
 const createUserInDatabase = async (userInfo: UserInfo) => {
   try {
     const res = await axiosApi.post('/create-user', userInfo);
-
-    console.log('res in the create user api', res);
-    
-   
-    if (res.data.user) {
-      console.log('User added to the database');
-    }
-
     return res;
   } catch (error: unknown) {
     console.error(error);

@@ -54,13 +54,14 @@ export const getUserInfo = (res: UserCredential, image_url: string, username: st
 
 export const imageUpload = async (image: File): Promise<string> => {
   const formData = new FormData();
+  
   formData.append('image', image);
   const { data } = await axios.post(
     `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
     formData
   );
 
-  console.log(data);
+  // console.log('data inside imageUpload',data.data);
 
   return data.data.display_url;
 };
@@ -71,6 +72,7 @@ export const useImageFile = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+    
     if (!files || files.length === 0) return;
     setImageFile(files[0]);
   };

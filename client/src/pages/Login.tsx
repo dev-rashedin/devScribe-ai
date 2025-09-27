@@ -13,6 +13,8 @@ import { getUserInfo, imageUpload, schema, useImageFile } from '../utils';
 import { useAuth } from '../hooks';
 import { createUserInDatabase } from '../api';
 import { UserCredential } from 'firebase/auth';
+import { StatusCodes } from 'http-status-toolkit';
+import { toast } from 'react-toastify';
 
 type FormData = z.infer<typeof schema>;
 
@@ -41,31 +43,32 @@ const Login = () => {
     reset,
   } = useForm<FormData>(resolver);
 
-  const onSubmit = async (data: unknown) => {
+  const onSubmit = async (userData: FormData) => {
     try {
       setLoading(true);
       if (isSignUp) {
-        const { username, email, password } = data as FormData;
+        const { username, email, password } = userData;
+
         const image_url = await imageUpload(imageFile!);
-        console.log(image_url);
 
         // user registration
-        const res = (await createUser(email, password)) as UserCredential;
-        console.log('res', res);
+        const data = (await createUser(email, password)) as UserCredential;
 
         // Saving username and photo in Firebase
         await updateUserProfile(username, image_url);
 
-        const userInfo = getUserInfo(res, image_url, username);
+        const userInfo = getUserInfo(data, image_url, username);
 
-        const user = await createUserInDatabase(userInfo);
+        const res = await createUserInDatabase(userInfo);
 
-        console.log('user', user);
-
-        navigate('/signin');
+        if (res.status === StatusCodes.CREATED) {
+          toast.success('User created successfully, please sign in');
+          navigate('/signin');
+        } else {
+          toast.error('User creation failed, please try again');
+        }
       } else {
-        const { email, password } = data as FormData;
-
+        const { email, password } = userData;
         await logInUser(email, password);
         navigate(from);
       }
@@ -104,7 +107,7 @@ const Login = () => {
 
               <div className='mx-auto max-w-xs'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  {location.pathname.includes('/signup') && (
+                  {isSignUp && (
                     <AuthInput
                       type='text'
                       id='username'
@@ -117,14 +120,16 @@ const Login = () => {
                     id='email'
                     register={register}
                     errors={errors}
-                    handleChange={handleImageChange}
                   />
-                  <AuthInput
-                    type='file'
-                    id='photo'
-                    register={register}
-                    errors={errors}
-                  />
+                  {isSignUp && (
+                    <AuthInput
+                      type='file'
+                      id='photo'
+                      register={register}
+                      errors={errors}
+                      handleChange={handleImageChange}
+                    />
+                  )}
                   <AuthInput
                     type='password'
                     id='password'
@@ -138,7 +143,7 @@ const Login = () => {
                     isChecked={isSignUp ? isChecked : true}
                     label={authType}
                     type='submit'
-                    isSubmit={true}
+                    isSubmit
                     className='mt-3'
                   />
                 </form>
