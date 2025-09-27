@@ -82,7 +82,7 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
 
   const from = location?.state || '/';
 
-  const { googleLogin, githubLogin, loading, setLoading } = useAuth();
+  const { googleLogin, loading, setLoading } = useAuth();
 
   const handleSocialLogin = async (provider: string) => {
     try {
@@ -92,9 +92,11 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
          data = (await googleLogin()) as UserCredential;
        
         
-      } else if (provider === 'Github') {
-        data = (await githubLogin()) as UserCredential;
       }
+      
+      // else if (provider === 'Github') {
+      //   data = (await githubLogin()) as UserCredential;
+      // }
       const userInfo = getUserInfo(data!, '', '');
 
       const res = await createUserInDatabase(userInfo);
@@ -118,7 +120,7 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
     <button
       onClick={() => handleSocialLogin(provider)}
       disabled={loading}
-      className='w-full max-w-xs font-bold shadow-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer my-2.5 h-12 disabled:cursor-not-allowed disabled:bg-gray-400'
+      className='w-full max-w-xs font-bold shadow-sm rounded-lg bg-blue-100 hover:bg-blue-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer mt-2.5 h-12 disabled:cursor-not-allowed disabled:bg-gray-400'
     >
       {loading ? (
         <ImSpinner9 size={20} className='animate-spin ' />

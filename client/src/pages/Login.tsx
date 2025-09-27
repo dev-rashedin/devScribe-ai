@@ -96,7 +96,6 @@ const Login = () => {
             <div className='w-full flex-1 mt-8'>
               <div className='flex flex-col items-center'>
                 <AuthButton type={authType} provider='Google' />
-                <AuthButton type={authType} provider='Github' />
               </div>
               {/* sign in or up with email and password */}
               <div className='my-8 border-b text-center'>
