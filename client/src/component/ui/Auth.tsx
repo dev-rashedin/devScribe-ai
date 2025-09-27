@@ -91,9 +91,11 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
       let data;
       if (provider === 'Google') {
          data = (await googleLogin()) as UserCredential;
-        console.log('res inside auth button', data);
+       
         
       } else if (provider === 'Github') {
+        // data = (await githubLogin()) as UserCredential;
+        // console.log('data inside auth button', data);
         data = (await githubLogin()) as UserCredential;
       }
       const userInfo = getUserInfo(data!, '', '');
@@ -105,8 +107,8 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
        }
       if (res.status === StatusCodes.OK ) {
         setLoading(false);
-        navigate(from);
       }
+      navigate(from);
     } catch (error) {
       console.error(error);
     } finally {

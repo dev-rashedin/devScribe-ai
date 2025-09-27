@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { UserCredential } from 'firebase/auth';
+import { getAdditionalUserInfo, UserCredential } from 'firebase/auth';
 import axios from 'axios';
 import { z } from 'zod';
 
@@ -39,14 +39,37 @@ export const schema = z.object({
     ),
 });
 
-export const getUserInfo = (res: UserCredential, image_url: string, username: string) => {
+export const getUserInfo = (
+  res: UserCredential,
+  image_url: string,
+  username: string
+) => {
+
+  let userInfo;
+
+  if (res.providerId === 'github.com') { 
+
+    const additionalInfo = getAdditionalUserInfo(res);  
+
+    const user = additionalInfo!.profile 
+    userInfo = {
+      uid: res.user.uid,
+      email: user!.email || '',
+      displayName: user!.name || 'New User',
+      photoURL:
+        user!.avatar_url || 'https://www.gravatar.com/avatar/?d=mp',
+    };
+    
+  }
+  
   const user = res.user;
 
-  const userInfo = {
+  userInfo = {
     uid: user.uid,
     email: user.email || '',
     displayName: user.displayName || username || 'New User',
-    photoURL: user.photoURL || image_url || 'https://www.gravatar.com/avatar/?d=mp',
+    photoURL:
+      user.photoURL || image_url || 'https://www.gravatar.com/avatar/?d=mp',
   };
 
   return userInfo;
