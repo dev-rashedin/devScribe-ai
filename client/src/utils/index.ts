@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { getAdditionalUserInfo, UserCredential } from 'firebase/auth';
+import { UserCredential } from 'firebase/auth';
 import axios from 'axios';
 import { z } from 'zod';
 
@@ -44,27 +44,26 @@ export const getUserInfo = (
   image_url: string,
   username: string
 ) => {
+  // let userInfo;
 
-  let userInfo;
+  // if (res.providerId === 'github.com') {
 
-  if (res.providerId === 'github.com') { 
+  //   const additionalInfo = getAdditionalUserInfo(res);
 
-    const additionalInfo = getAdditionalUserInfo(res);  
+  //   const user = additionalInfo!.profile
+  //   userInfo = {
+  //     uid: res.user.uid,
+  //     email: user!.email || '',
+  //     displayName: user!.name || 'New User',
+  //     photoURL:
+  //       user!.avatar_url || 'https://www.gravatar.com/avatar/?d=mp',
+  //   };
 
-    const user = additionalInfo!.profile 
-    userInfo = {
-      uid: res.user.uid,
-      email: user!.email || '',
-      displayName: user!.name || 'New User',
-      photoURL:
-        user!.avatar_url || 'https://www.gravatar.com/avatar/?d=mp',
-    };
-    
-  }
-  
+  // }
+
   const user = res.user;
 
-  userInfo = {
+  const userInfo = {
     uid: user.uid,
     email: user.email || '',
     displayName: user.displayName || username || 'New User',
@@ -77,7 +76,7 @@ export const getUserInfo = (
 
 export const imageUpload = async (image: File): Promise<string> => {
   const formData = new FormData();
-  
+
   formData.append('image', image);
   const { data } = await axios.post(
     `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
@@ -89,17 +88,15 @@ export const imageUpload = async (image: File): Promise<string> => {
   return data.data.display_url;
 };
 
-
 export const useImageFile = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    
+
     if (!files || files.length === 0) return;
     setImageFile(files[0]);
   };
 
   return { imageFile, handleImageChange, setImageFile };
 };
-

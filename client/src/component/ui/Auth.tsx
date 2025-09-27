@@ -94,8 +94,6 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
        
         
       } else if (provider === 'Github') {
-        // data = (await githubLogin()) as UserCredential;
-        // console.log('data inside auth button', data);
         data = (await githubLogin()) as UserCredential;
       }
       const userInfo = getUserInfo(data!, '', '');
@@ -110,6 +108,7 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
       }
       navigate(from);
     } catch (error) {
+      toast.error(String(error));
       console.error(error);
     } finally {
       setLoading(false);
