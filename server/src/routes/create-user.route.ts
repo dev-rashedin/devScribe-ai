@@ -17,7 +17,7 @@ createUserRouter.post(
     // checking if user already exists
     const existingUser = await User.findOne({ uid });
     if (existingUser) {
-      return res.status(StatusCodes.CONFLICT).json({
+      return res.status(StatusCodes.OK).json({
         success: false,
         message: 'User already exists',
         user: existingUser,

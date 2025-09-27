@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import { UserCredential } from 'firebase/auth';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import {
   FcGoogle,
@@ -8,7 +10,11 @@ import {
   ImSpinner9,
 } from '../../data/icons';
 import { useAuth } from '../..//hooks';
-import { useLocation, useNavigate } from 'react-router';
+import { getUserInfo } from '../../utils';
+
+import { createUserInDatabase } from '../../api';
+import { toast } from 'react-toastify';
+import { StatusCodes } from 'http-status-toolkit';
 
 interface AuthInputProps {
   type: string;
@@ -82,13 +88,25 @@ export const AuthButton = ({ type, provider }: AuthButtonProps) => {
   const handleSocialLogin = async (provider: string) => {
     try {
       setLoading(true);
+      let data;
       if (provider === 'Google') {
-        await googleLogin();
+         data = (await googleLogin()) as UserCredential;
+        console.log('res inside auth button', data);
+        
       } else if (provider === 'Github') {
-        await githubLogin();
+        data = (await githubLogin()) as UserCredential;
       }
-      setLoading(false);
-      navigate(from);
+      const userInfo = getUserInfo(data!, '', '');
+
+      const res = await createUserInDatabase(userInfo);
+      
+       if (res.status === StatusCodes.CREATED) {
+         toast.success('User created successfully!');
+       }
+      if (res.status === StatusCodes.OK ) {
+        setLoading(false);
+        navigate(from);
+      }
     } catch (error) {
       console.error(error);
     } finally {
