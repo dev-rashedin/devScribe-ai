@@ -22,10 +22,8 @@ app.use(helmet());
 app.use(cors(corsOption));
 app.use(limiter);
 
-console.log('cors option', corsOption);
 
 // body parser
-
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 

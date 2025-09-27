@@ -5,9 +5,6 @@ import config from '../config';
 
 
 // cors option
-
-console.log('cors option - client urls', config.client_url);
-
 const allowedOrigins = [config.client_url, 'http://localhost:5173'].filter(
   Boolean
 );
