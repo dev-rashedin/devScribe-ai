@@ -3,13 +3,6 @@ import { BiSolidMessageRounded, FiPlus, FiUser } from '../data/icons';
 import { Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 
-interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-  serviceName: string;
-  chats: { _id: string; title: string }[];
-  onNewChat: () => void;
-}
 
 const Sidebar = ({
   isOpen,
@@ -18,6 +11,7 @@ const Sidebar = ({
   chats,
   onNewChat,
 }: SidebarProps) => {
+  
   const [logoDisplay, setLogoDisplay] = useState(true);
 
   return (

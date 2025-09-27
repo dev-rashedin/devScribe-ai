@@ -18,7 +18,7 @@ const ServiceLayout = () => {
   }, []);
  
 
-  // Example data (replace with backend data later)
+  // Example data
   const chats = [
     { _id: '1', title: 'First Chat' },
     { _id: '2', title: 'Bug Fix Explainer' },

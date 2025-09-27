@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { NavLinks, MobileMenu, ThemeSwitcher, Blob, Logo, Button } from './ui';
-import { useAuth, useServiceLocation } from '../hooks';
+import { useAuth, useCustomLocation } from '../hooks';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOutUser } = useAuth();
-  const isService = useServiceLocation();
-
+  const { isService } = useCustomLocation();
 
   return (
     <main
-      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-20 ${isService ? 'shadow' : ''}`}
+      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-20 ${
+        isService ? 'shadow' : ''
+      }`}
     >
-      <nav className={`flex items-center boundary ${isService ? 'justify-end' : 'justify-between'}`}>
+      <nav
+        className={`flex items-center boundary ${
+          isService ? 'justify-end' : 'justify-between'
+        }`}
+      >
         {!isService && <Blob />}
 
         {isService ? <div></div> : <Logo />}

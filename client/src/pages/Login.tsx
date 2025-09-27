@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -10,7 +10,7 @@ import { LoginSVG } from '../data/assets';
 import { AuthInput } from '../component/ui';
 import { AuthButton } from '../component/ui';
 import { getUserInfo, imageUpload, schema, useImageFile } from '../utils';
-import { useAuth } from '../hooks';
+import { useAuth, useCustomLocation } from '../hooks';
 import { createUserInDatabase } from '../api';
 import { UserCredential } from 'firebase/auth';
 import { StatusCodes } from 'http-status-toolkit';
@@ -18,17 +18,14 @@ import { toast } from 'react-toastify';
 
 type FormData = z.infer<typeof schema>;
 
-const Login = () => {
+const Login = ()  => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [isChecked, setIsChecked] = useState(false);
   const { imageFile, handleImageChange } = useImageFile();
   const { createUser, logInUser, updateUserProfile, loading, setLoading } =
     useAuth();
+  const {isSignUp, authType, from} = useCustomLocation()
 
-  const isSignUp = location.pathname.includes('/signup');
-  const authType = isSignUp ? 'Sign Up' : 'Sign In';
-  const from = location?.state || '/';
 
   const resolver = isSignUp
     ? {
@@ -147,7 +144,7 @@ const Login = () => {
                   />
                 </form>
                 {/* terms and conditions */}
-                {location.pathname.includes('/signup') && (
+                {isSignUp && (
                   <div className='my-6 flex items-start justify-center gap-[1px] text-xs text-gray-600 text-center'>
                     <input
                       type='checkbox'

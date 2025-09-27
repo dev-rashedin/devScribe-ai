@@ -16,18 +16,16 @@ const useAuth = (): AuthContextType => {
   return auth;
 };
 
-
-const useServiceLocation = () => {
+const useCustomLocation = ()  => {
   const location = useLocation();
 
   const isService = location.pathname.includes('service');
+  const serviceName = location.pathname.split('/')[2] || 'Service';
+  const isSignUp = location.pathname.includes('/signup');
+  const authType = isSignUp ? 'Sign Up' : 'Sign In';
+  const from = location?.state || '/';
 
-  return isService
-}
+  return { isService, serviceName, isSignUp, authType, from };
+};
 
-
-export {
-  useTheme,
-  useAuth,
-  useServiceLocation
-}
+export { useTheme, useAuth, useCustomLocation };

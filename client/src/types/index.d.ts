@@ -80,6 +80,15 @@ declare interface UserInfo {
   photoURL: string;
 }
 
+declare interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+  serviceName: string;
+  chats: { _id: string; title: string }[];
+  onNewChat: () => void;
+}
+
+
 
 
 
