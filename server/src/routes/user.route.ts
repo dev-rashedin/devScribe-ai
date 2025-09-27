@@ -1,11 +1,44 @@
 import express, { Request, Response } from 'express';
-import { asyncHandler, BadRequestError } from 'express-error-toolkit';
+import { asyncHandler, BadRequestError, NotFoundError } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import { User } from '../models/users.model';
 
-const createUserRouter = express.Router();
+const userRouter = express.Router();
 
-createUserRouter.post(
+
+userRouter.get('/users', asyncHandler(async (_req: Request, res: Response) => {
+  const users = await User.find();
+
+  if(!users) {
+    throw new NotFoundError('Users not found');
+  }
+
+  return res.status(StatusCodes.OK).json({
+    success: true,
+    message: 'Users fetched successfully',
+    totalUsers: users.length,
+    users,
+  });
+}));
+
+userRouter.get('/users/:email', asyncHandler(async (req: Request, res: Response) => {
+  const { email } = req.params;
+  if(!email) {
+    throw new BadRequestError('Please provide email');
+  }
+  const user = await User.findOne({ email });
+
+  if(!user) {
+    throw new NotFoundError('User not found');
+  }
+  return res.status(StatusCodes.OK).json({
+    success: true,
+    message: 'User fetched successfully',
+    user,
+  });
+ }))
+
+userRouter.post(
   '/create-user',
   asyncHandler(async (req: Request, res: Response) => {
     const { uid, email, displayName, photoURL } = req.body;
@@ -44,4 +77,4 @@ createUserRouter.post(
   })
 );
 
-export default createUserRouter;
+export default userRouter;

@@ -10,9 +10,9 @@ import {
   codeAnalyzerRouter,
   codeRefactorRouter,
   articleWriterRoute,
-  createUserRouter,
   authRouter,
 } from './routes';
+import userRouter from './routes/user.route';
 
 
 const app = express();
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/api', authRouter);
-app.use('/api', createUserRouter);
+app.use('/api', userRouter);
 app.use('/api', verifyToken, codeAnalyzerRouter);
 app.use('/api', verifyToken, codeRefactorRouter);
 app.use('/api', verifyToken, articleWriterRoute);
