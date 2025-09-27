@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
@@ -6,6 +6,16 @@ import Sidebar from '../component/Sidebar';
 
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSidebarOpen(window.innerWidth >= 1024);
+    };
+    handleResize(); 
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
  
 
   // Example data (replace with backend data later)
@@ -28,7 +38,7 @@ const ServiceLayout = () => {
         />
 
         {/* Main content */}
-        <div className='flex-1 overflow-y-auto service-layout border-t border-yellow-100'>
+        <div className='flex-1 overflow-y-auto service-layout'>
           <Navbar />
           <Outlet />
         </div>

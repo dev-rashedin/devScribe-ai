@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiPlus, FiUser } from '../data/icons';
+import { BiSolidMessageRounded, FiPlus, FiUser } from '../data/icons';
 import { Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 
@@ -22,9 +22,9 @@ const Sidebar = ({
 
   return (
     <aside
-      className={`h-full bg-sidebar shadow-2xl 
+      className={`h-full bg-sidebar drop-shadow 
         transition-[width] duration-300 ease-in-out
-        ${isOpen ? 'w-60' : 'w-16'} flex flex-col`}
+        ${isOpen ? 'w-60' : 'w-16'} flex flex-col z-30`}
     >
       {/* Top Section */}
       <div className='flex items-center justify-between px-4'>
@@ -35,13 +35,19 @@ const Sidebar = ({
               <ToggleSidebar onClose={onClose} />
             </div>
           ) : (
-            <div className='text-xl flex-center'>
+            <div className='flex-center '>
               {logoDisplay ? (
-                <div onMouseEnter={() => setLogoDisplay(false)}>
+                <div
+                  className=' w-10 h-20 rounded-lg flex-center'
+                  onMouseEnter={() => setLogoDisplay(false)}
+                >
                   <Logo isService />
                 </div>
               ) : (
-                <div onMouseLeave={() => setLogoDisplay(true)}>
+                <div
+                  className=' w-10 h-8 rounded-lg flex-center'
+                  onMouseLeave={() => setLogoDisplay(true)}
+                >
                   <ToggleSidebar onClose={onClose} />
                 </div>
               )}
@@ -52,7 +58,7 @@ const Sidebar = ({
 
       <h3
         className={`
-    text-lg font-semibold px-4 overflow-hidden whitespace-nowrap
+    text-lg font-semibold my-8 px-4 overflow-hidden whitespace-nowrap
     ${isOpen ? 'opacity-100 w-auto ml-2' : 'opacity-0 w-0'}
   `}
       >
@@ -62,12 +68,12 @@ const Sidebar = ({
       {/* New Chat */}
       <button
         onClick={onNewChat}
-        className={`flex items-center gap-2 m-3 px-3 py-2 rounded-lg text-sm font-medium 
-          transition-colors ${isOpen ? 'justify-start' : 'justify-center'}`}
+        className={`flex items-center gap-2 m-3 px-1.5 py-3 rounded-lg text-sm font-medium cursor-pointer 
+           ${isOpen ? 'justify-start' : 'justify-center'}`}
       >
-        <FiPlus />
+        <FiPlus size={16} />
         <span
-          className={`whitespace-nowrap transition-all duration-300 overflow-hidden 
+          className={`whitespace-nowrap transition-[opacity,width,margin] duration-300 overflow-hidden 
             ${isOpen ? 'opacity-100 w-auto ml-2' : 'opacity-0 w-0'}`}
         >
           New Chat
@@ -80,11 +86,11 @@ const Sidebar = ({
           <div
             key={chat._id}
             className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer 
-              transition-colors ${isOpen ? 'justify-start' : 'justify-center'}`}
+               ${isOpen ? 'justify-start' : 'justify-center'}`}
           >
-            💬
+            <BiSolidMessageRounded className='text-xl text-[#446E92]' />
             <span
-              className={`truncate transition-all duration-300 overflow-hidden 
+              className={`text-sm truncate transition-[opacity,width,margin] duration-300 overflow-hidden 
                 ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
             >
               {chat.title}
@@ -98,11 +104,11 @@ const Sidebar = ({
         className={`flex gap-2 p-3 border-t 
           ${isOpen ? 'justify-start' : 'justify-center'}`}
       >
-        <div className='size-9 rounded-full bg-gray-300 flex items-center justify-center'>
+        <div className='size-8 rounded-full bg-gray-300 flex items-center justify-center'>
           <FiUser />
         </div>
         <div
-          className={`transition-all duration-300 overflow-hidden 
+          className={`transition-[opacity,width,margin] duration-300 overflow-hidden 
             ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
         >
           <div className='flex justify-between items-start w-42'>

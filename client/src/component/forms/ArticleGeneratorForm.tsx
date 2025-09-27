@@ -12,7 +12,7 @@ const ArticleGeneratorForm = () => {
   
 
   return (
-    <div className='pt-20'>
+    <div className='pt-10 xl:pt-20'>
       <form action={formAction} className='form-ui'>
         {/* input field */}
         <label className='block mb-2 font-semibold'>Article Topic:</label>

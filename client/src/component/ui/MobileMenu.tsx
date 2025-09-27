@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { NavLink } from 'react-router';
 import { links } from '../../data';
 import {
-  IoCloseCircleOutline,
   IoIosArrowDown,
   IoIosArrowUp,
+  RiCloseLargeFill,
   RiMenu3Fill,
 } from '../../data/icons';
 import {ContactDropdown, AnimatedBorder, ThemeSwitcher} from './index';
@@ -14,22 +14,22 @@ const MobileMenu = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <div className='relative md:hidden'>
+    <div className='relative lg:hidden'>
       {/* Hamburger button */}
       <button
-        className='flex items-center justify-center p-2'
+        className='flex items-center justify-center p-2 mt-2 w-12'
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
-          <IoCloseCircleOutline size={30} />
+          <RiCloseLargeFill size={30} className='border rounded-full p-1' />
         ) : (
-          <RiMenu3Fill size={27} />
+          <RiMenu3Fill size={30} />
         )}
       </button>
 
       {/* Mobile menu panel */}
       <div
-        className={`bg-card w-60 rounded-md px-4 py-6 space-y-4 flex flex-col absolute top-12 right-0
+        className={`bg-card w-60 rounded-md px-4 py-6 space-y-4 flex flex-col absolute top-16 right-0
         transform transition-transform duration-300 ease-in-out z-50
         ${
           isOpen
@@ -102,7 +102,7 @@ const MobileMenu = () => {
         </ul>
 
         {/* Theme switcher */}
-        <div className='w-[86%] mx-auto border rounded-lg flex-between py-2 px-4  justify-end'>
+        <div className='w-[86%]  mx-auto border rounded-lg flex-between py-2 px-4  justify-end md:hidden!'>
           <span className='text-xs text-muted-foreground opacity-75'>
             Theme
           </span>

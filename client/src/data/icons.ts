@@ -19,7 +19,7 @@ import {
   FiSidebar,
   FiUser,
 } from 'react-icons/fi';
-import { RiMenu3Fill } from 'react-icons/ri';
+import { RiMenu3Fill, RiCloseLargeFill } from 'react-icons/ri';
 import {
   IoCloseCircleOutline,
   IoSunnyOutline,
@@ -29,7 +29,7 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { CgArrowTopRight } from 'react-icons/cg';
 import { HiMiniArrowTopRightOnSquare } from 'react-icons/hi2';
 import { LuCheckCheck, LuDatabase, LuServer, LuPlus } from 'react-icons/lu';
-import { BiTime } from 'react-icons/bi';
+import { BiTime, BiSolidMessageRounded } from 'react-icons/bi';
 import {
   MdErrorOutline,
   MdOutput,
@@ -80,4 +80,6 @@ export {
   FiPlus,
   FiSidebar,
   FiUser,
+  BiSolidMessageRounded,
+  RiCloseLargeFill,
 };

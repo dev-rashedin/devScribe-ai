@@ -46,7 +46,7 @@ html {
     }
 
     .bg-navbar, .bg-sidebar {
-      background-color: hsl(60, 100%, 95%);
+      background-color: hsl(60, 100%, 96%);
     }
 
     .service-layout {
@@ -87,8 +87,8 @@ html {
     }
 
     .form-ui {
-      background-color: hsl(0, 0%, 99%);
-      @apply w-full max-w-5xl mx-auto p-12 rounded-2xl shadow;
+      background-color: hsl(60, 100%, 98%);
+      @apply w-full max-w-5xl mx-auto p-6 lg:p-12 xl:rounded-2xl xl:shadow ;
     }
     .blob-gradient {
       @apply bg-gradient-to-t from-blue-300 via-blue-400 to-blue-500 rounded-full blur-[180px] opacity-30;
@@ -182,7 +182,8 @@ html {
     }
 
     .form-ui {
-      background-color: hsl(0, 0%, 10%);
+      background-color: hsl(0, 0%, 13%);
+      @apply xl:bg-[#1a1a1a];
       select option {
         background-color: hsl(0, 0%, 19%);
       }

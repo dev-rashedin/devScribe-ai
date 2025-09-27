@@ -14,7 +14,7 @@ const CodeExplainForm = () => {
   const [code, setCode] = useState('');
 
   return (
-    <div className='pt-20'>
+    <div className='pt-10 xl:pt-20'>
       <form action={formAction} className='form-ui '>
         {/* select box */}
         <LanguageSelect />

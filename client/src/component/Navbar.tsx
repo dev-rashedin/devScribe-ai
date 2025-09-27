@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <main
-      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-50 ${isService ? 'shadow' : ''}`}
+      className={`bg-navbar sticky top-0 w-full h-16 lg:h-20 flex-center z-20 ${isService ? 'shadow' : ''}`}
     >
       <nav className={`flex items-center boundary ${isService ? 'justify-end' : 'justify-between'}`}>
         {!isService && <Blob />}
@@ -59,8 +59,8 @@ const Navbar = () => {
           )}
 
           {/* theme switcher */}
-          <div className='hidden lg:block '>
-            <span className='mt-[6px] lg:border rounded-full h-8 w-8 flex-center hover:bg-hover transition'>
+          <div className='hidden md:block '>
+            <span className='mt-[6px] md:border rounded-full h-8 w-8 flex-center hover:bg-hover transition'>
               <ThemeSwitcher />
             </span>
           </div>
