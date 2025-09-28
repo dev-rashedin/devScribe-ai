@@ -21,6 +21,21 @@ async function fetchAction(endpoint: string, body: object) {
   }
 }
 
+//  async function saveHistory(
+//   uid: string,
+//   service: string,
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   messages: any[],
+//   title?: string
+// ) {
+//   return await fetchAction('/history', {
+//     uid,
+//     service,
+//     messages,
+//     title,
+//   });
+// }
+
 export async function explain(_prevState: unknown, formData: FormData) {
   const code = formData.get('code');
   const language = formData.get('language');
@@ -39,8 +54,27 @@ export async function refactor(_prevState: unknown, formData: FormData) {
   return result;
 }
 
-export async function writeArticle(_prevState: unknown, formData: FormData) {
+export async function writeArticle(_prevState: unknown, formData: FormData, uid: string) {
   const topic = formData.get('topic');
+
   const result = await fetchAction('/generate-article', { topic });
+
+  if (!result.success) return result;
+
+
+  const messages = [
+    { role: 'user', content: `Write an article about ${topic}` },
+    { role: 'assistant', content: result.data.article },
+  ];
+
+  const title = messages[0].content.slice(0, 30) + '...';
+
+  await fetchAction('/history', {
+    uid,
+    service: 'article-writer',
+    title,
+    messages,
+  });
+
   return result;
 }

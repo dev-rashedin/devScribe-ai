@@ -3,11 +3,20 @@ import { useState } from 'react';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
 import {LoadingDots, Button, CodeExplanation} from '../ui';
+import { useAuth } from '../../hooks';
+
 
 
 
 const ArticleGeneratorForm = () => {
-  const [formState, formAction, isPending] = useActionState(writeArticle, null);
+  const {  user } = useAuth()
+  
+  console.log('user', user.uid);
+  
+  const [formState, formAction, isPending] = useActionState(
+    (prev: unknown, formData: FormData) => writeArticle(prev, formData, user.uid),
+    null
+  );
   const [topic, setTopic] = useState('');
   
 

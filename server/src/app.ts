@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/api', authRouter);
-app.use('/api', userRouter);
+app.use('/api/users', userRouter);
 app.use('/api', verifyToken, codeAnalyzerRouter);
 app.use('/api', verifyToken, codeRefactorRouter);
 app.use('/api', verifyToken, articleWriterRoute);

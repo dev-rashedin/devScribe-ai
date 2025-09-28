@@ -7,7 +7,7 @@ const userRouter = express.Router();
 
 
 // get all users
-userRouter.get('/users', asyncHandler(async (_req: Request, res: Response) => {
+userRouter.get('/', asyncHandler(async (_req: Request, res: Response) => {
   const users = await User.find();
 
   if(!users) {
@@ -23,7 +23,7 @@ userRouter.get('/users', asyncHandler(async (_req: Request, res: Response) => {
 }));
 
 // get user by email
-userRouter.get('/users/:uid', asyncHandler(async (req: Request, res: Response) => {
+userRouter.get('/:uid', asyncHandler(async (req: Request, res: Response) => {
   const { uid } = req.params;
   if(!uid) {
     throw new BadRequestError('Please provide uid');
@@ -41,7 +41,7 @@ userRouter.get('/users/:uid', asyncHandler(async (req: Request, res: Response) =
  }))
 
 userRouter.post(
-  '/create-user',
+  '/',
   asyncHandler(async (req: Request, res: Response) => {
     const { uid, email, displayName, photoURL } = req.body;
 
