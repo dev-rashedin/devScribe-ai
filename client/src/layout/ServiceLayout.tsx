@@ -3,10 +3,12 @@ import { Outlet } from 'react-router';
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
 import { useAuth, useCustomLocation } from '../hooks';
+import { fetchHistory } from '../api';
 
 
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [history, setHistory] = useState([]);
     const { user } = useAuth();
   const { serviceName } = useCustomLocation(); 
   
@@ -20,6 +22,16 @@ const ServiceLayout = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+// fetch history
+    useEffect(() => {
+      if (!user?.uid) return;
+      fetchHistory(user?.uid, serviceName).then((data) => setHistory(data));
+    }, [user?.uid, serviceName]);
+  
+  
+  console.log('history', history);
+  
  
 
   // Example data

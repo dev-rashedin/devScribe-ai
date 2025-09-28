@@ -5,6 +5,36 @@ import { History } from '../models/history.model';
 
 const historyRouter = express.Router();
 
+
+// fetch history by service and user uid
+historyRouter.get(
+  '/history/:service/:uid',
+  asyncHandler(async (req: Request, res: Response) => {
+    const { service, uid } = req.params;
+
+    if (!service || !uid) {
+      throw new BadRequestError('Please provide service and uid');
+    }
+
+    console.log('service', service, 'uid', uid);
+    
+
+    const history = await History.find({ service, uid });
+
+    if (!history) {
+      throw new BadRequestError('History not found');
+    }
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'History fetched successfully',
+      history,
+    });
+  })
+);
+
+
+// store history in database
 historyRouter.post(
   '/history',
   asyncHandler(async (req: Request, res: Response) => {
