@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
+import { useAuth, useCustomLocation } from '../hooks';
 
 
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const { user } = useAuth();
+  const { serviceName } = useCustomLocation(); 
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,7 +36,8 @@ const ServiceLayout = () => {
         <Sidebar
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(!isSidebarOpen)}
-          serviceName='Code Explainer'
+          serviceName={serviceName}
+          uid={user?.uid}
           chats={chats}
           onNewChat={() => console.log('Start new chat')}
         />

@@ -8,11 +8,19 @@ const Sidebar = ({
   isOpen,
   onClose,
   serviceName,
+  uid,
   chats,
   onNewChat,
 }: SidebarProps) => {
   
   const [logoDisplay, setLogoDisplay] = useState(true);
+
+  console.log('uid', uid);
+  console.log('serviceName', serviceName);
+  
+  
+
+  
 
   return (
     <aside

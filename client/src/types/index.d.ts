@@ -84,6 +84,7 @@ declare interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   serviceName: string;
+  uid: string;
   chats: { _id: string; title: string }[];
   onNewChat: () => void;
 }

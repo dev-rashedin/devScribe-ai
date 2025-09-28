@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { StatusCodes } from 'http-status-toolkit';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL as string;
 
@@ -58,9 +59,26 @@ const createUserInDatabase = async (userInfo: UserInfo) => {
   }
 };
 
+const fetchHistory = async (uid: string, service: string) => {
+  try {
+    const res = await axiosSecureApi.get(`/history/${service}/${uid}`);
+    console.log('res inside fetchHistory api', res);
+    
+    if (res.status === StatusCodes.OK) {
+      return res.data; 
+    }
+    return [];
+  } catch (err: unknown) {
+    console.error(err);
+    return [];
+  }
+}
+
+
 export {
   axiosApi,
   axiosSecureApi,
-  createUserInDatabase
+  createUserInDatabase,
+  fetchHistory
 }
 
