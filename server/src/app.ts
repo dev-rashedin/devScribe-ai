@@ -11,6 +11,7 @@ import {
   codeRefactorRouter,
   articleWriterRoute,
   authRouter,
+  historyRouter,
 } from './routes';
 import userRouter from './routes/user.route';
 
@@ -33,6 +34,7 @@ app.use('/api', userRouter);
 app.use('/api', verifyToken, codeAnalyzerRouter);
 app.use('/api', verifyToken, codeRefactorRouter);
 app.use('/api', verifyToken, articleWriterRoute);
+app.use('/api', verifyToken, historyRouter);
 
 // home route
 app.get('/', (_req: Request, res: Response) => {
