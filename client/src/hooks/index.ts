@@ -19,13 +19,18 @@ const useAuth = (): AuthContextType => {
 const useCustomLocation = ()  => {
   const location = useLocation();
 
+  const noHeaderFooter =
+    location.pathname.includes('signin') ||
+    location.pathname.includes('signup');
+  const subScriptionPage = location.pathname.includes('subscription');
   const isService = location.pathname.includes('service');
   const serviceName = location.pathname.split('/')[2] || 'Service';
   const isSignUp = location.pathname.includes('/signup');
   const authType = isSignUp ? 'Sign Up' : 'Sign In';
   const from = location?.state || '/';
 
-  return { isService, serviceName, isSignUp, authType, from };
+
+  return { noHeaderFooter, subScriptionPage, isService, serviceName, isSignUp, authType, from };
 };
 
 export { useTheme, useAuth, useCustomLocation };

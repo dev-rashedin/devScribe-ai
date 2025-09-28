@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { UserCredential } from 'firebase/auth';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import {
@@ -9,7 +9,7 @@ import {
   FaEyeSlash,
   ImSpinner9,
 } from '../../data/icons';
-import { useAuth } from '../..//hooks';
+import { useAuth, useCustomLocation } from '../..//hooks';
 import { getUserInfo } from '../../utils';
 
 import { createUserInDatabase } from '../../api';
@@ -77,10 +77,9 @@ export const AuthInput = ({
 };
 
 export const AuthButton = ({ type, provider }: AuthButtonProps) => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location?.state || '/';
+  const {from} = useCustomLocation();
 
   const { googleLogin, loading, setLoading } = useAuth();
 

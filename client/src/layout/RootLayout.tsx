@@ -1,16 +1,12 @@
-import { Outlet, useLocation } from 'react-router';
+import { Outlet } from 'react-router';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
 import Blob from '../component/ui/Blob';
+import { useCustomLocation } from '../hooks';
 
 const RootLayout = () => {
-  const location = useLocation();
-
-  const noHeaderFooter =
-    location.pathname.includes('signin') ||
-    location.pathname.includes('signup');
-  
-  const subScriptionPage = location.pathname.includes('subscription');
+ 
+  const { noHeaderFooter, subScriptionPage } = useCustomLocation();
 
   return (
     <main className=' relative'>

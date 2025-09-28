@@ -6,6 +6,7 @@ import { User } from '../models/users.model';
 const userRouter = express.Router();
 
 
+// get all users
 userRouter.get('/users', asyncHandler(async (_req: Request, res: Response) => {
   const users = await User.find();
 
@@ -21,12 +22,13 @@ userRouter.get('/users', asyncHandler(async (_req: Request, res: Response) => {
   });
 }));
 
-userRouter.get('/users/:email', asyncHandler(async (req: Request, res: Response) => {
-  const { email } = req.params;
-  if(!email) {
-    throw new BadRequestError('Please provide email');
+// get user by email
+userRouter.get('/users/:uid', asyncHandler(async (req: Request, res: Response) => {
+  const { uid } = req.params;
+  if(!uid) {
+    throw new BadRequestError('Please provide uid');
   }
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ uid });
 
   if(!user) {
     throw new NotFoundError('User not found');

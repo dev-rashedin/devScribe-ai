@@ -21,8 +21,9 @@ type FormData = z.infer<typeof schema>;
 const Login = ()  => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { imageFile, handleImageChange } = useImageFile();
-  const { createUser, logInUser, updateUserProfile, loading, setLoading } =
+  const { createUser, logInUser, updateUserProfile } =
     useAuth();
   const {isSignUp, authType, from} = useCustomLocation()
 
