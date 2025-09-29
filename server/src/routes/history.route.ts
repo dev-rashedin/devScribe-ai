@@ -23,7 +23,7 @@ historyRouter.get(
       title: 1,
       messages: 1,
       _id: 0,
-    });
+    }).sort({ createdAt: -1 });
 
 
     if (!history) {

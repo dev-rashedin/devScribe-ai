@@ -87,3 +87,15 @@ export const useImageFile = () => {
 export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+
+export const sidebarClasses = (isOpen: boolean, type = 'div') => {
+  if (type === 'div') {
+    return isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0';
+  }
+
+  if (type === 'span') {
+    return isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0';
+  }
+};
+

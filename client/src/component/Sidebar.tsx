@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { BiSolidMessageRounded, FiPlus, FiUser } from '../data/icons';
+import {
+  BiSolidMessageRounded,
+  FiPlus,
+  FiUser,
+  MdOutlineSubtitles,
+} from '../data/icons';
 import { Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
-import { capitalizeFirstLetter } from '../utils';
+import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 
 const Sidebar = ({
   isOpen,
@@ -53,30 +58,33 @@ const Sidebar = ({
         </section>
       </div>
 
+      {/* Service Name */}
       <h3
-        className={`
-    text-lg font-semibold my-8 px-4 overflow-hidden whitespace-nowrap
-    ${isOpen ? 'opacity-100 w-auto ml-2' : 'opacity-0 w-0'}
+        className={`sidebar-content 
+    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap ${sidebarClasses(isOpen)}
   `}
       >
-        {serviceName.includes('-')
-          ? capitalizeFirstLetter(serviceName.split('-')[0]) +
-            ' ' +
-            capitalizeFirstLetter(serviceName.split('-')[1])
-          : capitalizeFirstLetter(serviceName)}
+        <MdOutlineSubtitles />
+        <span
+          className={`sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
+        >
+          {serviceName.includes('-')
+            ? capitalizeFirstLetter(serviceName.split('-')[0]) +
+              ' ' +
+              capitalizeFirstLetter(serviceName.split('-')[1])
+            : capitalizeFirstLetter(serviceName)}
+        </span>
       </h3>
 
       {/* New Chat button */}
 
       <button
         onClick={onNewChat}
-        className={`flex items-center gap-2 m-3 px-1.5 py-3 rounded-lg text-sm font-medium cursor-pointer 
-           ${isOpen ? 'justify-start' : 'justify-center'}`}
+        className={`sidebar-content mb-8 rounded-lg text-sm font-medium cursor-pointer ${sidebarClasses(isOpen)}`}
       >
         <FiPlus size={16} />
         <span
-          className={`whitespace-nowrap transition-[opacity,width,margin] duration-300 overflow-hidden 
-            ${isOpen ? 'opacity-100 w-auto ml-2' : 'opacity-0 w-0'}`}
+          className={`sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
         >
           New Chat
         </span>
@@ -88,20 +96,18 @@ const Sidebar = ({
         console.log('chat', chat);
       })} */}
 
-      <div className='flex-1 overflow-y-auto px-2'>
+      <div className='flex-1 overflow-y-auto'>
         {messages.map((chat) => (
           <div
             key={chat[0]._id}
-            className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer 
-               ${isOpen ? 'justify-start' : 'justify-center'}`}
+            className={`sidebar-content rounded-md cursor-pointer ${sidebarClasses(isOpen )}`}
           >
             <BiSolidMessageRounded className='text-xl text-[#446E92]' />
             <span
-              className={`text-sm truncate transition-[opacity,width,margin] duration-300 overflow-hidden 
-                ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
+              className={`text-sm sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
             >
-              {chat[0].content.length > 30
-                ? capitalizeFirstLetter(chat[0].content.slice(0, 30)) + '...'
+              {chat[0].content.length > 20
+                ? capitalizeFirstLetter(chat[0].content.slice(0, 20)) + '...'
                 : capitalizeFirstLetter(chat[0].content)}
             </span>
           </div>
@@ -117,7 +123,7 @@ const Sidebar = ({
           <FiUser />
         </div>
         <div
-          className={`transition-[opacity,width,margin] duration-300 overflow-hidden 
+          className={`sidebar-content-animation 
             ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
         >
           <div className='flex justify-between items-start w-42'>

@@ -35,6 +35,7 @@ import {
   MdOutput,
   MdOutlineIntegrationInstructions,
   MdPersonAddAlt1,
+  MdOutlineSubtitles
 } from 'react-icons/md';
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
@@ -82,4 +83,5 @@ export {
   FiUser,
   BiSolidMessageRounded,
   RiCloseLargeFill,
+  MdOutlineSubtitles
 };

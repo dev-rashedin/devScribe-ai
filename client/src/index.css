@@ -281,4 +281,12 @@ html {
   .description {
     @apply max-w-xl xl:max-w-2xl md:text-lg xl:text-xl mt-6 xl:mt-8;
   }
+
+  .sidebar-content {
+    @apply flex items-center gap-2 px-4 py-2
+  }
+
+  .sidebar-content-animation {
+    @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden
+  }
 }
