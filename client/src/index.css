@@ -20,6 +20,10 @@ html {
       @apply text-5xl lg:text-6xl font-bold leading-snug;
     }
 
+    button {
+      @apply cursor-pointer;
+    }
+
     /* light mode */
     .text-primary {
       color: hsl(0, 0%, 0%);
@@ -51,6 +55,18 @@ html {
 
     .service-layout {
       background-color: hsl(60, 100%, 98%);
+    }
+
+     .chat-list {
+     @apply rounded-md cursor-pointer
+    }
+
+    .chat{
+      background-color: hsl(52, 28%, 84%);
+    }
+
+    .chat-list:hover {
+      background-color: hsl(52, 28%, 84%);
     }
 
     .bg-secondary {
@@ -151,6 +167,16 @@ html {
     .service-layout{
       background-color: hsl(0, 0%, 13%);
     }
+
+    .chat {
+      background-color: hsl(0, 0%, 1%);
+    }
+
+    .chat-list:hover {
+      background-color: hsl(0, 0%, 1%);
+    }
+
+
 
     .bg-footer {
       background-color: hsl(0, 0%, 17%);

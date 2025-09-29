@@ -27,7 +27,10 @@ import {
 } from 'react-icons/io5';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { CgArrowTopRight } from 'react-icons/cg';
-import { HiMiniArrowTopRightOnSquare } from 'react-icons/hi2';
+import {
+  HiMiniArrowTopRightOnSquare,
+} from 'react-icons/hi2';
+import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { LuCheckCheck, LuDatabase, LuServer, LuPlus } from 'react-icons/lu';
 import { BiTime, BiSolidMessageRounded } from 'react-icons/bi';
 import {
@@ -83,5 +86,6 @@ export {
   FiUser,
   BiSolidMessageRounded,
   RiCloseLargeFill,
-  MdOutlineSubtitles
+  MdOutlineSubtitles,
+  HiOutlineDotsHorizontal,
 };

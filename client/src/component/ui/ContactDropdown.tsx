@@ -14,7 +14,7 @@ const ContactDropdown = ({ screen = 'large' }: { screen?: string }) => {
       onMouseLeave={() => setTimeout(() => setOpen(false), 200)}
     >
       <button
-        className={`cursor-pointer transition py-1 flex-center ${
+        className={`transition py-1 flex-center ${
           screen === 'large' ? '' : 'pl-4'
         }`}
         onClick={() => setOpen(!open)}

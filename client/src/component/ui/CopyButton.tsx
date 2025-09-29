@@ -18,7 +18,7 @@ const CopyButton = ({explanation} : TExplanation) => {
   return (
     <button
       onClick={handleCopy}
-      className='absolute top-4 right-4 flex items-center gap-1 px-3 py-1 text-lg rounded-lg cursor-pointer
+      className='absolute top-4 right-4 flex items-center gap-1 px-3 py-1 text-lg rounded-lg
              transition-all duration-300 ease-in-out transform'
     >
       {copied ? (

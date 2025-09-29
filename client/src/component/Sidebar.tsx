@@ -3,6 +3,7 @@ import {
   BiSolidMessageRounded,
   FiPlus,
   FiUser,
+  HiOutlineDotsHorizontal,
   MdOutlineSubtitles,
 } from '../data/icons';
 import { LoadingDots, Logo } from './ui';
@@ -19,6 +20,7 @@ const Sidebar = ({
   onNewChat,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
+  const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
   const messages = history.map((item) =>
     item.messages.length > 0 ? item.messages : []
@@ -63,12 +65,17 @@ const Sidebar = ({
       {/* Service Name */}
       <h3
         className={`sidebar-content 
-    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap ${sidebarClasses(isOpen)}
+    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap ${sidebarClasses(
+      isOpen
+    )}
   `}
       >
         <MdOutlineSubtitles />
         <span
-          className={`sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
+          className={`sidebar-content-animation ${sidebarClasses(
+            isOpen,
+            'span'
+          )}`}
         >
           {serviceName.includes('-')
             ? capitalizeFirstLetter(serviceName.split('-')[0]) +
@@ -82,11 +89,16 @@ const Sidebar = ({
 
       <button
         onClick={onNewChat}
-        className={`sidebar-content mb-8 rounded-lg text-sm font-medium cursor-pointer ${sidebarClasses(isOpen)}`}
+        className={`sidebar-content mb-8 rounded-lg text-sm font-medium  ${sidebarClasses(
+          isOpen
+        )}`}
       >
         <FiPlus size={16} />
         <span
-          className={`sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
+          className={`sidebar-content-animation ${sidebarClasses(
+            isOpen,
+            'span'
+          )}`}
         >
           New Chat
         </span>
@@ -98,8 +110,7 @@ const Sidebar = ({
         console.log('chat', chat);
       })} */}
 
-      
-      {isLoading && (<LoadingDots />)}
+      {isLoading && <LoadingDots />}
       {isError && (
         <div className='flex-center text-red-500'>
           Error loading chat history
@@ -110,16 +121,25 @@ const Sidebar = ({
         {messages.map((chat) => (
           <div
             key={chat[0]._id}
-            className={`sidebar-content rounded-md cursor-pointer ${sidebarClasses(isOpen )}`}
+            onClick={() => setActiveChatId(chat[0]._id)}
+            className={`relative group sidebar-content chat-list ${sidebarClasses(
+              isOpen
+            )} ${activeChatId === chat[0]._id ? 'chat' : ''}`}
           >
             <BiSolidMessageRounded className='text-xl text-[#446E92]' />
             <span
-              className={`text-sm sidebar-content-animation ${sidebarClasses(isOpen,'span')}`}
+              className={`text-sm sidebar-content-animation ${sidebarClasses(
+                isOpen,
+                'span'
+              )}`}
             >
               {chat[0].content.length > 20
                 ? capitalizeFirstLetter(chat[0].content.slice(0, 20)) + '...'
                 : capitalizeFirstLetter(chat[0].content)}
             </span>
+            <button className='absolute right-2 opacity-0 group-hover:opacity-100'>
+              <HiOutlineDotsHorizontal /> {/* example icon */}
+            </button>
           </div>
         ))}
       </div>
@@ -141,7 +161,7 @@ const Sidebar = ({
               <span className='font-medium'>John Doe</span>
               <span className='text-xs text-gray-500'>Free Plan</span>
             </div>
-            <button className='text-xs border primary-border px-2 py-[2px] rounded-full cursor-pointer'>
+            <button className='text-xs border primary-border px-2 py-[2px] rounded-full'>
               Upgrade
             </button>
           </div>
