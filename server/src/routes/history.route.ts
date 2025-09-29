@@ -16,9 +16,6 @@ historyRouter.get(
       throw new BadRequestError('Please provide service and uid');
     }
 
-    console.log('service', service, 'uid', uid);
-    
-
     const history = await History.find({ service, uid }).select({
       title: 1,
       messages: 1

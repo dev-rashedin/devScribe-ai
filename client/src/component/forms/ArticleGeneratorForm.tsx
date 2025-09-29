@@ -67,10 +67,8 @@ const ArticleGeneratorForm = () => {
 
         {isPending ? (
           <PulseGrid />
-        ) : formState?.success ? (
-          <div className='mt-6 whitespace-pre-wrap leading-relaxed'>
+        ) : formState?.success ? (      
             <AIOutput explanation={formState.data.article} />
-          </div>
         ) : (
           formState?.success === false && <Error error={formState.error} />
         )}

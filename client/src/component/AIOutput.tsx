@@ -8,7 +8,7 @@ const AIOutput = ({ explanation }: TExplanation) => {
   return (
     <div className='w-full max-w-4xl mt-6  p-6 rounded-2xl  prose prose-lg dark:prose-invert leading-loose tracking-wide relative'>
       <CopyButton explanation={explanation} />
-      <h2 className='text-xl font-semibold mb-2'>Explanation:</h2>
+      <h2 className='text-xl font-semibold mb-6'>DevScribe AI:</h2>
       <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
         {explanation}
       </Markdown>

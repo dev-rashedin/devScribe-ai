@@ -71,7 +71,6 @@ const fetchHistory = async (uid: string, service: string) => {
 const fetchHistoryById = async (id: string | null) => {
   try {
     const res = await axiosSecureApi.get(`/history/${id}`);
-    console.log('res inside fetchHistory api', res);
     
     if (res.status === StatusCodes.OK) {
       return res.data.history; 
