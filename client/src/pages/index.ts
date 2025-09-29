@@ -3,7 +3,6 @@ import Home from "./Home";
 import Login from "./Login";
 import ServicesPage from "./ServicesPage";
 import Subscription from "./Subscription";
-import Summarizer from "./Summarizer";
 
 
 
@@ -13,5 +12,4 @@ export {
   Login,
   ServicesPage,
   Subscription,
-  Summarizer
 }

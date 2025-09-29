@@ -1,16 +1,13 @@
 import { createBrowserRouter } from 'react-router';
 import RootLayout from '../layout/RootLayout';
 import ServiceLayout from '../layout/ServiceLayout';
-import Home from '../pages/Home';
-import CodeExplainForm from '../component/forms/CodeExplainForm';
 import {
+  Home,
   ErrorPage,
-  Summarizer,
   Login,
   Subscription,
   ServicesPage,
 } from '../pages';
-import CodeRefactorForm from '../component/forms/CodeRefactorForm';
 import PrivateRoute from './PrivateRoute';
 
 
@@ -35,9 +32,9 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      { path: 'code-explainer', element: <CodeExplainForm /> },
-      { path: 'doc-summarizer', element: <Summarizer /> },
-      { path: 'code-refactor', element: <CodeRefactorForm /> },
+      { path: 'code-explainer', element: <ServicesPage/> },
+      { path: 'doc-summarizer', element: <ServicesPage /> },
+      { path: 'code-refactor', element: <ServicesPage/> },
       { path: 'article-generator', element: <ServicesPage /> },
     ],
   },

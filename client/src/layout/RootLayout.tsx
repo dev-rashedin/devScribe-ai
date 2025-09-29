@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router';
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
-import Blob from '../component/ui/Blob';
 import { useCustomLocation } from '../hooks';
+import {Navbar, Footer} from '../component';
+import { Blob } from '../component/ui';
+
 
 const RootLayout = () => {
  

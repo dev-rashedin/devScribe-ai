@@ -27,9 +27,6 @@ const Sidebar = ({
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
 
-  const messages = history.map((item) =>
-    item.messages.length > 0 ? item.messages : []
-  );
 
   return (
     <aside
@@ -123,13 +120,13 @@ const Sidebar = ({
       )}
       {/* Chat List */}
       <div className='flex-1 overflow-y-auto'>
-        {messages.map((chat) => (
+        {history.map((conversation) => (
           <div
-            key={chat[0]._id}
-            onClick={() => setActiveChatId(chat[1]._id)}
+            key={conversation._id}
+            onClick={() => setActiveChatId(conversation._id)}
             className={`relative group sidebar-content chat-list ${sidebarClasses(
               isOpen
-            )} ${activeChatId === chat[0]._id ? 'chat' : ''}`}
+            )} ${activeChatId === conversation._id ? 'chat' : ''}`}
           >
             <BiSolidMessageRounded className='text-xl text-[#446E92]' />
             <span
@@ -138,23 +135,28 @@ const Sidebar = ({
                 'span'
               )}`}
             >
-              {chat[0].content.length > 20
-                ? capitalizeFirstLetter(chat[0].content.slice(0, 20)) + '...'
-                : capitalizeFirstLetter(chat[0].content)}
+              {conversation.messages[0]?.content.length > 20
+                ? capitalizeFirstLetter(
+                    conversation.messages[0].content.slice(0, 20)
+                  ) + '...'
+                : capitalizeFirstLetter(
+                    conversation.messages[0]?.content || ''
+                  )}
             </span>
+
             <button
               onClick={() =>
                 setPopoverOpenId(
-                  chat[0]._id === popoverOpenId ? null : chat[0]._id
+                  conversation._id === popoverOpenId ? null : conversation._id
                 )
               }
               className='absolute right-2 opacity-0 group-hover:opacity-100'
             >
-              <HiOutlineDotsHorizontal /> {/* example icon */}
+              <HiOutlineDotsHorizontal />
             </button>
 
-            {/* the popover */}
-            {popoverOpenId === chat[0]._id && (
+            {/* Popover */}
+            {popoverOpenId === conversation._id && (
               <div className='absolute right-0 top-10 z-50 service-layout shadow-2xl px-4 py-8 rounded-xl text-sm space-y-2'>
                 <button className='popover-button chat-list'>
                   <MdShare />
@@ -165,8 +167,9 @@ const Sidebar = ({
                   Rename
                 </button>
                 <button className='popover-button chat-list text-red-400'>
-                  <MdDelete/>
-                  Delete</button>
+                  <MdDelete />
+                  Delete
+                </button>
               </div>
             )}
           </div>

@@ -9,6 +9,9 @@ const ServicesPage = () => {
 
   const { activeChatId } = useOutletContext<ContextType>();
   const { isArticleGenerator, isCodeExplainer, isCodeReactor, isDocSummarizer, isEmailHelper, isResumeAssistant } = useCustomLocation()
+
+  console.log('activeChatId', activeChatId);
+  
   
 
   return (

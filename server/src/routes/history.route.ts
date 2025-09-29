@@ -21,8 +21,7 @@ historyRouter.get(
 
     const history = await History.find({ service, uid }).select({
       title: 1,
-      messages: 1,
-      _id: 0,
+      messages: 1
     }).sort({ createdAt: -1 });
 
 

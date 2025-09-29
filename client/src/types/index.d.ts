@@ -90,6 +90,7 @@ declare interface Message  {
 declare interface HistoryItem  {
   title: string;
   messages: Message[];
+  _id: string;
 };
 
 declare interface SidebarProps {
