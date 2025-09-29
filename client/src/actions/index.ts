@@ -63,11 +63,11 @@ export async function writeArticle(_prevState: unknown, formData: FormData, uid:
 
 
   const messages = [
-    { role: 'user', content: `Write an article about ${topic}` },
+    { role: 'user', content: `${topic}` },
     { role: 'assistant', content: result.data.article },
   ];
 
-  const title = messages[0].content.slice(0, 30) + '...';
+  const title = messages[0].content;
 
   await fetchAction('/history', {
     uid,

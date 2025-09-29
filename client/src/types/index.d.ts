@@ -80,6 +80,18 @@ declare interface UserInfo {
   photoURL: string;
 }
 
+declare interface Message  {
+  role: 'user' | 'assistant';
+  content: string;
+  _id: string;
+  createdAt: string;
+};
+
+declare interface HistoryItem  {
+  title: string;
+  messages: Message[];
+};
+
 declare interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
@@ -88,17 +100,7 @@ declare interface SidebarProps {
   onNewChat: () => void;
 }
 
-type Message = {
-  role: 'user' | 'assistant';
-  content: string;
-  _id: string;
-  createdAt: string;
-};
 
-declare type HistoryItem = {
-  title: string;
-  messages: Message[];
-};
 
 
 

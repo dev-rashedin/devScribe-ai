@@ -12,11 +12,9 @@ const Sidebar = ({
   onNewChat,
 }: SidebarProps) => {
   
-  const [logoDisplay, setLogoDisplay] = useState(true);
+  const [logoDisplay, setLogoDisplay] = useState(true); 
   
-  
-
-  
+  const messages = history.map((item) => item.messages.length > 0 ? item.messages : []);
 
   return (
     <aside
@@ -63,7 +61,8 @@ const Sidebar = ({
         {serviceName}
       </h3>
 
-      {/* New Chat */}
+      {/* New Chat button */}
+
       <button
         onClick={onNewChat}
         className={`flex items-center gap-2 m-3 px-1.5 py-3 rounded-lg text-sm font-medium cursor-pointer 
@@ -79,25 +78,33 @@ const Sidebar = ({
       </button>
 
       {/* Chat List */}
-      {history?.messages.length > 0 && (
-        <div className='flex-1 overflow-y-auto px-2'>
-          {history.messages.map((chat) => (
-            <div
-              key={chat._id}
-              className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer 
+
+      {/* {messages.map((chat) => {
+        console.log('chat', chat);
+      })} */}
+
+      <div className='flex-1 overflow-y-auto px-2'>
+        {messages.map((chat) => (
+          <div
+            key={chat[0]._id}
+            className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer 
                ${isOpen ? 'justify-start' : 'justify-center'}`}
-            >
-              <BiSolidMessageRounded className='text-xl text-[#446E92]' />
-              <span
-                className={`text-sm truncate transition-[opacity,width,margin] duration-300 overflow-hidden 
+          >
+            <BiSolidMessageRounded className='text-xl text-[#446E92]' />
+            <span
+              className={`text-sm truncate transition-[opacity,width,margin] duration-300 overflow-hidden 
                 ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
-              >
-                {chat.title}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
+            >
+              {chat[0].content.length > 30
+                ? chat[0].content.charAt(0).toUpperCase() +
+                  chat[0].content.slice(1, 30) +
+                  '...'
+                : chat[0].content.charAt(0).toUpperCase() +
+                  chat[0].content.slice(1)}
+            </span>
+          </div>
+        ))}
+      </div>
 
       {/* User Profile */}
       <div
