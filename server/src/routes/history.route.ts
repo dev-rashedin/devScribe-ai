@@ -37,6 +37,30 @@ historyRouter.get(
   })
 );
 
+// fetch history by id
+historyRouter.get(
+  '/history/:id',
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    if (!id) {
+      throw new BadRequestError('Please provide id');
+    }
+
+    const history = await History.findById(id);
+
+    if (!history) {
+      throw new BadRequestError('History not found');
+    }
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'History fetched successfully',
+      history,
+    });
+  })
+);
+
 
 // store history in database
 historyRouter.post(

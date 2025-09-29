@@ -58,6 +58,19 @@ const createUserInDatabase = async (userInfo: UserInfo) => {
 const fetchHistory = async (uid: string, service: string) => {
   try {
     const res = await axiosSecureApi.get(`/history/${service}/${uid}`);
+    
+    if (res.status === StatusCodes.OK) {
+      return res.data.history; 
+    }
+    return [];
+  } catch (err: unknown) {
+    console.error(err);
+    return [];
+  }
+}
+const fetchHistoryById = async (id: string | null) => {
+  try {
+    const res = await axiosSecureApi.get(`/history/${id}`);
     console.log('res inside fetchHistory api', res);
     
     if (res.status === StatusCodes.OK) {
@@ -75,6 +88,7 @@ export {
   axiosApi,
   axiosSecureApi,
   createUserInDatabase,
-  fetchHistory
+  fetchHistory,
+  fetchHistoryById
 }
 
