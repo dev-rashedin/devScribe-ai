@@ -1,18 +1,15 @@
 import { useState, useActionState, useEffect } from 'react';
-import { useOutletContext } from 'react-router';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
 import { Button, AIOutput, PulseGrid } from '../ui';
 import { useAuth } from '../../hooks';
 import { useQueryClient } from '@tanstack/react-query';
 
-type ContextType = { activeChatId: string | null };
+
 
 const ArticleGeneratorForm = () => {
   const { user } = useAuth();
-  const { activeChatId } = useOutletContext<ContextType>();
-
-  console.log('activeChatId', activeChatId);
+  
 
   const [formState, formAction, isPending] = useActionState(
     (prev: unknown, formData: FormData) =>

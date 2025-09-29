@@ -23,6 +23,12 @@ const useCustomLocation = ()  => {
     location.pathname.includes('signin') ||
     location.pathname.includes('signup');
   const subScriptionPage = location.pathname.includes('subscription');
+  const articleGenarator = location.pathname.includes('article-generator');
+  const codeExplainer = location.pathname.includes('code-explainer');
+  const codeReactor = location.pathname.includes('code-refactor');
+  const docSumarizer = location.pathname.includes('doc-summarizer');
+  const emailHelper = location.pathname.includes('email-helper');
+  const resumeAssistant = location.pathname.includes('resume-assistant');
   const isService = location.pathname.includes('service');
   const serviceName = location.pathname.split('/')[2] || 'Service';
   const isSignUp = location.pathname.includes('/signup');
@@ -30,7 +36,7 @@ const useCustomLocation = ()  => {
   const from = location?.state || '/';
 
 
-  return { noHeaderFooter, subScriptionPage, isService, serviceName, isSignUp, authType, from };
+  return { noHeaderFooter, subScriptionPage, articleGenarator, codeExplainer, codeReactor, docSumarizer, emailHelper, resumeAssistant, isService, serviceName, isSignUp, authType, from };
 };
 
 export { useTheme, useAuth, useCustomLocation };

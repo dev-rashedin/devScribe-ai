@@ -10,6 +10,7 @@ import Subscription from '../pages/Subscription';
 import CodeRefactorForm from '../component/forms/CodeRefactorForm';
 import ArticleGeneratorForm from '../component/forms/ArticleGeneratorForm';
 import PrivateRoute from './PrivateRoute';
+import ServicesPage from '../pages/ServicesPage';
 
 
 
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       { path: 'code-explainer', element: <CodeExplainForm /> },
       { path: 'doc-summarizer', element: <Summarizer /> },
       { path: 'code-refactor', element: <CodeRefactorForm /> },
-      { path: 'article-generator', element: <ArticleGeneratorForm /> },
+      { path: 'article-generator', element: <ServicesPage /> },
     ],
   },
 ]);
