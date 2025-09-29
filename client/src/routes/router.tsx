@@ -3,14 +3,15 @@ import RootLayout from '../layout/RootLayout';
 import ServiceLayout from '../layout/ServiceLayout';
 import Home from '../pages/Home';
 import CodeExplainForm from '../component/forms/CodeExplainForm';
-import Summarizer from '../pages/Summarizer';
-import ErrorPage from '../pages/ErrorPage';
-import Login from '../pages/Login';
-import Subscription from '../pages/Subscription';
+import {
+  ErrorPage,
+  Summarizer,
+  Login,
+  Subscription,
+  ServicesPage,
+} from '../pages';
 import CodeRefactorForm from '../component/forms/CodeRefactorForm';
-import ArticleGeneratorForm from '../component/forms/ArticleGeneratorForm';
 import PrivateRoute from './PrivateRoute';
-import ServicesPage from '../pages/ServicesPage';
 
 
 
