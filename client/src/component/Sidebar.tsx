@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiSolidMessageRounded, FiPlus, FiUser } from '../data/icons';
 import { Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
-
+import { capitalizeFirstLetter } from '../utils';
 
 const Sidebar = ({
   isOpen,
@@ -11,10 +11,11 @@ const Sidebar = ({
   history,
   onNewChat,
 }: SidebarProps) => {
-  
-  const [logoDisplay, setLogoDisplay] = useState(true); 
-  
-  const messages = history.map((item) => item.messages.length > 0 ? item.messages : []);
+  const [logoDisplay, setLogoDisplay] = useState(true);
+
+  const messages = history.map((item) =>
+    item.messages.length > 0 ? item.messages : []
+  );
 
   return (
     <aside
@@ -58,7 +59,11 @@ const Sidebar = ({
     ${isOpen ? 'opacity-100 w-auto ml-2' : 'opacity-0 w-0'}
   `}
       >
-        {serviceName}
+        {serviceName.includes('-')
+          ? capitalizeFirstLetter(serviceName.split('-')[0]) +
+            ' ' +
+            capitalizeFirstLetter(serviceName.split('-')[1])
+          : capitalizeFirstLetter(serviceName)}
       </h3>
 
       {/* New Chat button */}
@@ -96,11 +101,8 @@ const Sidebar = ({
                 ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
             >
               {chat[0].content.length > 30
-                ? chat[0].content.charAt(0).toUpperCase() +
-                  chat[0].content.slice(1, 30) +
-                  '...'
-                : chat[0].content.charAt(0).toUpperCase() +
-                  chat[0].content.slice(1)}
+                ? capitalizeFirstLetter(chat[0].content.slice(0, 30)) + '...'
+                : capitalizeFirstLetter(chat[0].content)}
             </span>
           </div>
         ))}

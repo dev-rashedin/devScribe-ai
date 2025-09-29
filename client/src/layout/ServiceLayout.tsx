@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
 import { useAuth, useCustomLocation } from '../hooks';
@@ -10,7 +11,7 @@ const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  // const [history, setHistory] = useState<HistoryItem[]>([]);
     const { user } = useAuth();
   const { serviceName } = useCustomLocation(); 
   
@@ -26,10 +27,24 @@ const ServiceLayout = () => {
   }, []);
   
 // fetch history data
-    useEffect(() => {
-      if (!user?.uid) return;
-      fetchHistory(user?.uid, serviceName).then((data) => setHistory(data));
-    }, [user?.uid, serviceName]);
+    // useEffect(() => {
+    //   if (!user?.uid) return;
+    //   fetchHistory(user?.uid, serviceName).then((data) => setHistory(data));
+  // }, [user?.uid, serviceName]);
+  
+
+   const {
+     data: history = [],
+     isLoading,
+     isError,
+   } = useQuery({
+     queryKey: ['history', user.uid, serviceName],
+     queryFn: () => fetchHistory(user.uid, serviceName),
+     enabled: !!user.uid,
+   });
+
+   if (isLoading) return <p>Loading...</p>;
+   if (isError) return <p>Failed to load history</p>;
   
   
   console.log('history', history);

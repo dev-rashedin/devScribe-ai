@@ -1,9 +1,10 @@
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useState } from 'react';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
 import {LoadingDots, Button, CodeExplanation} from '../ui';
 import { useAuth } from '../../hooks';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 
@@ -16,6 +17,15 @@ const ArticleGeneratorForm = () => {
     null
   );
   const [topic, setTopic] = useState('');
+  const queryClient = useQueryClient(); 
+
+  useEffect(() => {
+    if (formState?.success) {
+      queryClient.invalidateQueries({
+        queryKey: ['history', user.uid, 'article-generator'],
+      });
+    }
+  }, [formState?.success, queryClient, user.uid]);
   
 
   return (
