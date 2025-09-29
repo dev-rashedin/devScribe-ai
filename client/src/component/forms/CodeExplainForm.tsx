@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { explain } from '../../actions';
 import Error from '../Error';
 import {
-  LoadingDots,
   Button,
   CodeExplanation,
-  LanguageSelect
+  LanguageSelect,
+  PulseGrid
 } from '../ui';
 
 const CodeExplainForm = () => {
@@ -39,7 +39,7 @@ const CodeExplainForm = () => {
         />
 
         {isPending ? (
-          <LoadingDots />
+          <PulseGrid />
         ) : formState?.success ? (
           <CodeExplanation explanation={formState.data.explanation} />
         ) : (

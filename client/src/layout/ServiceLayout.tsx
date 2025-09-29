@@ -42,9 +42,6 @@ const ServiceLayout = () => {
      queryFn: () => fetchHistory(user.uid, serviceName),
      enabled: !!user.uid,
    });
-
-   if (isLoading) return <p>Loading...</p>;
-   if (isError) return <p>Failed to load history</p>;
   
   
   console.log('history', history);
@@ -59,6 +56,8 @@ const ServiceLayout = () => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(!isSidebarOpen)}
           serviceName={serviceName}
+          isLoading={isLoading}
+          isError={isError}
           history={history}
           onNewChat={() => {}}
         />

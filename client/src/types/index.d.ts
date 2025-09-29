@@ -96,7 +96,9 @@ declare interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   serviceName: string;
- history: HistoryItem[];
+  history: HistoryItem[];
+  isLoading: boolean;
+  isError: boolean;
   onNewChat: () => void;
 }
 

@@ -2,22 +2,20 @@ import { useActionState, useEffect } from 'react';
 import { useState } from 'react';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
-import {LoadingDots, Button, CodeExplanation} from '../ui';
+import { Button, CodeExplanation, PulseGrid } from '../ui';
 import { useAuth } from '../../hooks';
 import { useQueryClient } from '@tanstack/react-query';
 
-
-
-
 const ArticleGeneratorForm = () => {
-  const {  user } = useAuth()
-  
+  const { user } = useAuth();
+
   const [formState, formAction, isPending] = useActionState(
-    (prev: unknown, formData: FormData) => writeArticle(prev, formData, user.uid),
+    (prev: unknown, formData: FormData) =>
+      writeArticle(prev, formData, user.uid),
     null
   );
   const [topic, setTopic] = useState('');
-  const queryClient = useQueryClient(); 
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (formState?.success) {
@@ -26,7 +24,6 @@ const ArticleGeneratorForm = () => {
       });
     }
   }, [formState?.success, queryClient, user.uid]);
-  
 
   return (
     <div className='pt-10 xl:pt-20'>
@@ -52,7 +49,7 @@ const ArticleGeneratorForm = () => {
 
         {/* results */}
         {isPending ? (
-          <LoadingDots />
+          <PulseGrid />
         ) : formState?.success ? (
           <div className='mt-6 whitespace-pre-wrap leading-relaxed'>
             <CodeExplanation explanation={formState.data.article} />

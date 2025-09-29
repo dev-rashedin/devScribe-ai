@@ -2,7 +2,7 @@ import { useActionState } from 'react';
 import { useState } from 'react';
 import { refactor } from '../../actions';
 import Error from '../Error';
-import { LoadingDots, Button, CodeExplanation, LanguageSelect } from '../ui';
+import { Button, CodeExplanation, LanguageSelect, PulseGrid } from '../ui';
 
 const CodeRefactorForm = () => {
   const [formState, formAction, isPending] = useActionState(refactor, null);
@@ -32,7 +32,7 @@ const CodeRefactorForm = () => {
         />
 
         {isPending ? (
-          <LoadingDots />
+          <PulseGrid/>
         ) : formState?.success ? (
           <CodeExplanation explanation={formState.data.refactoredCode} />
         ) : (

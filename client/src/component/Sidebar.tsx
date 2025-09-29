@@ -5,7 +5,7 @@ import {
   FiUser,
   MdOutlineSubtitles,
 } from '../data/icons';
-import { Logo } from './ui';
+import { LoadingDots, Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 
@@ -14,6 +14,8 @@ const Sidebar = ({
   onClose,
   serviceName,
   history,
+  isLoading,
+  isError,
   onNewChat,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
@@ -96,6 +98,14 @@ const Sidebar = ({
         console.log('chat', chat);
       })} */}
 
+      
+      {isLoading && (<LoadingDots />)}
+      {isError && (
+        <div className='flex-center text-red-500'>
+          Error loading chat history
+        </div>
+      )}
+      {/* Chat List */}
       <div className='flex-1 overflow-y-auto'>
         {messages.map((chat) => (
           <div
