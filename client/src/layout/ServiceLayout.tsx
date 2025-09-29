@@ -5,48 +5,41 @@ import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
 import { useAuth, useCustomLocation } from '../hooks';
 import { fetchHistory } from '../api';
-
+import { Logo } from '../component/ui';
+import { generateServiceDesc } from '../utils';
 
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
-  
   // const [history, setHistory] = useState<HistoryItem[]>([]);
-    const { user } = useAuth();
-  const { serviceName } = useCustomLocation(); 
-  
+  const { user } = useAuth();
+  const { serviceName } = useCustomLocation();
+
+
 
   useEffect(() => {
     const handleResize = () => {
       setIsSidebarOpen(window.innerWidth >= 1024);
     };
-    handleResize(); 
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
-// fetch history data
-    // useEffect(() => {
-    //   if (!user?.uid) return;
-    //   fetchHistory(user?.uid, serviceName).then((data) => setHistory(data));
-  // }, [user?.uid, serviceName]);
-  
 
-   const {
-     data: history = [],
-     isLoading,
-     isError,
-   } = useQuery({
-     queryKey: ['history', user.uid, serviceName],
-     queryFn: () => fetchHistory(user.uid, serviceName),
-     enabled: !!user.uid,
-   });
-  
-  
+  // fetch history data
+  const {
+    data: history = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['history', user.uid, serviceName],
+    queryFn: () => fetchHistory(user.uid, serviceName),
+    enabled: !!user.uid,
+  });
+
   console.log('history', history);
-  
-
 
   return (
     <main className='flex flex-col h-screen'>
@@ -59,14 +52,22 @@ const ServiceLayout = () => {
           isLoading={isLoading}
           isError={isError}
           history={history}
+          activeChatId={activeChatId}
+          setActiveChatId={setActiveChatId}
           onNewChat={() => {}}
         />
 
         {/* Main content */}
-        <div className='flex-1 overflow-y-auto service-layout'>
+        <section className='flex-1 overflow-y-auto service-layout'>
           <Navbar />
-          <Outlet />
-        </div>
+          <div className='my-10 xl:my-20 space-y-20 service-outlet '>
+            <div className='flex-col-center max-w-2xl mx-auto text-center gap-y-2 lg:text-lg'>
+              <Logo size='lg' />
+              {generateServiceDesc(serviceName)}
+            </div>
+            <Outlet context={{ activeChatId }} />
+          </div>
+        </section>
       </div>
     </main>
   );

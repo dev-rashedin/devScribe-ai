@@ -99,3 +99,22 @@ export const sidebarClasses = (isOpen: boolean, type = 'div') => {
   }
 };
 
+export const generateServiceDesc = (serviceName: string) => {
+  switch (serviceName) {
+    case 'article-generator':
+      return 'Generate your article in seconds with AI-powered clarity and creativity';
+    case 'code-explainer':
+      return 'Explain your code in seconds with detailed insights and step-by-step clarity';
+    case 'doc-summarizer':
+      return 'Summarize your document in seconds with precise, structured, and easy-to-read output';
+    case 'code-refactor':
+      return 'Refactor your code in seconds for cleaner, optimized, and maintainable solutions';
+    case 'email-helper':
+      return 'Draft your email in seconds with polished, professional, and personalized suggestions';
+    case 'resume-assistant':
+      return 'Improve your resume in seconds with targeted, impactful, and career-focused enhancements';
+    default:
+      return 'Generate your article in seconds with AI-powered clarity and creativity';
+  }
+};
+

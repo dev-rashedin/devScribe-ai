@@ -49,7 +49,8 @@ html {
       @apply bg-gray-100 p-1 rounded;
     }
 
-    .bg-navbar, .bg-sidebar {
+    .bg-navbar,
+    .bg-sidebar {
       background-color: hsl(60, 100%, 96%);
     }
 
@@ -57,11 +58,11 @@ html {
       background-color: hsl(60, 100%, 98%);
     }
 
-     .chat-list {
-     @apply rounded-md cursor-pointer
+    .chat-list {
+      @apply rounded-md cursor-pointer;
     }
 
-    .chat{
+    .chat {
       background-color: hsl(52, 28%, 84%);
     }
 
@@ -102,9 +103,9 @@ html {
       background-color: hsl(0, 0%, 35%);
     }
 
-    .form-ui {
+    .service-outlet {
       background-color: hsl(60, 100%, 98%);
-      @apply w-full max-w-5xl mx-auto p-6 lg:p-12 xl:rounded-2xl xl:shadow ;
+      @apply w-full max-w-5xl mx-auto space-y-8 p-6 lg:p-12 xl:rounded-2xl xl:shadow;
     }
     .blob-gradient {
       @apply bg-gradient-to-t from-blue-300 via-blue-400 to-blue-500 rounded-full blur-[180px] opacity-30;
@@ -160,11 +161,12 @@ html {
     }
 
     .bg-navbar,
-    .bg-secondary, .bg-sidebar {
+    .bg-secondary,
+    .bg-sidebar {
       background-color: hsl(0, 0%, 10%);
     }
 
-    .service-layout{
+    .service-layout {
       background-color: hsl(0, 0%, 13%);
     }
 
@@ -175,8 +177,6 @@ html {
     .chat-list:hover {
       background-color: hsl(0, 0%, 1%);
     }
-
-
 
     .bg-footer {
       background-color: hsl(0, 0%, 17%);
@@ -207,7 +207,7 @@ html {
       background-color: hsl(0, 0%, 59%);
     }
 
-    .form-ui {
+    .service-outlet {
       background-color: hsl(0, 0%, 13%);
       @apply xl:bg-[#1a1a1a];
       select option {
@@ -309,14 +309,14 @@ html {
   }
 
   .sidebar-content {
-    @apply flex items-center gap-2 px-4 py-2
+    @apply flex items-center gap-2 px-4 py-2;
   }
 
   .sidebar-content-animation {
-    @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden
+    @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden;
   }
 
   .popover-button {
-    @apply flex items-center justify-baseline gap-2 mx-auto p-2 w-full min-w-28
+    @apply flex items-center justify-baseline gap-2 mx-auto p-2 w-full min-w-28;
   }
 }

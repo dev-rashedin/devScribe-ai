@@ -10,7 +10,7 @@ const CodeRefactorForm = () => {
 
   return (
     <div className='pt-10 xl:pt-20'>
-      <form action={formAction} className='form-ui '>
+      <form action={formAction} className='service-outlet '>
         <LanguageSelect />
 
         <label className='block mb-2 font-semibold'>Your Code:</label>
@@ -32,7 +32,7 @@ const CodeRefactorForm = () => {
         />
 
         {isPending ? (
-          <PulseGrid/>
+          <PulseGrid />
         ) : formState?.success ? (
           <CodeExplanation explanation={formState.data.refactoredCode} />
         ) : (

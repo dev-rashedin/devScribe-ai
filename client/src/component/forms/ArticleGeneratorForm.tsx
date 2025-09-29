@@ -26,8 +26,8 @@ const ArticleGeneratorForm = () => {
   }, [formState?.success, queryClient, user.uid]);
 
   return (
-    <div className='pt-10 xl:pt-20'>
-      <form action={formAction} className='form-ui'>
+    <div>
+      <form action={formAction}>
         {/* input field */}
         <label className='block mb-2 font-semibold'>Article Topic:</label>
         <input

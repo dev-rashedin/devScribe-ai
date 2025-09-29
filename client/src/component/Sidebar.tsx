@@ -20,10 +20,11 @@ const Sidebar = ({
   history,
   isLoading,
   isError,
+  activeChatId,
+  setActiveChatId,
   onNewChat,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
-  const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
 
   const messages = history.map((item) =>
