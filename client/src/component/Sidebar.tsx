@@ -126,7 +126,7 @@ const Sidebar = ({
         {messages.map((chat) => (
           <div
             key={chat[0]._id}
-            onClick={() => setActiveChatId(chat[0]._id)}
+            onClick={() => setActiveChatId(chat[1]._id)}
             className={`relative group sidebar-content chat-list ${sidebarClasses(
               isOpen
             )} ${activeChatId === chat[0]._id ? 'chat' : ''}`}

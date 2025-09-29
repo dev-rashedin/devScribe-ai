@@ -2,7 +2,7 @@ import { useActionState } from 'react';
 import { useState } from 'react';
 import { explain } from '../../actions';
 import Error from '../Error';
-import { Button, CodeExplanation, LanguageSelect, PulseGrid } from '../ui';
+import { Button, AIOutput, LanguageSelect, PulseGrid } from '../ui';
 
 const CodeExplainForm = () => {
   const [formState, formAction, isPending] = useActionState(explain, null);
@@ -23,19 +23,19 @@ const CodeExplainForm = () => {
         onChange={(e) => setCode(e.target.value)}
         className='text-area'
       />
-
-      <Button
-        label={isPending ? 'Explaining...' : 'Explain Code'}
-        type='primary'
-        isSubmit
-        isChecked
-        className='mt-4'
-      />
-
+      <div className='flex justify-end'>
+        <Button
+          label={isPending ? 'Explaining...' : 'Explain Code'}
+          type='primary'
+          isSubmit
+          isChecked
+          className='mt-4'
+        />
+      </div>
       {isPending ? (
         <PulseGrid />
       ) : formState?.success ? (
-        <CodeExplanation explanation={formState.data.explanation} />
+        <AIOutput explanation={formState.data.explanation} />
       ) : (
         formState?.success === false && <Error error={formState.error} />
       )}

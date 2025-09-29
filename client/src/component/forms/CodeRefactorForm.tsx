@@ -2,15 +2,15 @@ import { useActionState } from 'react';
 import { useState } from 'react';
 import { refactor } from '../../actions';
 import Error from '../Error';
-import { Button, CodeExplanation, LanguageSelect, PulseGrid } from '../ui';
+import { Button, AIOutput, LanguageSelect, PulseGrid } from '../ui';
 
 const CodeRefactorForm = () => {
   const [formState, formAction, isPending] = useActionState(refactor, null);
   const [code, setCode] = useState('');
 
   return (
-    <div className='pt-10 xl:pt-20'>
-      <form action={formAction} className='service-outlet '>
+    <div >
+      <form action={formAction}>
         <LanguageSelect />
 
         <label className='block mb-2 font-semibold'>Your Code:</label>
@@ -23,18 +23,20 @@ const CodeRefactorForm = () => {
           className='text-area'
         />
 
-        <Button
-          label={isPending ? 'Refactoring...' : 'Refactor Code'}
-          type='primary'
-          isSubmit
-          isChecked
-          className='mt-4'
-        />
+        <div className='flex justify-end'>
+          <Button
+            label={isPending ? 'Refactoring...' : 'Refactor Code'}
+            type='primary'
+            isSubmit
+            isChecked
+            className='mt-4'
+          />
+        </div>
 
         {isPending ? (
           <PulseGrid />
         ) : formState?.success ? (
-          <CodeExplanation explanation={formState.data.refactoredCode} />
+          <AIOutput explanation={formState.data.refactoredCode} />
         ) : (
           formState?.success === false && <Error error={formState.error} />
         )}

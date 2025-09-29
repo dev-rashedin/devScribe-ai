@@ -1,13 +1,18 @@
-import { useActionState, useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useActionState, useEffect } from 'react';
+import { useOutletContext } from 'react-router';
 import { writeArticle } from '../../actions';
 import Error from '../Error';
-import { Button, CodeExplanation, PulseGrid } from '../ui';
+import { Button, AIOutput, PulseGrid } from '../ui';
 import { useAuth } from '../../hooks';
 import { useQueryClient } from '@tanstack/react-query';
 
+type ContextType = { activeChatId: string | null };
+
 const ArticleGeneratorForm = () => {
   const { user } = useAuth();
+  const { activeChatId } = useOutletContext<ContextType>();
+
+  console.log('activeChatId', activeChatId);
 
   const [formState, formAction, isPending] = useActionState(
     (prev: unknown, formData: FormData) =>
@@ -40,19 +45,34 @@ const ArticleGeneratorForm = () => {
         />
 
         {/* submit button */}
-        <Button
-          label={isPending ? 'Generating...' : 'Generate Article'}
-          type='primary'
-          isSubmit
-          isChecked
-        />
+        <div className='flex justify-end'>
+          <Button
+            label={isPending ? 'Generating...' : 'Generate Article'}
+            type='primary'
+            isSubmit
+            isChecked
+          />
+        </div>
 
         {/* results */}
+
+        {/* {activeChatId ? (
+          ''
+        ) : isPending ? (
+          <PulseGrid />
+        ) : formState?.success ? (
+          <div className='mt-6 whitespace-pre-wrap leading-relaxed'>
+            <AIOutput explanation={formState.data.article} />
+          </div>
+        ) : (
+          formState?.success === false && <Error error={formState.error} />
+        )} */}
+
         {isPending ? (
           <PulseGrid />
         ) : formState?.success ? (
           <div className='mt-6 whitespace-pre-wrap leading-relaxed'>
-            <CodeExplanation explanation={formState.data.article} />
+            <AIOutput explanation={formState.data.article} />
           </div>
         ) : (
           formState?.success === false && <Error error={formState.error} />

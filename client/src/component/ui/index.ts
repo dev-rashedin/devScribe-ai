@@ -4,28 +4,26 @@ import {
   AccordionItem,
   AccordionPanel,
 } from './Accordion';
-import AnimatedBorder from "./AnimatedBorder";
-import Blob from "./Blob";
-import CodeExplanation from "../CodeExplanation";
-import ContactDropdown from "./ContactDropdown";
-import CopyButton from "./CopyButton";
-import Button from "./CustomButton";
-import { Highlight } from "./HeroHighlight";
-import HighlightedText from './HighlightedText'
-import HomeSectionHeading from "./HomeSectionHeading";
-import LanguageSelect from "./LanguageSelect";
-import LoadingDots from "./LoadingDots";
-import Logo from "./Logo";
-import MobileMenu from "./MobileMenu";
-import NavLinks from "./navLink";
-import { StickyScroll } from "./StickyScroll";
-import { Card, CardHeader, CardContent } from "./SubscriptionCard"
-import ThemeSwitcher from "./ThemeSwitcher";
-import { TimelineContent } from "./TimelineAnimation";
+import AnimatedBorder from './AnimatedBorder';
+import Blob from './Blob';
+import AIOutput from '../AIOutput';
+import ContactDropdown from './ContactDropdown';
+import CopyButton from './CopyButton';
+import Button from './CustomButton';
+import { Highlight } from './HeroHighlight';
+import HighlightedText from './HighlightedText';
+import HomeSectionHeading from './HomeSectionHeading';
+import LanguageSelect from './LanguageSelect';
+import LoadingDots from './LoadingDots';
+import Logo from './Logo';
+import MobileMenu from './MobileMenu';
+import NavLinks from './navLink';
+import { StickyScroll } from './StickyScroll';
+import { Card, CardHeader, CardContent } from './SubscriptionCard';
+import ThemeSwitcher from './ThemeSwitcher';
+import { TimelineContent } from './TimelineAnimation';
 import { AuthInput, AuthButton } from './Auth';
 import PulseGrid from './PulseGrid';
-
-
 
 export {
   Accordion,
@@ -34,7 +32,7 @@ export {
   AccordionPanel,
   AnimatedBorder,
   Blob,
-  CodeExplanation,
+  AIOutput,
   ContactDropdown,
   CopyButton,
   Button,
@@ -54,5 +52,5 @@ export {
   TimelineContent,
   AuthInput,
   AuthButton,
-  PulseGrid
+  PulseGrid,
 };
