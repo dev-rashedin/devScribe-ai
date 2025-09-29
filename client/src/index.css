@@ -315,4 +315,8 @@ html {
   .sidebar-content-animation {
     @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden
   }
+
+  .popover-button {
+    @apply flex items-center justify-baseline gap-2 mx-auto p-2 w-full min-w-28
+  }
 }

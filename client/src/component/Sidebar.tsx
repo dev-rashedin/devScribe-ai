@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import {
   BiSolidMessageRounded,
+  FiPenTool,
   FiPlus,
   FiUser,
   HiOutlineDotsHorizontal,
+  MdDelete,
   MdOutlineSubtitles,
+  MdShare,
 } from '../data/icons';
 import { LoadingDots, Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
@@ -21,6 +24,7 @@ const Sidebar = ({
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
+  const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
 
   const messages = history.map((item) =>
     item.messages.length > 0 ? item.messages : []
@@ -137,9 +141,33 @@ const Sidebar = ({
                 ? capitalizeFirstLetter(chat[0].content.slice(0, 20)) + '...'
                 : capitalizeFirstLetter(chat[0].content)}
             </span>
-            <button className='absolute right-2 opacity-0 group-hover:opacity-100'>
+            <button
+              onClick={() =>
+                setPopoverOpenId(
+                  chat[0]._id === popoverOpenId ? null : chat[0]._id
+                )
+              }
+              className='absolute right-2 opacity-0 group-hover:opacity-100'
+            >
               <HiOutlineDotsHorizontal /> {/* example icon */}
             </button>
+
+            {/* the popover */}
+            {popoverOpenId === chat[0]._id && (
+              <div className='absolute right-0 top-10 z-50 service-layout shadow-2xl px-4 py-8 rounded-xl text-sm space-y-2'>
+                <button className='popover-button chat-list'>
+                  <MdShare />
+                  Share
+                </button>
+                <button className='popover-button chat-list'>
+                  <FiPenTool />
+                  Rename
+                </button>
+                <button className='popover-button chat-list text-red-400'>
+                  <MdDelete/>
+                  Delete</button>
+              </div>
+            )}
           </div>
         ))}
       </div>

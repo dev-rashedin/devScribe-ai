@@ -38,7 +38,9 @@ import {
   MdOutput,
   MdOutlineIntegrationInstructions,
   MdPersonAddAlt1,
-  MdOutlineSubtitles
+  MdOutlineSubtitles,
+  MdShare,
+  MdDelete,
 } from 'react-icons/md';
 import { GoRocket } from 'react-icons/go';
 import { SlGraph } from 'react-icons/sl';
@@ -88,4 +90,6 @@ export {
   RiCloseLargeFill,
   MdOutlineSubtitles,
   HiOutlineDotsHorizontal,
+  MdShare,
+  MdDelete,
 };

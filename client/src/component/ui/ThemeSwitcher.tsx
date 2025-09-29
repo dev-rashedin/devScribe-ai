@@ -4,7 +4,7 @@ import { FiMoon, IoSunnyOutline } from '../../data/icons';
 const ThemeSwitcher = () => {
   const { dark, toggleDark } = useTheme();
   return (
-    <button onClick={toggleDark} className='cursor-pointer'>
+    <button onClick={toggleDark}>
       {dark ? (
         <FiMoon className='text-xl' />
       ) : (

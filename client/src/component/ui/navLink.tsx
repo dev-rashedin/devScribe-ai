@@ -20,7 +20,7 @@ const NavLinks = () => {
                 setTimeout(() => setOpen(false), 300);
               }}
             >
-              <button className='cursor-pointer transition -mr-1 flex-center'>
+              <button className='transition -mr-1 flex-center'>
                 {link.title}
                 <span className='ml-2'>
                   {open ? <IoIosArrowUp /> : <IoIosArrowDown />}

@@ -26,7 +26,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
         {/* monthly plan */}
         <button
           onClick={() => handleSwitch('0')}
-          className={`relative z-10 w-fit sm:h-12 h-10 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
+          className={`relative z-10 w-fit sm:h-12 h-10 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors ${
             selected === '0'
               ? 'text-white'
               : 'text-muted'
@@ -44,7 +44,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
         {/* yearly plan */}
         <button
           onClick={() => handleSwitch('1')}
-          className={`relative z-10 w-fit sm:h-12 h-8 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors cursor-pointer ${
+          className={`relative z-10 w-fit sm:h-12 h-8 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors ${
             selected === '1'
               ? 'text-white'
               : 'text-muted'
@@ -138,7 +138,7 @@ export default function Subscription() {
 
               <CardContent className='pt-0'>
                 <button
-                  className={`w-full mb-6 p-4 text-xl rounded-xl cursor-pointer ${
+                  className={`w-full mb-6 p-4 text-xl rounded-xl ${
                     plan.popular
                       ? 'bg-gradient-to-t from-blue-500 to-blue-600  shadow-lg shadow-blue-500 border border-blue-400 text-white'
                       : plan.buttonVariant === 'outline'
