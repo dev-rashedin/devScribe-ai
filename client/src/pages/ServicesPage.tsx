@@ -3,8 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useCustomLocation } from "../hooks";
 import {ArticleGeneratorForm, CodeExplainForm, CodeRefactorForm} from "../component/forms";
 import { fetchHistoryById } from "../api";
-import { AIOutput } from "../component";
-import { is } from "zod/v4/locales";
+import { AIOutput, Error } from "../component";
 import { LoadingDots } from "../component/ui";
 
 type ContextType = { activeChatId: string | null };
@@ -26,27 +25,13 @@ const ServicesPage = () => {
       queryFn: () => fetchHistoryById(activeChatId),
       enabled: !!activeChatId,
     });
-  
-  
-  
-     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-     {isLoading && <LoadingDots />}
-  
-
-  
-  console.log('history inside services page', history);
-console.log(
-  'message inside services page',
-  history?.messages?.[0]?.content ?? 'no message yet'
-);
-  
-  
 
   return (
     <>
       {activeChatId ? (
         <div>
           {isLoading && <LoadingDots />}
+          {isError && <Error error='Failed to fetch history' />}
 
           <h3 className='text-lg lg:text-xl'>
             <span className='font-semibold mr-1'>Prompt:</span> {history.title}

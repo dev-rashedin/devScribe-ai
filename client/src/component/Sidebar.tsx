@@ -12,6 +12,7 @@ import {
 import { LoadingDots, Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 import { capitalizeFirstLetter, sidebarClasses } from '../utils';
+import Error from './Error';
 
 const Sidebar = ({
   isOpen,
@@ -113,11 +114,7 @@ const Sidebar = ({
       })} */}
 
       {isLoading && <LoadingDots />}
-      {isError && (
-        <div className='flex-center text-red-500'>
-          Error loading chat history
-        </div>
-      )}
+      {isError && <Error error='Error loading chat history'/>}
       {/* Chat List */}
       <div className='flex-1 overflow-y-auto'>
         {history.map((conversation) => (
