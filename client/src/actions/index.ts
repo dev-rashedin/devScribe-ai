@@ -71,7 +71,7 @@ export async function writeArticle(_prevState: unknown, formData: FormData, uid:
 
   await fetchAction('/history', {
     uid,
-    service: 'article-writer',
+    service: 'article-generator',
     title,
     messages,
   });

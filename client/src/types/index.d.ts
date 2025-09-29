@@ -84,10 +84,21 @@ declare interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   serviceName: string;
-  uid: string;
-  chats: { _id: string; title: string }[];
+ history: HistoryItem[];
   onNewChat: () => void;
 }
+
+type Message = {
+  role: 'user' | 'assistant';
+  content: string;
+  _id: string;
+  createdAt: string;
+};
+
+declare type HistoryItem = {
+  title: string;
+  messages: Message[];
+};
 
 
 

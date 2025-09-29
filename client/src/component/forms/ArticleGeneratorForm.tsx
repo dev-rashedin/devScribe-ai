@@ -11,8 +11,6 @@ import { useAuth } from '../../hooks';
 const ArticleGeneratorForm = () => {
   const {  user } = useAuth()
   
-  console.log('user', user.uid);
-  
   const [formState, formAction, isPending] = useActionState(
     (prev: unknown, formData: FormData) => writeArticle(prev, formData, user.uid),
     null

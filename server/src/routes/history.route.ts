@@ -19,7 +19,12 @@ historyRouter.get(
     console.log('service', service, 'uid', uid);
     
 
-    const history = await History.find({ service, uid });
+    const history = await History.find({ service, uid }).select({
+      title: 1,
+      messages: 1,
+      _id: 0,
+    });
+
 
     if (!history) {
       throw new BadRequestError('History not found');

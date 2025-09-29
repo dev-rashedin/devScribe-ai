@@ -16,11 +16,7 @@ const axiosSecureApi = axios.create({
 // Attach interceptors once
 axiosSecureApi.interceptors.request.use(
   (config) => {
-    // ✅ Always grab token from localStorage
-    const token = localStorage.getItem('access-token');
-
-    console.log('token inside client api', token);
-    
+    const token = localStorage.getItem('access-token');  
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -65,7 +61,7 @@ const fetchHistory = async (uid: string, service: string) => {
     console.log('res inside fetchHistory api', res);
     
     if (res.status === StatusCodes.OK) {
-      return res.data; 
+      return res.data.history; 
     }
     return [];
   } catch (err: unknown) {
