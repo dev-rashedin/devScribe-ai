@@ -24,6 +24,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 import { TimelineContent } from './TimelineAnimation';
 import { AuthInput, AuthButton } from './Auth';
 import PulseGrid from './PulseGrid';
+import Popover from './Popover';
 
 export {
   Accordion,
@@ -53,4 +54,5 @@ export {
   AuthInput,
   AuthButton,
   PulseGrid,
+  Popover,
 };

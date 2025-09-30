@@ -8,13 +8,13 @@ import {
   HiOutlineDotsHorizontal,
   MdDelete,
   MdOutlineSubtitles,
-  MdShare,
 } from '../data/icons';
-import { LoadingDots, Logo } from './ui';
+import { LoadingDots, Logo, Popover } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 import Error from './Error';
 import { fetchUserById } from '../api';
+import { Link } from 'react-router';
 
 
 const Sidebar = ({
@@ -30,7 +30,10 @@ const Sidebar = ({
   onNewChat,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
+
+
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   // fetch user data
   const {
@@ -135,62 +138,57 @@ const Sidebar = ({
       {isError && <Error error='Error loading chat history' />}
 
       {/* Chat List */}
-      <div className='flex-1 overflow-y-auto'>
+      <section className='flex-1 overflow-y-auto'>
         {history.map((conversation) => (
-          <div
-            key={conversation._id}
-            onClick={() => setActiveChatId(conversation._id)}
-            className={`relative group sidebar-content chat-list ${sidebarClasses(
-              isOpen
-            )} ${activeChatId === conversation._id ? 'chat' : ''}`}
-          >
-            <BiSolidMessageRounded className='text-xl text-[#446E92]' />
-            <span
-              className={`text-sm sidebar-content-animation ${sidebarClasses(
-                isOpen,
-                'span'
-              )}`}
+          <div key={conversation._id} className='relative group'>
+            <div
+              onClick={() => setActiveChatId(conversation._id)}
+              className={`relative group sidebar-content chat-list ${sidebarClasses(
+                isOpen
+              )} ${activeChatId === conversation._id ? 'chat' : ''}`}
             >
-              {conversation.messages[0]?.content.length > 20
-                ? capitalizeFirstLetter(
-                    conversation.messages[0].content.slice(0, 20)
-                  ) + '...'
-                : capitalizeFirstLetter(
-                    conversation.messages[0]?.content || ''
-                  )}
-            </span>
+              <BiSolidMessageRounded className='text-xl text-[#446E92]' />
+              <span
+                className={`text-sm sidebar-content-animation ${sidebarClasses(
+                  isOpen,
+                  'span'
+                )}`}
+              >
+                {conversation.title.length > 20
+                  ? capitalizeFirstLetter(conversation.title.slice(0, 20)) +
+                    '...'
+                  : capitalizeFirstLetter(conversation.title || '')}
+              </span>
+            </div>
 
+            {/* three dot button */}
             <button
-              onClick={() =>
-                setPopoverOpenId(
-                  conversation._id === popoverOpenId ? null : conversation._id
-                )
-              }
-              className='absolute right-2 opacity-0 group-hover:opacity-100'
+              onClick={(e) => {
+                e.stopPropagation();
+                setPopoverOpenId(conversation._id);
+                setAnchorEl(e.currentTarget);
+              }}
+              className='absolute right-2 top-2.5 opacity-0 group-hover:opacity-100'
             >
               <HiOutlineDotsHorizontal />
             </button>
 
             {/* Popover */}
-            {popoverOpenId === conversation._id && (
-              <div className='absolute right-0 top-10 z-50 service-layout shadow-2xl px-4 py-8 rounded-xl text-sm space-y-2'>
-                <button className='popover-button chat-list'>
-                  <MdShare />
-                  Share
-                </button>
-                <button className='popover-button chat-list'>
-                  <FiPenTool />
-                  Rename
-                </button>
-                <button className='popover-button chat-list text-red-400'>
-                  <MdDelete />
-                  Delete
-                </button>
-              </div>
-            )}
+            <Popover
+              isOpen={popoverOpenId === conversation._id}
+              onClose={() => setPopoverOpenId(null)}
+              anchorEl={anchorEl}
+            >
+              <button className='popover-button chat-list flex gap-2'>
+                <FiPenTool /> Rename
+              </button>
+              <button className='popover-button chat-list text-red-400 flex gap-2'>
+                <MdDelete /> Delete
+              </button>
+            </Popover>
           </div>
         ))}
-      </div>
+      </section>
 
       {/* User Profile */}
       <div
@@ -217,12 +215,17 @@ const Sidebar = ({
                 </span>
               )}
               <span className='text-xs text-gray-500'>
-               Free Plan
+                {user?.subscription && user.subscription == 'free'
+                  ? 'Free Plan'
+                  : 'Premium'}
               </span>
             </div>
-            <button className='text-xs border primary-border px-2 py-[2px] rounded-full'>
+            <Link
+              to='/subscription'
+              className='text-xs border primary-border px-2 py-[2px] rounded-full'
+            >
               Upgrade
-            </button>
+            </Link>
           </div>
         </div>
       </div>
