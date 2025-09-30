@@ -34,7 +34,7 @@ const Sidebar = ({
 
   // fetch user data
   const {
-    data: user = [],
+    data: user = {},
     isLoading : userLoading,
     isError : userError,
   } = useQuery({
@@ -205,9 +205,20 @@ const Sidebar = ({
             ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
         >
           <div className='flex justify-between items-start w-42'>
+            {userLoading && <LoadingDots />}
+            {userError && <Error error='Error fetching user data' />}
+
             <div className='flex flex-col text-sm ml-[2px]'>
-              <span className='font-medium'>{user?.displayName.length < 20 ? user?.displayName : user?.displayName.slice(0, 20) + '...'}</span>
-              <span className='text-xs text-gray-500'>Free Plan</span>
+              {user.displayName && (
+                <span className='font-medium'>
+                  {user?.displayName?.length < 20
+                    ? user?.displayName
+                    : user?.displayName.slice(0, 20) + '...'}
+                </span>
+              )}
+              <span className='text-xs text-gray-500'>
+               Free Plan
+              </span>
             </div>
             <button className='text-xs border primary-border px-2 py-[2px] rounded-full'>
               Upgrade
