@@ -165,8 +165,8 @@ const Sidebar = ({
               anchorEl={anchorEl}
               id={conversation._id}
               onRequestDelete={() => {
-                setPopoverOpenId(null); // close popover immediately
-                setDeleteModalId(conversation._id); // open modal
+                setPopoverOpenId(null);
+                setDeleteModalId(conversation._id);
               }}
             />
           </div>

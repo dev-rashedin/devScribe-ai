@@ -119,5 +119,28 @@ historyRouter.delete(
   })
 );
 
+historyRouter.patch(
+  '/history/:id',
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    if (!id || !title) {
+      throw new BadRequestError('Please provide id and title');
+    }
+
+    const history = await History.findByIdAndUpdate(id, { title }, { new: true });
+
+    if (!history) {
+      throw new BadRequestError('History not found');
+    }
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'History updated successfully',
+      history,
+    })
+  }))
+
 
 export default historyRouter;
