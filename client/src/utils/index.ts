@@ -91,7 +91,7 @@ export const capitalizeFirstLetter = (str: string) => {
 
 export const sidebarClasses = (isOpen: boolean, type = 'div') => {
   if (type === 'div') {
-    return isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0';
+    return isOpen ? 'justify-start' : 'justify-center';
   }
 
   if (type === 'span') {
