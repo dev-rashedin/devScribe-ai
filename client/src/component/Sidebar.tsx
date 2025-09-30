@@ -2,11 +2,9 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   BiSolidMessageRounded,
-  FiPenTool,
   FiPlus,
   FiUser,
   HiOutlineDotsHorizontal,
-  MdDelete,
   MdOutlineSubtitles,
 } from '../data/icons';
 import { LoadingDots, Logo, Popover } from './ui';
@@ -178,14 +176,9 @@ const Sidebar = ({
               isOpen={popoverOpenId === conversation._id}
               onClose={() => setPopoverOpenId(null)}
               anchorEl={anchorEl}
+              id={conversation._id}
             >
-              <button className='popover-button chat-list flex gap-2'>
-                <FiPenTool /> Rename
-              </button>
-           
-              <button className='popover-button chat-list text-red-400 flex gap-2'>
-                <MdDelete /> Delete
-              </button>
+            
             </Popover>
           </div>
         ))}

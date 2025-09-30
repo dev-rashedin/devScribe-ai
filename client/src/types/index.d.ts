@@ -106,6 +106,13 @@ declare interface SidebarProps {
   onNewChat: () => void;
 }
 
+declare interface PopoverProps {
+  id: string;
+  isOpen: boolean;
+  onClose: () => void;
+  anchorEl: HTMLElement | null;
+}
+
 
 
 
