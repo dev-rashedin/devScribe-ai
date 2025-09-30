@@ -53,7 +53,7 @@ const Sidebar = ({
     <aside
       className={` h-full bg-sidebar drop-shadow 
         transition-[width] duration-300 ease-in-out
-        ${isOpen ? 'w-60' : 'w-16'} flex flex-col z-30`}
+        ${isOpen ? 'w-60' : 'w-16'} flex flex-col h-screen sticky top-0 z-30`}
     >
       {/* Top Section */}
       <div className='flex items-center justify-between px-2.5'>
@@ -138,7 +138,7 @@ const Sidebar = ({
       {isError && <Error error='Error loading chat history' />}
 
       {/* Chat List */}
-      <section className='flex-1 overflow-y-auto'>
+      <section className='flex-1 overflow-y-auto mb-4'>
         {history.map((conversation) => (
           <div key={conversation._id} className='relative group'>
             <div
@@ -182,6 +182,7 @@ const Sidebar = ({
               <button className='popover-button chat-list flex gap-2'>
                 <FiPenTool /> Rename
               </button>
+           
               <button className='popover-button chat-list text-red-400 flex gap-2'>
                 <MdDelete /> Delete
               </button>

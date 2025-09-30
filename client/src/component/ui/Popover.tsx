@@ -34,7 +34,7 @@ const Popover = ({ isOpen, onClose, anchorEl, children }: PopoverProps) => {
   const style: React.CSSProperties = {
     position: 'absolute',
     top: rect.bottom + 4,
-    left: rect.right - 150,
+    left: rect.right - 30,
     zIndex: 9999,
   };
 
@@ -42,7 +42,7 @@ const Popover = ({ isOpen, onClose, anchorEl, children }: PopoverProps) => {
     <div
       ref={popoverRef}
       style={style}
-      className='bg-white shadow-xl rounded-lg p-2 w-40'
+      className='service-layout shadow-xl rounded-lg p-2 w-28 text-sm space-y-2'
     >
       {children}
     </div>,
