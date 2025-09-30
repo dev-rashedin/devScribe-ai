@@ -25,6 +25,7 @@ import { TimelineContent } from './TimelineAnimation';
 import { AuthInput, AuthButton } from './Auth';
 import PulseGrid from './PulseGrid';
 import Popover from './Popover';
+import DeleteModal from './DeleteModal';
 
 export {
   Accordion,
@@ -55,4 +56,5 @@ export {
   AuthButton,
   PulseGrid,
   Popover,
+  DeleteModal
 };

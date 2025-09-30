@@ -32,6 +32,7 @@ const ServiceLayout = () => {
     data: history = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ['history', user.uid, serviceName],
     queryFn: () => fetchHistory(user.uid, serviceName),
@@ -54,6 +55,7 @@ const ServiceLayout = () => {
           history={history}
           activeChatId={activeChatId}
           setActiveChatId={setActiveChatId}
+          onDeleted={() => refetch()}
           onNewChat={() => {}}
         />
 

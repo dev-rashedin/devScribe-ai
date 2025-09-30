@@ -7,13 +7,12 @@ import {
   HiOutlineDotsHorizontal,
   MdOutlineSubtitles,
 } from '../data/icons';
-import { LoadingDots, Logo, Popover } from './ui';
+import { DeleteModal, LoadingDots, Logo, Popover } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 import Error from './Error';
 import { fetchUserById } from '../api';
 import { Link } from 'react-router';
-import { createPortal } from 'react-dom';
 
 const Sidebar = ({
   isOpen,
@@ -26,13 +25,11 @@ const Sidebar = ({
   activeChatId,
   setActiveChatId,
   onNewChat,
+  onDeleted,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
-
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-  // Lifting delete modal state to parent
   const [deleteModalId, setDeleteModalId] = useState<string | null>(null);
 
   // fetch user data
@@ -45,15 +42,6 @@ const Sidebar = ({
     queryFn: () => fetchUserById(userUid),
     enabled: !!userUid,
   });
-
-  const handleDelete = async (id: string) => {
-    // try {
-    //   await axiosApi.delete(`/history/${id}`);
-    //   setDeleteModalId(null);
-    // } catch (err) {
-    //   console.error('Failed to delete history', err);
-    // }
-  };
 
   return (
     <aside
@@ -225,29 +213,14 @@ const Sidebar = ({
       </div>
 
       {/* Delete Modal */}
-      {deleteModalId &&
-        createPortal(
-          <div className='fixed inset-0 flex justify-center items-center bg-black/40 z-[1000]'>
-            <div className='service-layout shadow-xl rounded-lg p-6 delete-modal'>
-              <p>Are you sure you want to delete this history?</p>
-              <div className='flex justify-end mt-4'>
-                <button
-                  onClick={() => setDeleteModalId(null)}
-                  className='mr-2 px-4 py-2 bg-gray-200 rounded-lg'
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleDelete(deleteModalId)}
-                  className='px-4 py-2 bg-red-500 text-white rounded-lg'
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>,
-          document.body
-        )}
+      {deleteModalId && (
+        <DeleteModal
+          isOpen={deleteModalId !== null}
+          id={deleteModalId}
+          onCancel={() => setDeleteModalId(null)}
+          onDeleted={onDeleted}
+        />
+      )}
     </aside>
   );
 };

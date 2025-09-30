@@ -104,6 +104,7 @@ declare interface SidebarProps {
   activeChatId: string | null;
   setActiveChatId: (id: string) => void;
   onNewChat: () => void;
+  onDeleted: () => void;
 }
 
 declare interface PopoverProps {
@@ -112,6 +113,13 @@ declare interface PopoverProps {
   onClose: () => void;
   anchorEl: HTMLElement | null;
   onRequestDelete: () => void;
+}
+
+declare interface DeleteModalProps {
+  isOpen: boolean;
+  id: string | null;
+  onCancel: () => void;
+  onDeleted?: () => void; 
 }
 
 
