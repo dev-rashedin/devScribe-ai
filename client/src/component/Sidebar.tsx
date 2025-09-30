@@ -14,7 +14,6 @@ import Error from './Error';
 import { fetchUserById } from '../api';
 import { Link } from 'react-router';
 
-
 const Sidebar = ({
   isOpen,
   onClose,
@@ -29,27 +28,35 @@ const Sidebar = ({
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
 
-
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  // Lifting delete modal state to parent
+  const [deleteModalId, setDeleteModalId] = useState<string | null>(null);
 
   // fetch user data
   const {
     data: user = {},
-    isLoading : userLoading,
-    isError : userError,
+    isLoading: userLoading,
+    isError: userError,
   } = useQuery({
     queryKey: ['user', userUid],
     queryFn: () => fetchUserById(userUid),
     enabled: !!userUid,
   });
 
-  console.log('user inside sidebar', user);
-  
+  const handleDelete = async (id: string) => {
+    // try {
+    //   await axiosApi.delete(`/history/${id}`);
+    //   setDeleteModalId(null);
+    // } catch (err) {
+    //   console.error('Failed to delete history', err);
+    // }
+  };
 
   return (
     <aside
-      className={` h-full bg-sidebar drop-shadow 
+      className={`h-full bg-sidebar drop-shadow 
         transition-[width] duration-300 ease-in-out
         ${isOpen ? 'w-60' : 'w-16'} flex flex-col h-screen sticky top-0 z-30`}
     >
@@ -65,14 +72,14 @@ const Sidebar = ({
             <div className='flex items-center '>
               {logoDisplay ? (
                 <div
-                  className=' w-10 h-20 rounded-lg flex-center'
+                  className='w-10 h-20 rounded-lg flex-center'
                   onMouseEnter={() => setLogoDisplay(false)}
                 >
                   <Logo isService />
                 </div>
               ) : (
                 <div
-                  className=' w-10 h-8 rounded-lg flex-center'
+                  className='w-10 h-8 rounded-lg flex-center'
                   onMouseLeave={() => setLogoDisplay(true)}
                 >
                   <ToggleSidebar onClose={onClose} />
@@ -85,11 +92,9 @@ const Sidebar = ({
 
       {/* Service Name */}
       <h3
-        className={`sidebar-content 
-    text-lg lg:text-xl  font-semibold my-8 overflow-hidden ${sidebarClasses(
-      isOpen
-    )}
-  `}
+        className={`sidebar-content text-lg lg:text-xl font-semibold my-8 overflow-hidden ${sidebarClasses(
+          isOpen
+        )}`}
       >
         <MdOutlineSubtitles />
         <span
@@ -107,7 +112,6 @@ const Sidebar = ({
       </h3>
 
       {/* New Chat button */}
-
       <button
         onClick={onNewChat}
         className={`sidebar-content mb-8 rounded-lg text-sm font-medium  ${sidebarClasses(
@@ -125,13 +129,7 @@ const Sidebar = ({
         </span>
       </button>
 
-      {/* Chat List */}
-
-      {/* {messages.map((chat) => {
-        console.log('chat', chat);
-      })} */}
-
-      {/* loading and error */}
+      {/* Loading/Error */}
       {isLoading && <LoadingDots />}
       {isError && <Error error='Error loading chat history' />}
 
@@ -177,41 +175,42 @@ const Sidebar = ({
               onClose={() => setPopoverOpenId(null)}
               anchorEl={anchorEl}
               id={conversation._id}
-            >
-            
-            </Popover>
+              onRequestDelete={() => {
+                setPopoverOpenId(null); // close popover immediately
+                setDeleteModalId(conversation._id); // open modal
+              }}
+            />
           </div>
         ))}
       </section>
 
       {/* User Profile */}
       <div
-        className={`flex gap-2 p-3 border-t 
-          ${isOpen ? 'justify-start' : 'justify-center'}`}
+        className={`flex gap-2 p-3 border-t ${
+          isOpen ? 'justify-start' : 'justify-center'
+        }`}
       >
         <div className='size-8 rounded-full bg-gray-300 flex items-center justify-center'>
           <FiUser />
         </div>
         <div
-          className={`sidebar-content-animation 
-            ${isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'}`}
+          className={`sidebar-content-animation ${
+            isOpen ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0'
+          }`}
         >
           <div className='flex justify-between items-start w-42'>
             {userLoading && <LoadingDots />}
             {userError && <Error error='Error fetching user data' />}
-
             <div className='flex flex-col text-sm ml-[2px]'>
               {user.displayName && (
                 <span className='font-medium'>
-                  {user?.displayName?.length < 20
-                    ? user?.displayName
-                    : user?.displayName.slice(0, 20) + '...'}
+                  {user.displayName.length < 20
+                    ? user.displayName
+                    : user.displayName.slice(0, 20) + '...'}
                 </span>
               )}
               <span className='text-xs text-gray-500'>
-                {user?.subscription && user.subscription == 'free'
-                  ? 'Free Plan'
-                  : 'Premium'}
+                {user?.subscription === 'free' ? 'Free Plan' : 'Premium'}
               </span>
             </div>
             <Link
@@ -223,6 +222,29 @@ const Sidebar = ({
           </div>
         </div>
       </div>
+
+      {/* Delete Modal */}
+      {deleteModalId && (
+        <div className='fixed inset-0 flex justify-center items-center bg-black/40 z-[1000]'>
+          <div className='service-layout shadow-xl rounded-lg p-6 delete-modal'>
+            <p>Are you sure you want to delete this history?</p>
+            <div className='flex justify-end mt-4'>
+              <button
+                onClick={() => setDeleteModalId(null)}
+                className='mr-2 px-4 py-2 bg-gray-200 rounded-lg'
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(deleteModalId)}
+                className='px-4 py-2 bg-red-500 text-white rounded-lg'
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </aside>
   );
 };

@@ -111,6 +111,7 @@ declare interface PopoverProps {
   isOpen: boolean;
   onClose: () => void;
   anchorEl: HTMLElement | null;
+  onRequestDelete: () => void;
 }
 
 
