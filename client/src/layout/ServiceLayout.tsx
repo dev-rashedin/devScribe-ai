@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import Navbar from '../component/Navbar';
-import Sidebar from '../component/Sidebar';
+import {Navbar, Sidebar} from '../component';
 import { useAuth, useCustomLocation } from '../hooks';
 import { fetchHistory } from '../api';
 import { Logo } from '../component/ui';
@@ -49,6 +48,7 @@ const ServiceLayout = () => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(!isSidebarOpen)}
           serviceName={serviceName}
+          userUid={user?.uid}
           isLoading={isLoading}
           isError={isError}
           history={history}

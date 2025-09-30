@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import {
   BiSolidMessageRounded,
   FiPenTool,
@@ -13,14 +14,17 @@ import { LoadingDots, Logo } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
 import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 import Error from './Error';
+import { fetchUserById } from '../api';
+
 
 const Sidebar = ({
   isOpen,
   onClose,
   serviceName,
   history,
-  isLoading,
   isError,
+  isLoading,
+  userUid,
   activeChatId,
   setActiveChatId,
   onNewChat,
@@ -28,6 +32,19 @@ const Sidebar = ({
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
 
+  // fetch user data
+  const {
+    data: user = [],
+    isLoading : userLoading,
+    isError : userError,
+  } = useQuery({
+    queryKey: ['user', userUid],
+    queryFn: () => fetchUserById(userUid),
+    enabled: !!userUid,
+  });
+
+  console.log('user inside sidebar', user);
+  
 
   return (
     <aside
@@ -116,7 +133,6 @@ const Sidebar = ({
       {/* loading and error */}
       {isLoading && <LoadingDots />}
       {isError && <Error error='Error loading chat history' />}
-      
 
       {/* Chat List */}
       <div className='flex-1 overflow-y-auto'>
@@ -190,7 +206,7 @@ const Sidebar = ({
         >
           <div className='flex justify-between items-start w-42'>
             <div className='flex flex-col text-sm ml-[2px]'>
-              <span className='font-medium'>John Doe</span>
+              <span className='font-medium'>{user?.displayName.length < 20 ? user?.displayName : user?.displayName.slice(0, 20) + '...'}</span>
               <span className='text-xs text-gray-500'>Free Plan</span>
             </div>
             <button className='text-xs border primary-border px-2 py-[2px] rounded-full'>
