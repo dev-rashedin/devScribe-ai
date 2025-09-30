@@ -309,11 +309,11 @@ html {
   }
 
   .sidebar-content {
-    @apply flex items-center gap-2 px-4 py-2;
+    @apply flex items-center gap-2 px-4 py-2 whitespace-nowrap;
   }
 
   .sidebar-content-animation {
-    @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden;
+    @apply truncate transition-[opacity,width,margin] duration-300 overflow-hidden whitespace-nowrap;
   }
 
   .popover-button {

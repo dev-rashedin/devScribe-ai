@@ -36,7 +36,7 @@ const Sidebar = ({
         ${isOpen ? 'w-60' : 'w-16'} flex flex-col z-30`}
     >
       {/* Top Section */}
-      <div className='flex items-center justify-between px-4'>
+      <div className='flex items-center justify-between px-2.5'>
         <section className='h-20 flex-center'>
           {isOpen ? (
             <div className='w-50 flex-between text-lg font-semibold'>
@@ -44,7 +44,7 @@ const Sidebar = ({
               <ToggleSidebar onClose={onClose} />
             </div>
           ) : (
-            <div className='flex-center '>
+            <div className='flex items-center '>
               {logoDisplay ? (
                 <div
                   className=' w-10 h-20 rounded-lg flex-center'
@@ -68,7 +68,9 @@ const Sidebar = ({
       {/* Service Name */}
       <h3
         className={`sidebar-content 
-    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap
+    text-lg lg:text-xl  font-semibold my-8 overflow-hidden ${sidebarClasses(
+      isOpen
+    )}
   `}
       >
         <MdOutlineSubtitles />
@@ -111,8 +113,11 @@ const Sidebar = ({
         console.log('chat', chat);
       })} */}
 
+      {/* loading and error */}
       {isLoading && <LoadingDots />}
-      {isError && <Error error='Error loading chat history'/>}
+      {isError && <Error error='Error loading chat history' />}
+      
+
       {/* Chat List */}
       <div className='flex-1 overflow-y-auto'>
         {history.map((conversation) => (
