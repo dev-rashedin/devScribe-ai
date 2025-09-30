@@ -31,7 +31,7 @@ const Sidebar = ({
 
   return (
     <aside
-      className={`h-full bg-sidebar drop-shadow 
+      className={` h-full bg-sidebar drop-shadow 
         transition-[width] duration-300 ease-in-out
         ${isOpen ? 'w-60' : 'w-16'} flex flex-col z-30`}
     >
@@ -68,9 +68,7 @@ const Sidebar = ({
       {/* Service Name */}
       <h3
         className={`sidebar-content 
-    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap ${sidebarClasses(
-      isOpen
-    )}
+    text-lg lg:text-xl  font-semibold my-8 overflow-hidden whitespace-nowrap
   `}
       >
         <MdOutlineSubtitles />

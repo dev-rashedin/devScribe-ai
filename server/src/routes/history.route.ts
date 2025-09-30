@@ -44,7 +44,10 @@ historyRouter.get(
       throw new BadRequestError('Please provide id');
     }
 
-    const history = await History.findById(id);
+    const history = await History.findById(id).select({
+      title: 1,
+      messages: 1
+    });
 
     if (!history) {
       throw new BadRequestError('History not found');

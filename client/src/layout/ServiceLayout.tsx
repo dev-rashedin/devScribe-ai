@@ -58,9 +58,9 @@ const ServiceLayout = () => {
         />
 
         {/* Main content */}
-        <section className='flex-1 overflow-y-auto service-layout'>
+        <section className='flex-1 service-layout overflow-x-hidden'>
           <Navbar />
-          <div className='my-10 xl:my-20 space-y-20 service-outlet '>
+          <div className='my-10 xl:my-20 space-y-20 service-outlet'>
             <div className='flex-col-center max-w-3xl mx-auto text-center gap-y-2 lg:text-lg'>
               <Logo size='lg' />
               {generateServiceDesc(serviceName)}
