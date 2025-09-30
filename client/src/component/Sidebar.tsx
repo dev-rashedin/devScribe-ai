@@ -32,6 +32,9 @@ const Sidebar = ({
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [deleteModalId, setDeleteModalId] = useState<string | null>(null);
 
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState('');
+
   // fetch user data
   const {
     data: user = {},
@@ -167,6 +170,11 @@ const Sidebar = ({
               onRequestDelete={() => {
                 setPopoverOpenId(null);
                 setDeleteModalId(conversation._id);
+              }}
+              onRename={() => {
+                setPopoverOpenId(null); 
+                setRenamingId(conversation._id); 
+                setRenameValue(conversation.title);
               }}
             />
           </div>

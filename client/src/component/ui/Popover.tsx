@@ -7,6 +7,7 @@ const Popover = ({
   onClose,
   anchorEl,
   onRequestDelete,
+  onRename,
 }: PopoverProps) => {
   const popoverRef = useRef<HTMLDivElement | null>(null);
 

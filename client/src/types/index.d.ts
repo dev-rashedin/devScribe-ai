@@ -113,6 +113,7 @@ declare interface PopoverProps {
   onClose: () => void;
   anchorEl: HTMLElement | null;
   onRequestDelete: () => void;
+  onRename: () => void;
 }
 
 declare interface DeleteModalProps {
