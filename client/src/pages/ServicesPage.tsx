@@ -1,4 +1,4 @@
-import {   useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useCustomLocation } from "../hooks";
 import {ArticleGeneratorForm, CodeExplainForm, CodeRefactorForm} from "../component/forms";

@@ -98,8 +98,9 @@ declare interface SidebarProps {
   onClose: () => void;
   serviceName: string;
   history: HistoryItem[];
-  isLoading: boolean;
   isError: boolean;
+  isLoading: boolean;
+  userUid: string;
   activeChatId: string | null;
   setActiveChatId: (id: string) => void;
   onNewChat: () => void;
