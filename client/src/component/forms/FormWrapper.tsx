@@ -35,11 +35,11 @@ const FormWrapper = ({
 
     {isPending ? (
       <PulseGrid />
-    ) : formState?.success ? (
-      renderOutput
-    ) : (
-      formState?.success === false && <Error error={formState.error} />
-    )}
+    ) : formState?.success === 'false' ? (
+    <Error error={formState.error}/>
+    ) : formState?.success === true ? (
+      <>{renderOutput}</>
+    ) : null}
   </form>
 );
 

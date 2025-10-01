@@ -1,4 +1,4 @@
-import  {axiosSecureApi } from "../api";
+import { axiosSecureApi } from '../api';
 
 async function fetchAction(endpoint: string, body: object) {
   try {
@@ -19,7 +19,6 @@ async function fetchAction(endpoint: string, body: object) {
   }
 }
 
-
 async function handleServiceAction(
   _prevState: unknown,
   formData: FormData,
@@ -32,6 +31,9 @@ async function handleServiceAction(
   if (!result.success) return result;
 
   const userInput = Object.values(payload)[0]?.toString() ?? 'Untitled request';
+
+  console.log('userInput', userInput);
+  
 
   const messages = [
     { role: 'user', content: userInput },
@@ -87,7 +89,11 @@ export function writeArticle(
   });
 }
 
-export function emailHelper(_prevState: unknown, formData: FormData, uid: string) {
+export function emailHelper(
+  _prevState: unknown,
+  formData: FormData,
+  uid: string
+) {
   return handleServiceAction(_prevState, formData, uid, {
     endpoint: '/email-helper',
     service: 'email-helper',
@@ -98,7 +104,11 @@ export function emailHelper(_prevState: unknown, formData: FormData, uid: string
     getAssistantContent: (result) => result.data.email,
   });
 }
-export function docSummarizer(_prevState: unknown, formData: FormData, uid: string) {
+export function docSummarizer(
+  _prevState: unknown,
+  formData: FormData,
+  uid: string
+) {
   return handleServiceAction(_prevState, formData, uid, {
     endpoint: '/doc-summarizer',
     service: 'doc-summarizer',
@@ -106,22 +116,15 @@ export function docSummarizer(_prevState: unknown, formData: FormData, uid: stri
       const file = formData.get('file') as File | null;
       const text = formData.get('text') as string;
 
-        const wordCount = text.split(/\s+/).filter(Boolean).length;
-        if (!file && wordCount < 200) {
-          throw new Error('Text is too short to summarize.');
-        }
+      console.log('text inside getPayload', text);
+      console.log('file inside getPayload', file);   
 
-      if (file && file.size > 0) {
-        const payload = new FormData();
-        payload.append('file', file);
-        if (text) payload.append('text', text);
-        return payload;
-      }
+       const payload = new FormData();
+       if (text) payload.append('text', text);
+       if (file && file.size > 0) payload.append('file', file);
 
-    
-      return { text };
+      return payload;
     },
-    getAssistantContent: (result) => result.data.summary,
+    getAssistantContent: (result) => result.data?.summary || '',
   });
 }
-

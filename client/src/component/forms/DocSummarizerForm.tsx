@@ -20,7 +20,7 @@ const DocSummarizerForm = () => {
 
 
 
-  console.log('text', text);
+  console.log('formState', formState);
   
   
   
@@ -53,7 +53,8 @@ const DocSummarizerForm = () => {
           )}
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data.email} />}
+
+      renderOutput={<AIOutput explanation={formState?.data.summary} />}
     />
   );
 };
