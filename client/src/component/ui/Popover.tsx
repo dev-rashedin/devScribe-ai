@@ -43,7 +43,10 @@ const Popover = ({
       className='service-layout shadow-xl rounded-lg px-2 pt-4 pb-2 w-28 text-sm space-y-2'
     >
       <button
-        onClick={() => {}}
+        onClick={(e) => {
+          e.stopPropagation();
+          onRename();
+        }}
         className='popover-button chat-list flex gap-2'
       >
         <FiPenTool /> Rename

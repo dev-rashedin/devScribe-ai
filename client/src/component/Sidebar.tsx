@@ -13,6 +13,7 @@ import { capitalizeFirstLetter, sidebarClasses } from '../utils';
 import Error from './Error';
 import { fetchUserById } from '../api';
 import { Link } from 'react-router';
+import RenamingInput from './ui/RenamingInput';
 
 const Sidebar = ({
   isOpen,
@@ -136,17 +137,21 @@ const Sidebar = ({
               )} ${activeChatId === conversation._id ? 'chat' : ''}`}
             >
               <BiSolidMessageRounded className='text-xl text-[#446E92]' />
-              <span
-                className={`text-sm sidebar-content-animation ${sidebarClasses(
-                  isOpen,
-                  'span'
-                )}`}
-              >
-                {conversation.title.length > 20
-                  ? capitalizeFirstLetter(conversation.title.slice(0, 20)) +
-                    '...'
-                  : capitalizeFirstLetter(conversation.title || '')}
-              </span>
+              {renamingId === conversation._id ? (
+                <RenamingInput renameValue={renameValue} setRenameValue={setRenameValue} setRenamingId={setRenamingId} id={conversation._id}/>
+              ) : (
+                <span
+                  className={`text-sm sidebar-content-animation ${sidebarClasses(
+                    isOpen,
+                    'span'
+                  )}`}
+                >
+                  {conversation.title.length > 20
+                    ? capitalizeFirstLetter(conversation.title.slice(0, 20)) +
+                      '...'
+                    : capitalizeFirstLetter(conversation.title || '')}
+                </span>
+              )}
             </div>
 
             {/* three dot button */}
@@ -172,8 +177,8 @@ const Sidebar = ({
                 setDeleteModalId(conversation._id);
               }}
               onRename={() => {
-                setPopoverOpenId(null); 
-                setRenamingId(conversation._id); 
+                setPopoverOpenId(null);
+                setRenamingId(conversation._id);
                 setRenameValue(conversation.title);
               }}
             />

@@ -100,7 +100,7 @@ const fetchUserById = async (uid: string | null) => {
 
 const updateHistoryTitle = async (id: string, title: string) => {
   try {
-    const res = await axiosSecureApi.put(`/history/${id}`, { title });
+    const res = await axiosSecureApi.patch(`/history/${id}`, { title });
 
     if (res.status === StatusCodes.OK) {
       return res.data.history;
