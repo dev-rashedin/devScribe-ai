@@ -19,7 +19,11 @@ import {
   FiSidebar,
   FiUser,
 } from 'react-icons/fi';
-import { RiMenu3Fill, RiCloseLargeFill } from 'react-icons/ri';
+import {
+  RiMenu3Fill,
+  RiCloseLargeFill,
+  RiChatHistoryFill,
+} from 'react-icons/ri';
 import {
   IoCloseCircleOutline,
   IoSunnyOutline,
@@ -92,4 +96,5 @@ export {
   HiOutlineDotsHorizontal,
   MdShare,
   MdDelete,
+  RiChatHistoryFill,
 };

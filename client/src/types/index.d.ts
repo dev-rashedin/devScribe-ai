@@ -103,7 +103,6 @@ declare interface SidebarProps {
   userUid: string;
   activeChatId: string | null;
   setActiveChatId: (id: string) => void;
-  onNewChat: () => void;
   refetch: () => void;
 }
 

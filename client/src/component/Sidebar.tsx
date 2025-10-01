@@ -6,6 +6,7 @@ import {
   FiUser,
   HiOutlineDotsHorizontal,
   MdOutlineSubtitles,
+  RiChatHistoryFill,
 } from '../data/icons';
 import { DeleteModal, LoadingDots, Logo, Popover } from './ui';
 import ToggleSidebar from './ui/ToggleSidebar';
@@ -25,7 +26,6 @@ const Sidebar = ({
   userUid,
   activeChatId,
   setActiveChatId,
-  onNewChat,
   refetch,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
@@ -106,8 +106,8 @@ const Sidebar = ({
 
       {/* New Chat button */}
       <button
-        onClick={onNewChat}
-        className={`sidebar-content mb-8 rounded-lg text-sm font-medium  ${sidebarClasses(
+        onClick={() => setActiveChatId(null!)}
+        className={`sidebar-content mb-4 rounded-lg text-sm font-medium  ${sidebarClasses(
           isOpen
         )}`}
       >
@@ -127,7 +127,11 @@ const Sidebar = ({
       {isError && <Error error='Error loading chat history' />}
 
       {/* Chat List */}
+
       <section className='flex-1 overflow-y-auto mb-4'>
+        <h3 className='sidebar-content mb-2 text-muted'>
+          <RiChatHistoryFill/>
+          History</h3>
         {history.map((conversation) => (
           <div key={conversation._id} className='relative group'>
             <div

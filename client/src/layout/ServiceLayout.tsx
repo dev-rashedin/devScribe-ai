@@ -56,7 +56,6 @@ const ServiceLayout = () => {
           activeChatId={activeChatId}
           setActiveChatId={setActiveChatId}
          refetch={refetch}
-          onNewChat={() => {}}
         />
 
         {/* Main content */}
