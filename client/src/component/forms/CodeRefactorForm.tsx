@@ -1,65 +1,38 @@
-import { useActionState, useEffect } from 'react';
 import { useState } from 'react';
 import { refactor } from '../../actions';
-import Error from '../Error';
-import { Button, AIOutput, LanguageSelect, PulseGrid } from '../ui';
-import { useAuth } from '../../hooks';
-import { useQueryClient } from '@tanstack/react-query';
+import { AIOutput, LanguageSelect } from '../ui';
+import { useCustomForm } from '../../hooks';
+import FormWrapper from './FormWrapper';
 
 const CodeRefactorForm = () => {
-
-  const { user } = useAuth();
-
-  const [formState, formAction, isPending] = useActionState(
-    (prev: unknown, formData: FormData) => refactor(prev, formData, user.uid),
-    null
-  );
   const [code, setCode] = useState('');
-
-    const queryClient = useQueryClient();
-
-    useEffect(() => {
-      if (formState?.success) {
-        queryClient.invalidateQueries({
-          queryKey: ['history', user.uid, 'code-refactor'],
-        });
-      }
-    }, [formState?.success, queryClient, user.uid]);
+  const { formState, formAction, isPending } = useCustomForm(
+    refactor,
+    'code-refactor'
+  );
 
   return (
-    <div >
-      <form action={formAction}>
-        <LanguageSelect />
-
-        <label className='block mb-2 font-semibold'>Your Code:</label>
-        <textarea
-          name='code'
-          required
-          placeholder='Paste your code here...'
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          className='text-area'
-        />
-
-        <div className='flex justify-end'>
-          <Button
-            label={isPending ? 'Refactoring...' : 'Refactor Code'}
-            type='primary'
-            isSubmit
-            isChecked
-            className='mt-4'
+    <FormWrapper
+      formAction={formAction}
+      isPending={isPending}
+      formState={formState}
+      buttonLabel='Refactor Code'
+      renderInputs={
+        <>
+          <LanguageSelect />
+          <label className='block mb-2 font-semibold'>Your Code:</label>
+          <textarea
+            name='code'
+            required
+            placeholder='Paste your code here...'
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className='text-area'
           />
-        </div>
-
-        {isPending ? (
-          <PulseGrid />
-        ) : formState?.success ? (
-          <AIOutput explanation={formState.data.refactoredCode} />
-        ) : (
-          formState?.success === false && <Error error={formState.error} />
-        )}
-      </form>
-    </div>
+        </>
+      }
+      renderOutput={<AIOutput explanation={formState?.data.refactoredCode} />}
+    />
   );
 };
 

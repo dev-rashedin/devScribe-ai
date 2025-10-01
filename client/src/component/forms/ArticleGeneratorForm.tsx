@@ -1,66 +1,38 @@
-import { useState, useActionState, useEffect } from 'react';
+import { useState } from 'react';
 import { writeArticle } from '../../actions';
-import Error from '../Error';
-import { Button, AIOutput, PulseGrid } from '../ui';
-import { useAuth } from '../../hooks';
-import { useQueryClient } from '@tanstack/react-query';
-
+import { AIOutput } from '../ui';
+import { useCustomForm } from '../../hooks';
+import FormWrapper from './FormWrapper';
 
 
 const ArticleGeneratorForm = () => {
-  const { user } = useAuth();
-  
-
-  const [formState, formAction, isPending] = useActionState(
-    (prev: unknown, formData: FormData) =>
-      writeArticle(prev, formData, user.uid),
-    null
-  );
   const [topic, setTopic] = useState('');
-  const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (formState?.success) {
-      queryClient.invalidateQueries({
-        queryKey: ['history', user.uid, 'article-generator'],
-      });
-    }
-  }, [formState?.success, queryClient, user.uid]);
+  const { formState, formAction, isPending } = useCustomForm(
+    writeArticle,
+    'article-generator'
+  );
 
   return (
-    <div>
-      <form action={formAction}>
-        {/* input field */}
-        <label className='block mb-2 font-semibold'>Article Topic:</label>
-        <input
-          name='topic'
-          required
-          placeholder='Enter a topic for your article...'
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          className='border rounded-lg p-3 w-full mb-4'
-        />
-
-        {/* submit button */}
-        <div className='flex justify-end'>
-          <Button
-            label={isPending ? 'Generating...' : 'Generate Article'}
-            type='primary'
-            isSubmit
-            isChecked
+    <FormWrapper
+      formAction={formAction}
+      isPending={isPending}
+      formState={formState}
+      buttonLabel='Generate Article'
+      renderInputs={
+        <>
+          <label className='block mb-2 font-semibold'>Article Topic:</label>
+          <input
+            name='topic'
+            required
+            placeholder='Enter a topic for your article...'
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            className='border rounded-lg p-3 w-full mb-4'
           />
-        </div>
-
-        {/* results */}
-        {isPending ? (
-          <PulseGrid />
-        ) : formState?.success ? (      
-            <AIOutput explanation={formState.data.article} />
-        ) : (
-          formState?.success === false && <Error error={formState.error} />
-        )}
-      </form>
-    </div>
+        </>
+      }
+      renderOutput={<AIOutput explanation={formState?.data.article} />}
+    />
   );
 };
 

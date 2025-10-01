@@ -1,6 +1,7 @@
-import { useContext } from 'react';
+import { useActionState, useContext, useEffect } from 'react';
 import { AuthContext, ThemeContext } from '../utils';
 import { useLocation } from 'react-router';
+import { useQueryClient } from '@tanstack/react-query';
 
 const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -52,4 +53,28 @@ const useCustomLocation = () => {
   };
 };
 
-export { useTheme, useAuth, useCustomLocation };
+const useCustomForm = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  actionFn: (prev: unknown, formData: FormData, uid: string) => Promise<any>,
+  service: string
+) => {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+
+   const [formState, formAction, isPending] = useActionState(
+     (prev: unknown, formData: FormData) => actionFn(prev, formData, user.uid),
+     null
+   );
+
+  useEffect(() => {
+    if (formState?.success) {
+      queryClient.invalidateQueries({
+        queryKey: ['history', user.uid, service],
+      });
+    }
+  }, [formState?.success, queryClient, user.uid, service]);
+
+  return { formState, formAction, isPending };
+}
+
+export { useTheme, useAuth, useCustomLocation, useCustomForm };
