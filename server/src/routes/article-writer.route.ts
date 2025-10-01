@@ -7,9 +7,9 @@ import {
 import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
 
-const articleWriterRoute = express.Router();
+const articleWriterRouter = express.Router();
 
-articleWriterRoute.post(
+articleWriterRouter.post(
   '/generate-article',
   asyncHandler(async (req: Request, res: Response) => {
     const { topic } = req.body;
@@ -43,4 +43,4 @@ articleWriterRoute.post(
   })
 );
 
-export default articleWriterRoute;
+export default articleWriterRouter;

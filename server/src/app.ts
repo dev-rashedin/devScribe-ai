@@ -9,9 +9,10 @@ import verifyToken from './middleware/verifyToken';
 import {
   codeAnalyzerRouter,
   codeRefactorRouter,
-  articleWriterRoute,
   authRouter,
   historyRouter,
+  articleWriterRouter,
+  emailHelperRouter,
 } from './routes';
 import userRouter from './routes/user.route';
 
@@ -33,8 +34,9 @@ app.use('/api', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api', verifyToken, codeAnalyzerRouter);
 app.use('/api', verifyToken, codeRefactorRouter);
-app.use('/api', verifyToken, articleWriterRoute);
+app.use('/api', verifyToken, articleWriterRouter);
 app.use('/api', verifyToken, historyRouter);
+app.use('/api', verifyToken, emailHelperRouter);
 
 // home route
 app.get('/', (_req: Request, res: Response) => {

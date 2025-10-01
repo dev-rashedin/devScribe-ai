@@ -36,6 +36,8 @@ const router = createBrowserRouter([
       { path: 'doc-summarizer', element: <ServicesPage /> },
       { path: 'code-refactor', element: <ServicesPage/> },
       { path: 'article-generator', element: <ServicesPage /> },
+      { path: 'email-helper', element: <ServicesPage /> },
+      { path: 'resume-assistant', element: <ServicesPage /> },
     ],
   },
 ]);

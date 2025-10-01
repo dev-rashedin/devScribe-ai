@@ -122,16 +122,18 @@ const Sidebar = ({
         </span>
       </button>
 
-      {/* Loading/Error */}
-      {isLoading && <LoadingDots />}
-      {isError && <Error error='Error loading chat history' />}
-
       {/* Chat List */}
 
       <section className='flex-1 overflow-y-auto mb-4'>
         <h3 className='sidebar-content mb-2 text-muted'>
-          <RiChatHistoryFill/>
-          History</h3>
+          <RiChatHistoryFill />
+          History
+        </h3>
+
+        {/* Loading/Error */}
+        {isLoading && <LoadingDots />}
+        {isError && <Error error='Error loading chat history' />}
+
         {history.map((conversation) => (
           <div key={conversation._id} className='relative group'>
             <div
