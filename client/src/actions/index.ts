@@ -98,4 +98,30 @@ export function emailHelper(_prevState: unknown, formData: FormData, uid: string
     getAssistantContent: (result) => result.data.email,
   });
 }
+export function docSummarizer(_prevState: unknown, formData: FormData, uid: string) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/doc-summarizer',
+    service: 'doc-summarizer',
+    getPayload: (formData) => {
+      const file = formData.get('file') as File | null;
+      const text = formData.get('text') as string;
+
+        const wordCount = text.split(/\s+/).filter(Boolean).length;
+        if (!file && wordCount < 200) {
+          throw new Error('Text is too short to summarize.');
+        }
+
+      if (file && file.size > 0) {
+        const payload = new FormData();
+        payload.append('file', file);
+        if (text) payload.append('text', text);
+        return payload;
+      }
+
+    
+      return { text };
+    },
+    getAssistantContent: (result) => result.data.summary,
+  });
+}
 

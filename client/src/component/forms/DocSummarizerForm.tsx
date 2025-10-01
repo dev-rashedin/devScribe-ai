@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
-import { emailHelper } from '../../actions';
+import { useState } from 'react';
+import { docSummarizer } from '../../actions';
 import { AIOutput, FileUpload } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
-import mammoth from 'mammoth';
 
 
 const DocSummarizerForm = () => {
   const [text, setText] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const { formState, formAction, isPending } = useCustomForm(
-    emailHelper,
+    docSummarizer,
     'doc-summarizer'
   );
   
@@ -21,37 +20,8 @@ const DocSummarizerForm = () => {
 
 
 
-  useEffect(() => {
-    if (!files.length) return;
-
-    const file = files[0];
-    const processFile = async () => {
-      let textContent = '';
-
-      if (file.type === 'text/plain') {
-        textContent = await file.text();
-        setText(textContent);
-      } else if (file.type === 'application/pdf') {
-        textContent = await readPDF(file);
-        setText(textContent);
-      } else if (
-        file.type ===
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-        file.type === 'application/msword'
-      ) {
-        textContent = await readDocx(file);
-        setText(textContent);
-      } else {
-        alert('Unsupported file type');
-      }
-
-      setText(textContent);
-    };
-
-    processFile();
-  }, [files]);
-
-  console.log('files', files);
+  console.log('text', text);
+  
   
   
 

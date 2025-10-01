@@ -35,7 +35,9 @@ declare type TExplanation = { activeChatId?: string; title?: string; explanation
 declare type ServiceConfig = {
   endpoint: string;
   service: string;
-  getPayload: (formData: FormData) => Record<string, unknown>;
+  getPayload: (
+    formData: FormData
+  ) => Record<string, unknown> | Promise<Record<string, unknown>> | FormData;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getAssistantContent: (result: any) => string;
 };
