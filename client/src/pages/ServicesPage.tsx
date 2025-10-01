@@ -5,6 +5,7 @@ import {
   ArticleGeneratorForm,
   CodeExplainForm,
   CodeRefactorForm,
+  DocSummarizerForm,
   EmailHelperForm,
 } from '../component/forms';
 import { fetchHistoryById } from '../api';
@@ -53,7 +54,7 @@ const ServicesPage = () => {
           {isArticleGenerator && <ArticleGeneratorForm />}
           {isCodeExplainer && <CodeExplainForm />}
           {isCodeReactor && <CodeRefactorForm />}
-          {isDocSummarizer && <EmailHelperForm />}
+          {isDocSummarizer && <DocSummarizerForm />}
           {isEmailHelper && <EmailHelperForm />}
           {isResumeAssistant && <div>Resume Assistant</div>}
         </>

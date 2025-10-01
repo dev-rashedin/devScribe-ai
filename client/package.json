@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@number-flow/react": "^0.5.10",
+    "@tabler/icons-react": "^3.35.0",
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-query-devtools": "^5.90.2",
     "axios": "^1.12.2",
@@ -23,6 +24,7 @@
     "motion": "^12.23.12",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-dropzone": "^14.3.8",
     "react-error-boundary": "^6.0.0",
     "react-fast-marquee": "^1.6.5",
     "react-helmet-async": "^2.0.5",
