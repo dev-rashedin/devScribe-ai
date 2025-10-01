@@ -20,14 +20,19 @@
     "helmet": "^8.1.0",
     "http-status-toolkit": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.11.0",
     "mongoose": "^8.18.2",
-    "openai": "^5.19.1"
+    "multer": "^2.0.2",
+    "openai": "^5.19.1",
+    "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.2.1",
+    "@types/pdf-parse": "^1.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }

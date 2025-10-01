@@ -5,6 +5,7 @@ import codeRefactorRouter from "./code-refactor.route";
 import createUserRouter from "./user.route";
 import historyRouter from "./history.route";
 import emailHelperRouter from "./email-helper.route";
+import docSummarizerRouter from "./doc-summarizer.route";
 
 
 export {
@@ -14,5 +15,6 @@ export {
   codeRefactorRouter,
   createUserRouter,
   historyRouter,
-  emailHelperRouter
+  emailHelperRouter,
+  docSummarizerRouter
 };
