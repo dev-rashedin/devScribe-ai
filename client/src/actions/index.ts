@@ -21,36 +21,55 @@ async function fetchAction(endpoint: string, body: object) {
   }
 }
 
-//  async function saveHistory(
-//   uid: string,
-//   service: string,
-//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//   messages: any[],
-//   title?: string
-// ) {
-//   return await fetchAction('/history', {
-//     uid,
-//     service,
-//     messages,
-//     title,
-//   });
-// }
-
-export async function explain(_prevState: unknown, formData: FormData) {
+export async function explain(_prevState: unknown, formData: FormData, uid: string) {
   const code = formData.get('code');
   const language = formData.get('language');
 
   console.log('base url', import.meta.env.VITE_API_BASE_URL);
 
   const result = await fetchAction('/explain-code', { code, language });
+
+  if (!result.success) return result;
+
+  const messages = [
+    { role: 'user', content: `${code}` },
+    { role: 'assistant', content: result.data.explanation },
+  ];
+
+  const title = messages[0].content;
+
+  await fetchAction('/history', {
+    uid,
+    service: 'code-explainer',
+    title,
+    messages,
+  });
+
   return result;
 }
 
-export async function refactor(_prevState: unknown, formData: FormData) {
+export async function refactor(_prevState: unknown, formData: FormData, uid: string) {
   const code = formData.get('code');
   const language = formData.get('language');
 
   const result = await fetchAction('/refactor-code', { code, language });
+
+    if (!result.success) return result;
+
+  const messages = [
+    { role: 'user', content: `${code}` },
+    { role: 'assistant', content: result.data.refactoredCode },
+  ];
+
+  const title = messages[0].content;
+
+  await fetchAction('/history', {
+    uid,
+    service: 'code-refactor',
+    title,
+    messages,
+  });
+
   return result;
 }
 

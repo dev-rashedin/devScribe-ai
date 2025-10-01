@@ -52,19 +52,6 @@ const ArticleGeneratorForm = () => {
         </div>
 
         {/* results */}
-
-        {/* {activeChatId ? (
-          ''
-        ) : isPending ? (
-          <PulseGrid />
-        ) : formState?.success ? (
-          <div className='mt-6 whitespace-pre-wrap leading-relaxed'>
-            <AIOutput explanation={formState.data.article} />
-          </div>
-        ) : (
-          formState?.success === false && <Error error={formState.error} />
-        )} */}
-
         {isPending ? (
           <PulseGrid />
         ) : formState?.success ? (      

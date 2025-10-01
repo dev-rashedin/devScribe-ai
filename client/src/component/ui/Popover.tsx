@@ -55,7 +55,7 @@ const Popover = ({
       <button
         onClick={(e) => {
           e.stopPropagation();
-          onRequestDelete?.(); // signal parent to close popover and open modal
+          onRequestDelete?.();
         }}
         className='popover-button chat-list text-red-400 flex gap-2'
       >
