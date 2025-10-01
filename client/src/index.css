@@ -24,6 +24,10 @@ html {
       @apply cursor-pointer;
     }
 
+    input:focus, textarea:focus, select:focus {
+      @apply outline outline-blue-600;
+    }
+
     /* light mode */
     .text-primary {
       color: hsl(0, 0%, 0%);
@@ -131,6 +135,73 @@ html {
     }
   }
 
+   /* prose */
+  .prose p {
+    margin-bottom: 1.05em;
+  }
+
+  .prose h1 {
+    font-size: 2rem;
+    margin-top: 1.25em;
+    margin-bottom: 1em;
+  }
+
+  .prose h2 {
+    font-size: 1.8rem;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose h3 {
+    font-size: 1.2rem;
+    margin-top: .75em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1em;
+  }
+
+  .prose table {
+    width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  font-size: 0.95rem;
+  }
+
+  .prose thead {
+  background-color: hsl(60, 53%, 82%);
+}
+
+.prose th{
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid hsl(0, 0%, 85%);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.prose th {
+  font-weight: 600;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: hsl(63, 69%, 95%)
+}
+
+  .prose code {
+    margin-bottom: 1.15rem;
+  }
+
+  .prose p {
+    margin-bottom: 2.15rem;
+  }
+
   /* Dark mode */
   .dark {
     body {
@@ -218,43 +289,21 @@ html {
     .blob-gradient {
       @apply bg-gradient-to-t from-blue-500 via-blue-600 to-blue-700 rounded-full blur-[180px] opacity-10;
     }
+
+      .prose thead {
+  background-color: hsl(60, 2%, 9%);
+}
+
+  .prose tbody tr:nth-child(even) {
+  background-color: hsl(0, 0%, 16%)
+}
+
+/* dark end */
   }
 
-  /* prose */
-  .prose p {
-    margin-bottom: 1.05em;
-  }
 
-  .prose h1 {
-    font-size: 2rem;
-  }
 
-  .prose h2 {
-    font-size: 1.8rem;
-    margin-top: 1.25em;
-  }
-
-  .prose h3 {
-    font-size: 1.2rem;
-    margin-top: 0.25em;
-  }
-
-  .prose ul,
-  .prose ol {
-    margin-bottom: 1em;
-  }
-
-  .prose table {
-    /* border: 1px solid hsl(0, 0%, 85%); */
-  }
-
-  .prose code {
-    margin-bottom: 1.15rem;
-  }
-
-  .prose p {
-    margin-bottom: 2.15rem;
-  }
+ 
 }
 
 @layer utilities {

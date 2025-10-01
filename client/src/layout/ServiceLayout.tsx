@@ -27,6 +27,10 @@ const ServiceLayout = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    setActiveChatId(null);
+  }, [serviceName]);
+
   // fetch history data
   const {
     data: history = [],

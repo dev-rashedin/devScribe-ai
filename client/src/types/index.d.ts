@@ -30,7 +30,7 @@ declare interface ExplainResult {
   error?: string;
 }
 
-declare type TExplanation = { explanation: string };
+declare type TExplanation = { title?: string; explanation: string };
 
 declare interface ButtonProps {
   label: string;

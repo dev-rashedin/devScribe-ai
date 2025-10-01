@@ -13,8 +13,6 @@ const ServicesPage = () => {
 
   const { activeChatId } = useOutletContext<ContextType>();
   const { isArticleGenerator, isCodeExplainer, isCodeReactor, isDocSummarizer, isEmailHelper, isResumeAssistant } = useCustomLocation()
-
-  console.log('activeChatId', activeChatId);
   
     const {
       data: history = {},
@@ -33,11 +31,9 @@ const ServicesPage = () => {
           {isLoading && <LoadingDots />}
           {isError && <Error error='Failed to fetch history' />}
 
-          <h3 className='text-lg lg:text-xl'>
-            <span className='font-semibold mr-1'>Prompt:</span> {history.title}
-          </h3>
-
           <AIOutput
+            key={history?.messages?.[1]?.content}
+            title={history.title}
             explanation={history?.messages?.[1]?.content ?? 'no message yet'}
           />
         </div>
