@@ -26,6 +26,7 @@ import { AuthInput, AuthButton } from './Auth';
 import PulseGrid from './PulseGrid';
 import Popover from './Popover';
 import DeleteModal from './DeleteModal';
+import { FileUpload } from './FileUpload';
 
 export {
   Accordion,
@@ -56,5 +57,6 @@ export {
   AuthButton,
   PulseGrid,
   Popover,
-  DeleteModal
+  DeleteModal,
+  FileUpload,
 };
