@@ -26,7 +26,7 @@ const Sidebar = ({
   activeChatId,
   setActiveChatId,
   onNewChat,
-  onDeleted,
+  refetch,
 }: SidebarProps) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
@@ -138,7 +138,13 @@ const Sidebar = ({
             >
               <BiSolidMessageRounded className='text-xl text-[#446E92]' />
               {renamingId === conversation._id ? (
-                <RenamingInput renameValue={renameValue} setRenameValue={setRenameValue} setRenamingId={setRenamingId} id={conversation._id}/>
+                <RenamingInput
+                  renameValue={renameValue}
+                  setRenameValue={setRenameValue}
+                  setRenamingId={setRenamingId}
+                  id={conversation._id}
+                  refetch={refetch}
+                />
               ) : (
                 <span
                   className={`text-sm sidebar-content-animation ${sidebarClasses(
@@ -231,7 +237,7 @@ const Sidebar = ({
           isOpen={deleteModalId !== null}
           id={deleteModalId}
           onCancel={() => setDeleteModalId(null)}
-          onDeleted={onDeleted}
+          refetch={refetch}
         />
       )}
     </aside>

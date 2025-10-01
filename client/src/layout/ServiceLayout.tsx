@@ -55,7 +55,7 @@ const ServiceLayout = () => {
           history={history}
           activeChatId={activeChatId}
           setActiveChatId={setActiveChatId}
-          onDeleted={() => refetch()}
+         refetch={refetch}
           onNewChat={() => {}}
         />
 

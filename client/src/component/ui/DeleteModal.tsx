@@ -4,14 +4,14 @@ import { StatusCodes } from 'http-status-toolkit';
 
 
 
-const DeleteModal = ({ isOpen, id, onCancel, onDeleted }: DeleteModalProps) => {
+const DeleteModal = ({ isOpen, id, onCancel, refetch, }: DeleteModalProps) => {
   if (!isOpen || !id) return null;
 
   const handleDelete = async () => {
     try {
       const res = await axiosSecureApi.delete(`/history/${id}`);
       if (res.status === StatusCodes.OK) {
-        onDeleted?.(); 
+        refetch?.(); 
         onCancel(); 
       } else {
         console.error('Failed to delete history');
