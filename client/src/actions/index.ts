@@ -1,5 +1,3 @@
-'use server';
-
 import  {axiosSecureApi } from "../api";
 
 async function fetchAction(endpoint: string, body: object) {
@@ -21,79 +19,71 @@ async function fetchAction(endpoint: string, body: object) {
   }
 }
 
-export async function explain(_prevState: unknown, formData: FormData, uid: string) {
-  const code = formData.get('code');
-  const language = formData.get('language');
 
-  console.log('base url', import.meta.env.VITE_API_BASE_URL);
+async function handleServiceAction(
+  _prevState: unknown,
+  formData: FormData,
+  uid: string,
+  config: ServiceConfig
+) {
+  const payload = config.getPayload(formData);
 
-  const result = await fetchAction('/explain-code', { code, language });
-
+  const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
-  const messages = [
-    { role: 'user', content: `${code}` },
-    { role: 'assistant', content: result.data.explanation },
-  ];
+  const userInput = Object.values(payload)[0]?.toString() ?? 'Untitled request';
 
-  const title = messages[0].content;
+  const messages = [
+    { role: 'user', content: userInput },
+    { role: 'assistant', content: config.getAssistantContent(result) },
+  ];
 
   await fetchAction('/history', {
     uid,
+    service: config.service,
+    title: userInput,
+    messages,
+  });
+
+  return result;
+}
+
+// --- Specific services ---
+
+export function explain(_prevState: unknown, formData: FormData, uid: string) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/explain-code',
     service: 'code-explainer',
-    title,
-    messages,
+    getPayload: (formData) => ({
+      code: formData.get('code'),
+      language: formData.get('language'),
+    }),
+    getAssistantContent: (result) => result.data.explanation,
   });
-
-  return result;
 }
 
-export async function refactor(_prevState: unknown, formData: FormData, uid: string) {
-  const code = formData.get('code');
-  const language = formData.get('language');
-
-  const result = await fetchAction('/refactor-code', { code, language });
-
-    if (!result.success) return result;
-
-  const messages = [
-    { role: 'user', content: `${code}` },
-    { role: 'assistant', content: result.data.refactoredCode },
-  ];
-
-  const title = messages[0].content;
-
-  await fetchAction('/history', {
-    uid,
+export function refactor(_prevState: unknown, formData: FormData, uid: string) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/refactor-code',
     service: 'code-refactor',
-    title,
-    messages,
+    getPayload: (formData) => ({
+      code: formData.get('code'),
+      language: formData.get('language'),
+    }),
+    getAssistantContent: (result) => result.data.refactoredCode,
   });
-
-  return result;
 }
 
-export async function writeArticle(_prevState: unknown, formData: FormData, uid: string) {
-  const topic = formData.get('topic');
-
-  const result = await fetchAction('/generate-article', { topic });
-
-  if (!result.success) return result;
-
-
-  const messages = [
-    { role: 'user', content: `${topic}` },
-    { role: 'assistant', content: result.data.article },
-  ];
-
-  const title = messages[0].content;
-
-  await fetchAction('/history', {
-    uid,
+export function writeArticle(
+  _prevState: unknown,
+  formData: FormData,
+  uid: string
+) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/generate-article',
     service: 'article-generator',
-    title,
-    messages,
+    getPayload: (formData) => ({ topic: formData.get('topic') }),
+    getAssistantContent: (result) => result.data.article,
   });
-
-  return result;
 }
+

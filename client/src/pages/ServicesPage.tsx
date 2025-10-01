@@ -44,6 +44,7 @@ const ServicesPage = () => {
           <AIOutput
             key={history?.messages?.[1]?.content}
             title={history.title}
+            activeChatId={activeChatId}
             explanation={history?.messages?.[1]?.content ?? 'no message yet'}
           />
         </div>

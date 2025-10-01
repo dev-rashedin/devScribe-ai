@@ -30,7 +30,15 @@ declare interface ExplainResult {
   error?: string;
 }
 
-declare type TExplanation = { title?: string; explanation: string };
+declare type TExplanation = { activeChatId?: string; title?: string; explanation: string };
+
+declare type ServiceConfig = {
+  endpoint: string;
+  service: string;
+  getPayload: (formData: FormData) => Record<string, unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getAssistantContent: (result: any) => string;
+};
 
 declare interface ButtonProps {
   label: string;
