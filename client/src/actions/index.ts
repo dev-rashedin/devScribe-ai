@@ -87,3 +87,15 @@ export function writeArticle(
   });
 }
 
+export function emailHelper(_prevState: unknown, formData: FormData, uid: string) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/email-helper',
+    service: 'email-helper',
+    getPayload: (formData) => ({
+      tone: formData.get('tone'),
+      prompt: formData.get('prompt'),
+    }),
+    getAssistantContent: (result) => result.data.email,
+  });
+}
+
