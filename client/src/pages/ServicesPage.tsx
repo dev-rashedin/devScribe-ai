@@ -1,28 +1,38 @@
-import { useOutletContext } from "react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useCustomLocation } from "../hooks";
-import {ArticleGeneratorForm, CodeExplainForm, CodeRefactorForm} from "../component/forms";
-import { fetchHistoryById } from "../api";
-import { AIOutput, Error } from "../component";
-import { LoadingDots } from "../component/ui";
+import { useOutletContext } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import { useCustomLocation } from '../hooks';
+import {
+  ArticleGeneratorForm,
+  CodeExplainForm,
+  CodeRefactorForm,
+  EmailHelperForm,
+} from '../component/forms';
+import { fetchHistoryById } from '../api';
+import { AIOutput, Error } from '../component';
+import { LoadingDots } from '../component/ui';
 
 type ContextType = { activeChatId: string | null };
 
-
 const ServicesPage = () => {
-
   const { activeChatId } = useOutletContext<ContextType>();
-  const { isArticleGenerator, isCodeExplainer, isCodeReactor, isDocSummarizer, isEmailHelper, isResumeAssistant } = useCustomLocation()
-  
-    const {
-      data: history = {},
-      isLoading,
-      isError,
-    } = useQuery({
-      queryKey: ['history', activeChatId],
-      queryFn: () => fetchHistoryById(activeChatId),
-      enabled: !!activeChatId,
-    });
+  const {
+    isArticleGenerator,
+    isCodeExplainer,
+    isCodeReactor,
+    isDocSummarizer,
+    isEmailHelper,
+    isResumeAssistant,
+  } = useCustomLocation();
+
+  const {
+    data: history = {},
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['history', activeChatId],
+    queryFn: () => fetchHistoryById(activeChatId),
+    enabled: !!activeChatId,
+  });
 
   return (
     <>
@@ -42,12 +52,12 @@ const ServicesPage = () => {
           {isArticleGenerator && <ArticleGeneratorForm />}
           {isCodeExplainer && <CodeExplainForm />}
           {isCodeReactor && <CodeRefactorForm />}
-          {isDocSummarizer && <div>Doc Sumarizer</div>}
-          {isEmailHelper && <div>Email Helper</div>}
+          {isDocSummarizer && <EmailHelperForm />}
+          {isEmailHelper && <EmailHelperForm />}
           {isResumeAssistant && <div>Resume Assistant</div>}
         </>
       )}
     </>
   );
-}
-export default ServicesPage
+};
+export default ServicesPage;
