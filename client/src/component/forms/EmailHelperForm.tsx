@@ -25,6 +25,7 @@ const EmailHelperForm = () => {
             name='tone'
             className='border rounded-lg p-2 w-full mb-6'
             defaultValue='professional'
+            disabled={isPending}
           >
             <option value='professional'>Professional</option>
             <option value='friendly'>Friendly</option>
@@ -44,6 +45,7 @@ const EmailHelperForm = () => {
             onChange={(e) => setPrompt(e.target.value)}
             className='text-area text-area-short'
             onKeyDown={(e) => submitFormOnEnter(e)}
+            disabled={isPending}
           />
         </>
       }

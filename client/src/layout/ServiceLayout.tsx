@@ -70,7 +70,7 @@ const ServiceLayout = () => {
               <Logo size='lg' />
               {generateServiceDesc(serviceName)}
             </div>
-            <Outlet context={{ activeChatId }} />
+            <Outlet context={{ activeChatId, setActiveChatId }} />
           </div>
         </section>
       </div>

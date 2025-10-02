@@ -54,6 +54,7 @@ declare interface ButtonProps {
   isChecked?: boolean;
   isSubmit?: boolean;
   onClick?: () => void;
+  isPending?: boolean;
   className?: string;
 }
 

@@ -9,6 +9,7 @@ const Button = ({
   loading,
   isChecked,
   isSubmit = false,
+  isPending = false,
   className = '',
 }: ButtonProps) => {
   let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50  ${
@@ -56,7 +57,7 @@ const Button = ({
 
   if (isSubmit) {
     return (
-      <button disabled={loading || !isChecked} type='submit' className={buttonClass}>
+      <button disabled={loading || !isChecked || isPending} type='submit' className={buttonClass}>
         {loading ? <ImSpinner9 className='animate-spin' /> : content}
       </button>
     );

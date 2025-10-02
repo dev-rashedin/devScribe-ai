@@ -20,7 +20,7 @@ const CodeExplainForm = () => {
       buttonLabel='Explain Code'
       renderInputs={
         <>
-          <LanguageSelect />
+          <LanguageSelect isPending={isPending} />
           <label className='block mb-2 font-semibold'>Your Code:</label>
           <textarea
             name='code'
@@ -30,6 +30,7 @@ const CodeExplainForm = () => {
             onChange={(e) => setCode(e.target.value)}
             className='text-area'
             onKeyDown={(e) => submitFormOnEnter(e)}
+            disabled={isPending}
           />
         </>
       }

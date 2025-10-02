@@ -29,6 +29,7 @@ const ArticleGeneratorForm = () => {
             onChange={(e) => setTopic(e.target.value)}
             className='border rounded-lg p-3 w-full mb-6'
             onKeyDown={(e) => submitFormOnEnter(e)}
+            disabled={isPending}
           />
         </>
       }

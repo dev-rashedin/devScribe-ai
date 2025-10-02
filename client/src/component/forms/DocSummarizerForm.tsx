@@ -42,6 +42,7 @@ const DocSummarizerForm = () => {
             files={files}
             setFiles={setFiles}
             onChange={handleFileUpload}
+            isPending={isPending}
           />
 
           {!files.length && (
@@ -52,6 +53,7 @@ const DocSummarizerForm = () => {
               placeholder='Or paste text here...'
               className='border rounded-lg w-full p-3 min-h-[250px]'
               onKeyDown={(e) => submitFormOnEnter(e)}
+              disabled={isPending}
             />
           )}
         </>

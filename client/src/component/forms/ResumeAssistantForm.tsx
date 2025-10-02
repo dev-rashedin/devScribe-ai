@@ -21,6 +21,8 @@ const ResumeAssistantForm = () => {
     setFiles(files);
   };
 
+ 
+
   useEffect(() => {
     if (formState?.success) {
       setText('');
@@ -30,6 +32,7 @@ const ResumeAssistantForm = () => {
       setRole('');
     }
   }, [formState?.success]);
+
 
   return (
     <FormWrapper
@@ -56,6 +59,7 @@ const ResumeAssistantForm = () => {
               placeholder='Or paste resume text here...'
               className='border rounded-lg w-full p-3 min-h-[200px]'
               onKeyDown={(e) => submitFormOnEnter(e)}
+              disabled={isPending}
             />
           )}
 
@@ -68,6 +72,8 @@ const ResumeAssistantForm = () => {
             onChange={(e) => setJobDescription(e.target.value)}
             placeholder='Paste the job description here to tailor your resume...'
             className='border rounded-lg w-full p-3 min-h-[150px]'
+            onKeyDown={(e) => submitFormOnEnter(e)}
+            disabled={isPending}
           />
 
           <div className='mt-4'>
@@ -77,6 +83,7 @@ const ResumeAssistantForm = () => {
               value={tone}
               onChange={(e) => setTone(e.target.value)}
               className='border rounded-lg p-2 w-full'
+              disabled={isPending}
             >
               <option value='professional'>Professional</option>
               <option value='confident'>Confident</option>
@@ -94,6 +101,7 @@ const ResumeAssistantForm = () => {
               onChange={(e) => setRole(e.target.value)}
               placeholder='e.g., Software Engineer, Project Manager'
               className='border rounded-lg p-2 w-full'
+              disabled={isPending}
             />
           </div>
         </>

@@ -29,10 +29,12 @@ export const FileUpload = ({
   files,
   setFiles,
   onChange,
+  isPending
 }: {
   files: File[];
   setFiles: (files: File[]) => void;
-  onChange?: (files: File[]) => void;
+    onChange?: (files: File[]) => void;
+    isPending?: boolean
 }) => {
   
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -73,6 +75,7 @@ export const FileUpload = ({
             handleFileChange(Array.from(e.target.files || []));
           }}
           className='hidden'
+          disabled={isPending}
         />
         <div className='relative w-full max-w-xl'>
           {files.length > 0 &&
