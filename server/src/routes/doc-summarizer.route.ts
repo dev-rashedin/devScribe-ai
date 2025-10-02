@@ -25,8 +25,6 @@ docSummarizerRouter.post(
     } else if (req.file) {
       const file = req.file;
 
-      console.log('file inside docSummarizer server route', file);
-
       if (file.mimetype === 'application/pdf') {
         const data = await fs.readFile(file.path);
         text = (await pdfParse(data)).text;
@@ -49,8 +47,6 @@ docSummarizerRouter.post(
     if (!text || text.trim().length === 0) {
       throw new BadRequestError('No text found in the document');
     }
-
-    console.log('text inside docSummarizer server route', text);
     
 
     // Summarize with AI

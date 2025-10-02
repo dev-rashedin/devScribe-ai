@@ -27,13 +27,36 @@ async function handleServiceAction(
 ) {
   const payload = config.getPayload(formData);
 
+  console.log('payload inside handleServiceAction',payload);
+  
+
   const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
-  const userInput = Object.values(payload)[0]?.toString() ?? 'Untitled request';
+  let userInput = 'Untitled request';
 
-  console.log('userInput', userInput);
-  
+  if (payload instanceof FormData) {
+    const text = payload.get('text') as string | null;
+    if (text) {
+      userInput = text.slice(0, 100) + (text.length > 100 ? '...' : ''); 
+    } else {
+      const file = payload.get('file') as File | null;
+      if (file) {
+        userInput = file.name;
+      }
+    }
+  } else if (payload && typeof payload === 'object') {
+    if ('prompt' in payload && typeof payload.prompt === 'string') {
+      userInput =
+        payload.prompt.slice(0, 100) + (payload.prompt.length > 100 ? '...' : '');;
+    } else {
+      const firstValue = Object.values(payload)[0];
+      if (typeof firstValue === 'string') {
+        userInput = firstValue;
+      }
+    }
+  }
+ 
 
   const messages = [
     { role: 'user', content: userInput },
@@ -114,10 +137,7 @@ export function docSummarizer(
     service: 'doc-summarizer',
     getPayload: (formData) => {
       const file = formData.get('file') as File | null;
-      const text = formData.get('text') as string;
-
-      console.log('text inside getPayload', text);
-      console.log('file inside getPayload', file);   
+      const text = formData.get('text') as string;  
 
        const payload = new FormData();
        if (text) payload.append('text', text);

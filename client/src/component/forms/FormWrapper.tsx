@@ -22,7 +22,6 @@ const FormWrapper = ({
 }: FormWrapperProps) => (
   <form action={formAction}>
     {renderInputs}
-
     <div className='flex justify-end'>
       <Button
         label={isPending ? 'Loading...' : buttonLabel}
@@ -32,7 +31,6 @@ const FormWrapper = ({
         className='mt-4'
       />
     </div>
-
     {isPending ? (
       <PulseGrid />
     ) : formState?.success ? (

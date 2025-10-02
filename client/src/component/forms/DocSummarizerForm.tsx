@@ -15,15 +15,8 @@ const DocSummarizerForm = () => {
   
    const handleFileUpload = (files: File[]) => {
      setFiles(files);
-     console.log(files);
    };
 
-
-
-  console.log('formState', formState);
-  
-  
-  
 
   return (
     <FormWrapper
