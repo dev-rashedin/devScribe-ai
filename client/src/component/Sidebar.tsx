@@ -50,9 +50,9 @@ const Sidebar = ({
 
   return (
     <aside
-      className={`h-full bg-sidebar drop-shadow 
+      className={` sidebar bg-sidebar drop-shadow 
         transition-[width] duration-300 ease-in-out
-        ${isOpen ? 'w-60' : 'w-16'} flex flex-col h-screen sticky top-0 z-30`}
+        ${isOpen ? 'w-60' : 'w-16'} flex flex-col sticky top-0 z-30`}
     >
       {/* Top Section */}
       <div className='flex items-center justify-between px-2.5'>
@@ -128,7 +128,7 @@ const Sidebar = ({
 
       {/* Chat List */}
 
-      <section className='flex-1 overflow-y-auto mb-4'>
+      <section className='chat-container flex-1 overflow-y-auto mb-4'>
         <h3 className='sidebar-content mb-2 text-muted'>
           <RiChatHistoryFill />
           History

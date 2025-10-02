@@ -32,6 +32,9 @@ async function handleServiceAction(
   const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
+  console.log('result', result);
+  
+
   const userInput = getUserInput(payload);
  
 

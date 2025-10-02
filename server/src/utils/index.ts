@@ -1,9 +1,9 @@
-import fs from 'fs/promises';
+import fs from 'fs';
+import path from 'path';
 import pdfParse from 'pdf-parse';
 import mammoth from 'mammoth';
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument, rgb } from 'pdf-lib';
 import { BadRequestError } from 'express-error-toolkit';
-
 
 export async function extractTextFromRequest(
   body: any,
@@ -39,40 +39,45 @@ export async function extractTextFromRequest(
 
   throw new BadRequestError('Please upload a file or provide text');
 }
-
-
 // utils/pdf.ts
 
-
-export async function generatePDF(content: string, title = 'Resume'): Promise<Buffer> {
+export async function generatePDF(
+  content: string,
+  title = 'Resume'
+): Promise<Buffer> {
   const pdfDoc = await PDFDocument.create();
-  const page = pdfDoc.addPage();
-  const { width, height } = page.getSize();
+  let page = pdfDoc.addPage();
+  const { height } = page.getSize();
 
-  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fontPath = path.resolve('./fonts/NotoSans-Regular.ttf'); // make sure you have this font
+  const fontBytes = fs.readFileSync(fontPath);
+  const font = await pdfDoc.embedFont(fontBytes);
+
   const fontSize = 12;
+  const margin = 50;
+  const lineHeight = fontSize + 5;
 
   const textLines = content.split('\n');
-
-  let y = height - 50;
+  let y = height - margin;
 
   for (const line of textLines) {
+    // Add new page if we reach the bottom
+    if (y < margin) {
+      page = pdfDoc.addPage();
+      y = height - margin;
+    }
+
     page.drawText(line, {
-      x: 50,
+      x: margin,
       y,
       size: fontSize,
       font,
       color: rgb(0, 0, 0),
     });
-    y -= fontSize + 5;
-    if (y < 50) {
-      // Add new page if needed
-      y = height - 50;
-      pdfDoc.addPage();
-    }
+
+    y -= lineHeight;
   }
 
   const pdfBytes = await pdfDoc.save();
   return Buffer.from(pdfBytes);
 }
-

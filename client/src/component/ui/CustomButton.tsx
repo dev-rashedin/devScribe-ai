@@ -35,7 +35,7 @@ const Button = ({
       {type === 'submit' && <MdPersonAddAlt1 size={26} className='z-10' />}
       <span className='relative z-10'>{label}</span>
       {!isChecked ||
-        (!loading && (
+        ((!loading && !isPending)  && (
           <span
             className={`absolute inset-0 w-0 rounded-lg ${
               type === 'primary' || type === 'submit' || type === 'login'

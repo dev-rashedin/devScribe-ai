@@ -24,7 +24,9 @@ html {
       @apply cursor-pointer;
     }
 
-    input:focus, textarea:focus, select:focus {
+    input:focus,
+    textarea:focus,
+    select:focus {
       @apply outline outline-blue-600;
     }
 
@@ -61,6 +63,23 @@ html {
     .service-layout {
       background-color: hsl(60, 100%, 98%);
     }
+
+    .chat-container {
+     
+    }
+
+      .chat-container::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  .chat-container::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 8px;
+  }
+
+  .chat-container::-webkit-scrollbar-track {
+    background: transparent; /* or hsl(var(--background)) */
+  }
 
     .chat-list {
       @apply rounded-md cursor-pointer;
@@ -135,7 +154,7 @@ html {
     }
   }
 
-   /* prose */
+  /* prose */
   .prose p {
     margin-bottom: 1.05em;
   }
@@ -154,7 +173,7 @@ html {
 
   .prose h3 {
     font-size: 1.2rem;
-    margin-top: .75em;
+    margin-top: 0.75em;
     margin-bottom: 0.5em;
   }
 
@@ -165,34 +184,34 @@ html {
 
   .prose table {
     width: 100%;
-  border-collapse: collapse;
-  margin: 2.5rem 0;
-  font-size: 0.95rem;
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-size: 0.95rem;
   }
 
   .prose thead {
-  background-color: hsl(60, 53%, 82%);
-}
+    background-color: hsl(60, 53%, 82%);
+  }
 
-.prose th{
-  font-weight: 800;
-  font-size: 1.1rem;
-}
+  .prose th {
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
 
-.prose th,
-.prose td {
-  border: 1px solid hsl(0, 0%, 85%);
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-}
+  .prose th,
+  .prose td {
+    border: 1px solid hsl(0, 0%, 85%);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
 
-.prose th {
-  font-weight: 600;
-}
+  .prose th {
+    font-weight: 600;
+  }
 
-.prose tbody tr:nth-child(even) {
-  background-color: hsl(63, 69%, 95%)
-}
+  .prose tbody tr:nth-child(even) {
+    background-color: hsl(63, 69%, 95%);
+  }
 
   .prose code {
     margin-bottom: 1.15rem;
@@ -241,6 +260,10 @@ html {
       background-color: hsl(0, 0%, 13%);
     }
 
+
+ .chat-container::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
     .chat {
       background-color: hsl(0, 0%, 1%);
     }
@@ -290,20 +313,16 @@ html {
       @apply bg-gradient-to-t from-blue-500 via-blue-600 to-blue-700 rounded-full blur-[180px] opacity-10;
     }
 
-      .prose thead {
-  background-color: hsl(60, 2%, 9%);
-}
+    .prose thead {
+      background-color: hsl(60, 2%, 9%);
+    }
 
-  .prose tbody tr:nth-child(even) {
-  background-color: hsl(0, 0%, 16%)
-}
+    .prose tbody tr:nth-child(even) {
+      background-color: hsl(0, 0%, 16%);
+    }
 
-/* dark end */
+    /* dark end */
   }
-
-
-
- 
 }
 
 @layer utilities {
@@ -345,11 +364,12 @@ html {
     border-color: hsl(215, 52%, 40%);
   }
 
-  .text-area, .text-area-short {
-    @apply border rounded-lg w-full p-3 font-mono text-sm bg-transparent min-h-[250px] placeholder:text-gray-400 placeholder:text-base ;
+  .text-area,
+  .text-area-short {
+    @apply border rounded-lg w-full p-3 font-mono text-sm bg-transparent min-h-[250px] placeholder:text-gray-400 placeholder:text-base;
   }
   .text-area-short {
-    @apply min-h-28
+    @apply min-h-28;
   }
 
   .primary-gradient {
@@ -358,6 +378,10 @@ html {
 
   .description {
     @apply max-w-xl xl:max-w-2xl md:text-lg xl:text-xl mt-6 xl:mt-8;
+  }
+
+  .sidebar {
+    @apply h-screen overflow-y-auto;
   }
 
   .sidebar-content {
