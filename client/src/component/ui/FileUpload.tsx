@@ -1,4 +1,4 @@
-import React, { useRef} from 'react';
+import { useRef} from 'react';
 import { motion } from 'motion/react';
 import { IconUpload } from '@tabler/icons-react';
 import { useDropzone } from 'react-dropzone';
@@ -142,7 +142,7 @@ export const FileUpload = ({
                 damping: 20,
               }}
               className={cn(
-                'relative group-hover/file:shadow-2xl z-40 bg-primary flex items-center justify-center h-12 w-60 rounded-md',
+                'relative group-hover/file:shadow-2xl z-40 bg-primary text-white flex items-center justify-center h-12 w-80 rounded-md',
                 'shadow-[0px_10px_50px_rgba(0,0,0,0.1)]'
               )}
             >
@@ -155,7 +155,10 @@ export const FileUpload = ({
                   Drop it
                 </motion.p>
               ) : (
-                <IconUpload className='size-5 text-white' />
+                  <div className='flex-center gap-2 text-sm'>
+                    <p> Select or Drag and drop your files here</p>
+                  <IconUpload className='size-4 text-white' />
+                </div>
               )}
             </motion.div>
           )}
@@ -163,7 +166,7 @@ export const FileUpload = ({
           {!files.length && (
             <motion.div
               variants={secondaryVariant}
-              className='absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-12  w-60 rounded-md'
+              className='absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-12  w-80 rounded-md'
             ></motion.div>
           )}
         </div>

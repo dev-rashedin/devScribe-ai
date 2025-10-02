@@ -7,6 +7,7 @@ import {
   CodeRefactorForm,
   DocSummarizerForm,
   EmailHelperForm,
+  ResumeAssistantForm,
 } from '../component/forms';
 import { fetchHistoryById } from '../api';
 import { AIOutput, Error } from '../component';
@@ -56,7 +57,7 @@ const ServicesPage = () => {
           {isCodeReactor && <CodeRefactorForm />}
           {isDocSummarizer && <DocSummarizerForm />}
           {isEmailHelper && <EmailHelperForm />}
-          {isResumeAssistant && <div>Resume Assistant</div>}
+          {isResumeAssistant && <ResumeAssistantForm />}
         </>
       )}
     </>

@@ -1,34 +1,36 @@
 import { useState } from 'react';
-import { docSummarizer } from '../../actions';
+import { resumeAssistant } from '../../actions';
 import { AIOutput, FileUpload } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
 import { submitFormOnEnter } from '../../utils';
 
-
 const ResumeAssistantForm = () => {
   const [text, setText] = useState('');
   const [files, setFiles] = useState<File[]>([]);
+  const [jobDescription, setJobDescription] = useState('');
+  const [tone, setTone] = useState('professional');
+  const [role, setRole] = useState('');
+
   const { formState, formAction, isPending } = useCustomForm(
-    docSummarizer,
+    resumeAssistant,
     'resume-assistant'
   );
-  
-   const handleFileUpload = (files: File[]) => {
-     setFiles(files);
-   };
 
+  const handleFileUpload = (files: File[]) => {
+    setFiles(files);
+  };
 
   return (
     <FormWrapper
       formAction={formAction}
       isPending={isPending}
       formState={formState}
-      buttonLabel='Summarize Now'
+      buttonLabel='Optimize Resume'
       renderInputs={
         <>
           <label className='block text-lg'>
-            Select or drag and drop your document:
+            Upload your resume (PDF, DOCX, or TXT):
           </label>
           <FileUpload
             files={files}
@@ -41,14 +43,52 @@ const ResumeAssistantForm = () => {
               name='text'
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder='Or paste text here...'
-              className='border rounded-lg w-full p-3 min-h-[250px]'
+              placeholder='Or paste resume text here...'
+              className='border rounded-lg w-full p-3 min-h-[200px]'
               onKeyDown={(e) => submitFormOnEnter(e)}
             />
           )}
+
+          <label className='block text-lg mt-4'>
+            Job Description (optional):
+          </label>
+          <textarea
+            name='jobDescription'
+            value={jobDescription}
+            onChange={(e) => setJobDescription(e.target.value)}
+            placeholder='Paste the job description here to tailor your resume...'
+            className='border rounded-lg w-full p-3 min-h-[150px]'
+          />
+
+          <div className='mt-4'>
+            <label className='block text-lg'>Tone:</label>
+            <select
+              name='tone'
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+              className='border rounded-lg p-2 w-full'
+            >
+              <option value='professional'>Professional</option>
+              <option value='confident'>Confident</option>
+              <option value='friendly'>Friendly</option>
+              <option value='formal'>Formal</option>
+            </select>
+          </div>
+
+          <div className='mt-4 mb-8'>
+            <label className='block text-lg'>Target Role (optional):</label>
+            <input
+              type='text'
+              name='role'
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder='e.g., Software Engineer, Project Manager'
+              className='border rounded-lg p-2 w-full'
+            />
+          </div>
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data?.summary} />}
+      renderOutput={<AIOutput explanation={formState?.data?.optimizedResume} />}
     />
   );
 };
