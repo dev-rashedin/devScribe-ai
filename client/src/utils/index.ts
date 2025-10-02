@@ -118,3 +118,13 @@ export const generateServiceDesc = (serviceName: string) => {
   }
 };
 
+export const submitFormOnEnter = (
+  e: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>
+) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    const form = e.currentTarget.form;
+    if (form) form.requestSubmit();
+  }
+};
+

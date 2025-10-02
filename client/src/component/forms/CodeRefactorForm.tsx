@@ -3,6 +3,7 @@ import { refactor } from '../../actions';
 import { AIOutput, LanguageSelect } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
+import { submitFormOnEnter } from '../../utils';
 
 const CodeRefactorForm = () => {
   const [code, setCode] = useState('');
@@ -28,6 +29,7 @@ const CodeRefactorForm = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             className='text-area'
+            onKeyDown={(e) => submitFormOnEnter(e)}
           />
         </>
       }

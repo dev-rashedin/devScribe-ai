@@ -3,6 +3,7 @@ import { emailHelper } from '../../actions';
 import { AIOutput } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
+import { submitFormOnEnter } from '../../utils';
 
 
 const EmailHelperForm = () => {
@@ -43,6 +44,7 @@ const EmailHelperForm = () => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             className='text-area'
+            onKeyDown={(e) => submitFormOnEnter(e)}
           />
         </>
       }

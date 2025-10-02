@@ -3,6 +3,7 @@ import { writeArticle } from '../../actions';
 import { AIOutput } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
+import { submitFormOnEnter } from '../../utils';
 
 
 const ArticleGeneratorForm = () => {
@@ -28,6 +29,7 @@ const ArticleGeneratorForm = () => {
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className='border rounded-lg p-3 w-full mb-4'
+            onKeyDown={(e) => submitFormOnEnter(e)}
           />
         </>
       }

@@ -3,6 +3,7 @@ import { docSummarizer } from '../../actions';
 import { AIOutput, FileUpload } from '../ui';
 import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
+import { submitFormOnEnter } from '../../utils';
 
 
 const DocSummarizerForm = () => {
@@ -35,18 +36,18 @@ const DocSummarizerForm = () => {
             onChange={handleFileUpload}
           />
 
-          {!files.length  && (
+          {!files.length && (
             <textarea
               name='text'
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder='Or paste text here...'
               className='border rounded-lg w-full p-3 min-h-[250px]'
+              onKeyDown={(e) => submitFormOnEnter(e)}
             />
           )}
         </>
       }
-
       renderOutput={<AIOutput explanation={formState?.data?.summary} />}
     />
   );

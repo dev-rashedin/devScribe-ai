@@ -27,9 +27,6 @@ async function handleServiceAction(
 ) {
   const payload = config.getPayload(formData);
 
-  console.log('payload inside handleServiceAction',payload);
-  
-
   const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
