@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import pdfParse from 'pdf-parse';
 import mammoth from 'mammoth';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { BadRequestError } from 'express-error-toolkit';
 
 
@@ -38,3 +39,40 @@ export async function extractTextFromRequest(
 
   throw new BadRequestError('Please upload a file or provide text');
 }
+
+
+// utils/pdf.ts
+
+
+export async function generatePDF(content: string, title = 'Resume'): Promise<Buffer> {
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage();
+  const { width, height } = page.getSize();
+
+  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fontSize = 12;
+
+  const textLines = content.split('\n');
+
+  let y = height - 50;
+
+  for (const line of textLines) {
+    page.drawText(line, {
+      x: 50,
+      y,
+      size: fontSize,
+      font,
+      color: rgb(0, 0, 0),
+    });
+    y -= fontSize + 5;
+    if (y < 50) {
+      // Add new page if needed
+      y = height - 50;
+      pdfDoc.addPage();
+    }
+  }
+
+  const pdfBytes = await pdfDoc.save();
+  return Buffer.from(pdfBytes);
+}
+

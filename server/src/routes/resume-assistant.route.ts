@@ -7,7 +7,7 @@ import {
 } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
-import { extractTextFromRequest } from '../utils';
+import { extractTextFromRequest, generatePDF } from '../utils';
 
 const resumeAssistantRouter = express.Router();
 const upload = multer({ dest: 'uploads/resumes' });
@@ -16,7 +16,13 @@ resumeAssistantRouter.post(
   '/resume-assistant',
   upload.single('file'),
   asyncHandler(async (req: Request, res: Response) => {
-   const resumeText = await extractTextFromRequest(req.body, req.file);
+    console.log('request body', req.body);
+    console.log('request file', req.file);
+    
+    
+    const resumeText = await extractTextFromRequest(req.body, req.file);
+
+
 
     if (!resumeText || resumeText.trim().length === 0) {
       throw new BadRequestError('No content found in the resume');
@@ -49,6 +55,8 @@ Resume:\n\n${resumeText}\n\nTone: ${tone}\nRole: ${role}`;
     if (!optimizedResume) {
       throw new NotFoundError('No resume optimization generated');
     }
+
+    // const pdfBuffer = await generatePDF(optimizedResume, 'Optimized Resume');
 
     // Step 5: return
     res.status(StatusCodes.OK).json({

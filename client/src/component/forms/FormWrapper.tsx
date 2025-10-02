@@ -23,13 +23,17 @@ const FormWrapper = ({
   <form action={formAction}>
     {renderInputs}
     <div className='flex justify-end'>
-      <Button
-        label={isPending ? 'Loading...' : buttonLabel}
-        type='primary'
-        isSubmit
-        isChecked
-        className='mt-4'
-      />
+      {formState?.success && buttonLabel.includes('Summarize') ? (
+        ''
+      ) : (
+        <Button
+          label={isPending ? 'Loading...' : buttonLabel}
+          type='primary'
+          isSubmit
+          isChecked
+          className='mt-4'
+        />
+      )}
     </div>
     {isPending ? (
       <PulseGrid />

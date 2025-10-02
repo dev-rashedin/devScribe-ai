@@ -27,6 +27,9 @@ async function handleServiceAction(
 ) {
   const payload = config.getPayload(formData);
 
+  console.log('payload inside handleServiceAction', payload);
+  
+
   const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
@@ -127,12 +130,12 @@ export function emailHelper(
 export function docSummarizer(
   _prevState: unknown,
   formData: FormData,
-  uid: string
+  uid: string,
 ) {
   return handleServiceAction(_prevState, formData, uid, {
     endpoint: '/doc-summarizer',
     service: 'doc-summarizer',
-    getPayload: (formData) => {
+     getPayload: (formData) => {
       const file = formData.get('file') as File | null;
       const text = formData.get('text') as string;  
 
@@ -156,14 +159,20 @@ export function resumeAssistant(
     service: 'resume-assistant',
     getPayload: (formData) => {
       const file = formData.get('file') as File | null;
-      const text = formData.get('text') as string;
+      const text = (formData.get('text') as string) || '';
+      const jobDescription = (formData.get('jobDescription') as string) || '';
+      const tone = (formData.get('tone') as string) || 'professional';
+      const role = (formData.get('role') as string) || '';
 
       const payload = new FormData();
       if (text) payload.append('text', text);
       if (file && file.size > 0) payload.append('file', file);
+      if (jobDescription) payload.append('jobDescription', jobDescription);
+      if (tone) payload.append('tone', tone);
+      if (role) payload.append('role', role);
 
       return payload;
     },
-    getAssistantContent: (result) => result?.data?.summary || '',
+    getAssistantContent: (result) => result?.data?.optimizedResume || '',
   });
 }

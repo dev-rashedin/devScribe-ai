@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { docSummarizer } from '../../actions';
 import { AIOutput, FileUpload } from '../ui';
 import { useCustomForm } from '../../hooks';
@@ -18,38 +18,67 @@ const DocSummarizerForm = () => {
      setFiles(files);
    };
 
+  
+  useEffect(() => {
+    if (formState?.success) {
+     setText('');
+     setFiles([]);
+    }
+  }, [formState?.success]);
+
+
+
 
   return (
-    <FormWrapper
-      formAction={formAction}
-      isPending={isPending}
-      formState={formState}
-      buttonLabel='Summarize Now'
-      renderInputs={
-        <>
-          <label className='block text-lg'>
-            Select or drag and drop your document:
-          </label>
-          <FileUpload
-            files={files}
-            setFiles={setFiles}
-            onChange={handleFileUpload}
-          />
+    <>
+      {formState?.success ? (
+        <FormWrapper
+          formAction={formAction}
+          isPending={isPending}
+          formState={formState}
+          buttonLabel='Summarize Now'
+          renderInputs={
+            <>
+              <label className='block text-lg'>
+                Your AI generated summary:
+              </label>
+            </>
+          }
+          renderOutput={<AIOutput explanation={formState?.data?.summary} />}
+        />
+      ) : (
+        <FormWrapper
+          formAction={formAction}
+          isPending={isPending}
+          formState={formState}
+          buttonLabel='Summarize Now'
+          renderInputs={
+            <>
+              <label className='block text-lg'>
+                Select or drag and drop your document:
+              </label>
+              <FileUpload
+                files={files}
+                setFiles={setFiles}
+                onChange={handleFileUpload}
+              />
 
-          {!files.length && (
-            <textarea
-              name='text'
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder='Or paste text here...'
-              className='border rounded-lg w-full p-3 min-h-[250px]'
-              onKeyDown={(e) => submitFormOnEnter(e)}
-            />
-          )}
-        </>
-      }
-      renderOutput={<AIOutput explanation={formState?.data?.summary} />}
-    />
+              {!files.length && (
+                <textarea
+                  name='text'
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder='Or paste text here...'
+                  className='border rounded-lg w-full p-3 min-h-[250px]'
+                  onKeyDown={(e) => submitFormOnEnter(e)}
+                />
+              )}
+            </>
+          }
+          renderOutput={<AIOutput explanation={formState?.data?.summary} />}
+        />
+      )}
+    </>
   );
 };
 

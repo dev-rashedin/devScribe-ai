@@ -75,7 +75,7 @@ const ResumeAssistantForm = () => {
             </select>
           </div>
 
-          <div className='mt-4 mb-8'>
+          <div className='mt-4 mb-4'>
             <label className='block text-lg'>Target Role (optional):</label>
             <input
               type='text'
@@ -88,6 +88,8 @@ const ResumeAssistantForm = () => {
           </div>
         </>
       }
+
+      
       renderOutput={<AIOutput explanation={formState?.data?.optimizedResume} />}
     />
   );

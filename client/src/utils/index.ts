@@ -125,6 +125,8 @@ export const submitFormOnEnter = (
     e.preventDefault();
     const form = e.currentTarget.form;
     if (form) form.requestSubmit();
+
+    e.currentTarget.blur();
   }
 };
 
