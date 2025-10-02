@@ -14,6 +14,7 @@ import {
   articleWriterRouter,
   emailHelperRouter,
   docSummarizerRouter,
+  resumeAssistantRouter,
 } from './routes';
 import userRouter from './routes/user.route';
 
@@ -39,6 +40,7 @@ app.use('/api', verifyToken, articleWriterRouter);
 app.use('/api', verifyToken, historyRouter);
 app.use('/api', verifyToken, emailHelperRouter);
 app.use('/api', verifyToken, docSummarizerRouter);
+app.use('/api', verifyToken, resumeAssistantRouter);
 
 // home route
 app.get('/', (_req: Request, res: Response) => {

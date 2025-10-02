@@ -37,6 +37,7 @@ articleWriterRouter.post(
     }
 
     res.status(StatusCodes.OK).json({
+      success: true,
       article,
       topic,
     });

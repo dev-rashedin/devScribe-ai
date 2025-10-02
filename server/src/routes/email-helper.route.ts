@@ -39,6 +39,7 @@ emailHelperRouter.post(
     }
 
     res.status(StatusCodes.OK).json({
+      success: true,
       email,
       prompt,
       tone: tone || 'professional',

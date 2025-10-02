@@ -5,7 +5,6 @@ import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
 import { submitFormOnEnter } from '../../utils';
 
-
 const ArticleGeneratorForm = () => {
   const [topic, setTopic] = useState('');
   const { formState, formAction, isPending } = useCustomForm(
@@ -28,7 +27,7 @@ const ArticleGeneratorForm = () => {
             placeholder='Enter a topic for your article...'
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            className='border rounded-lg p-3 w-full mb-4'
+            className='border rounded-lg p-3 w-full mb-6'
             onKeyDown={(e) => submitFormOnEnter(e)}
           />
         </>

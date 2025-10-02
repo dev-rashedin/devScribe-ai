@@ -69,6 +69,7 @@ docSummarizerRouter.post(
     }
 
     res.status(StatusCodes.OK).json({
+      success: true,
       summary,
     });
   })

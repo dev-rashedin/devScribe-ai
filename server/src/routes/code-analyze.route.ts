@@ -37,6 +37,7 @@ codeAnalyzerRouter.post(
     }
 
     res.status(StatusCodes.OK).json({
+      success: true,
       explanation,
       language,
     });

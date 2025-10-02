@@ -345,8 +345,11 @@ html {
     border-color: hsl(215, 52%, 40%);
   }
 
-  .text-area {
-    @apply border rounded-lg w-full p-3 font-mono text-sm bg-transparent min-h-[250px] placeholder:text-gray-400 placeholder:text-base;
+  .text-area, .text-area-short {
+    @apply border rounded-lg w-full p-3 font-mono text-sm bg-transparent min-h-[250px] placeholder:text-gray-400 placeholder:text-base ;
+  }
+  .text-area-short {
+    @apply min-h-28
   }
 
   .primary-gradient {

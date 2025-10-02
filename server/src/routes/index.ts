@@ -6,6 +6,7 @@ import createUserRouter from "./user.route";
 import historyRouter from "./history.route";
 import emailHelperRouter from "./email-helper.route";
 import docSummarizerRouter from "./doc-summarizer.route";
+import resumeAssistantRouter from "./resume-assistant.route";
 
 
 export {
@@ -16,5 +17,6 @@ export {
   createUserRouter,
   historyRouter,
   emailHelperRouter,
-  docSummarizerRouter
+  docSummarizerRouter,
+  resumeAssistantRouter
 };

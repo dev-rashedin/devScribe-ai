@@ -5,7 +5,6 @@ import { useCustomForm } from '../../hooks';
 import FormWrapper from './FormWrapper';
 import { submitFormOnEnter } from '../../utils';
 
-
 const EmailHelperForm = () => {
   const [prompt, setPrompt] = useState('');
   const { formState, formAction, isPending } = useCustomForm(
@@ -24,7 +23,7 @@ const EmailHelperForm = () => {
           <label className='block mb-2 font-semibold'>Tone:</label>
           <select
             name='tone'
-            className='border rounded-lg p-2 w-full mb-4'
+            className='border rounded-lg p-2 w-full mb-6'
             defaultValue='professional'
           >
             <option value='professional'>Professional</option>
@@ -34,7 +33,7 @@ const EmailHelperForm = () => {
             <option value='apologetic'>Apologetic</option>
           </select>
 
-          <label className='block mb-2 font-semibold'>
+          <label className='block mb-2  font-semibold'>
             What should the email say?
           </label>
           <textarea
@@ -43,7 +42,7 @@ const EmailHelperForm = () => {
             placeholder='e.g., Decline a dinner invitation politely'
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            className='text-area'
+            className='text-area text-area-short'
             onKeyDown={(e) => submitFormOnEnter(e)}
           />
         </>

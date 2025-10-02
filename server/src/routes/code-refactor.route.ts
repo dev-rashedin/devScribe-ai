@@ -37,6 +37,7 @@ codeRefactorRouter.post(
     }
 
     res.status(StatusCodes.OK).json({
+      success: true,
       refactoredCode,
       language,
     });
