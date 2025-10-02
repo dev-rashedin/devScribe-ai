@@ -23,9 +23,7 @@
     "mammoth": "^1.11.0",
     "mongoose": "^8.18.2",
     "multer": "^2.0.2",
-    "openai": "^5.19.1",
-    "pdf-lib": "^1.17.1",
-    "pdf-parse": "^1.1.1"
+    "openai": "^5.19.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

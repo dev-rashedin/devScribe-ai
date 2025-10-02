@@ -10,7 +10,6 @@ import {
 } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
-import { generatePDF } from '../utils';
 
 const resumeAssistantRouter = express.Router();
 const upload = multer({ dest: 'uploads/resumes' });
@@ -80,14 +79,11 @@ Resume:\n\n${resumeText}\n\nTone: ${tone}\nRole: ${role}`;
       throw new NotFoundError('No resume optimization generated');
     }
 
-    const pdfBuffer = await generatePDF(optimizedResume, 'Optimized Resume');
-
     res.status(StatusCodes.OK).json({
       success: true,
       optimizedResume,
       role,
       tone,
-      pdf: pdfBuffer.toString('base64'),
       tailored: !!jobDescription,
     });
   })
