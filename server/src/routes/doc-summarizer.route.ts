@@ -1,8 +1,5 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
-import pdfParse from 'pdf-parse';
-import mammoth from 'mammoth';
-import fs from 'fs/promises';
 import {
   asyncHandler,
   NotFoundError,
@@ -13,7 +10,7 @@ import { client } from '../lib/utils';
 import { extractTextFromRequest } from '../utils';
 
 const docSummarizerRouter = express.Router();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'uploads/documents' });
 
 docSummarizerRouter.post(
   '/doc-summarizer',

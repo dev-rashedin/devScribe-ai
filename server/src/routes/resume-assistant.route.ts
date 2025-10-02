@@ -10,7 +10,7 @@ import { client } from '../lib/utils';
 import { extractTextFromRequest } from '../utils';
 
 const resumeAssistantRouter = express.Router();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'uploads/resumes' });
 
 resumeAssistantRouter.post(
   '/resume-assistant',

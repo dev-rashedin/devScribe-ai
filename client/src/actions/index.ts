@@ -145,3 +145,25 @@ export function docSummarizer(
     getAssistantContent: (result) => result?.data?.summary || '',
   });
 }
+
+export function resumeAssistant(
+  _prevState: unknown,
+  formData: FormData,
+  uid: string
+) {
+  return handleServiceAction(_prevState, formData, uid, {
+    endpoint: '/resume-assistant',
+    service: 'resume-assistant',
+    getPayload: (formData) => {
+      const file = formData.get('file') as File | null;
+      const text = formData.get('text') as string;
+
+      const payload = new FormData();
+      if (text) payload.append('text', text);
+      if (file && file.size > 0) payload.append('file', file);
+
+      return payload;
+    },
+    getAssistantContent: (result) => result?.data?.summary || '',
+  });
+}

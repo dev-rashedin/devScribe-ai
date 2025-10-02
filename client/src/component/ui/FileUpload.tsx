@@ -79,7 +79,7 @@ export const FileUpload = ({
                 key={'file' + idx}
                 layoutId={idx === 0 ? 'file-upload' : 'file-upload-' + idx}
                 className={cn(
-                  'relative overflow-hidden z-40 border  flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md',
+                  'relative overflow-hidden z-40 border  flex flex-col items-start justify-center md:h-28 xl:h-32 p-6 mt-4 w-full mx-auto rounded-md',
                   'shadow-sm'
                 )}
               >
@@ -120,6 +120,16 @@ export const FileUpload = ({
                     modified {new Date(file.lastModified).toLocaleDateString()}
                   </motion.p>
                 </div>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFiles([]);
+                  }}
+                  className='absolute -top-1 -right-1 h-5 w-5 xl:h-6 xl:w-6 rounded-full border  flex-center bg z-50'
+                >
+                  X
+                </button>
               </motion.div>
             ))}
           {!files.length && (
