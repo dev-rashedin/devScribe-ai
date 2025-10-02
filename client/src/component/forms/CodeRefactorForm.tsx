@@ -31,7 +31,7 @@ const CodeRefactorForm = () => {
           />
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data.refactoredCode} />}
+      renderOutput={<AIOutput explanation={formState?.data?.refactoredCode} />}
     />
   );
 };

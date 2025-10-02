@@ -46,7 +46,7 @@ const EmailHelperForm = () => {
           />
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data.email} />}
+      renderOutput={<AIOutput explanation={formState?.data?.email} />}
     />
   );
 };

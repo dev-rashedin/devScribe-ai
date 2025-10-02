@@ -2,15 +2,15 @@
 import { Button, PulseGrid } from '../ui';
 import Error from '../Error';
 
+
 type FormWrapperProps = {
-   formAction: (formData: FormData) => void;
+  formAction: (formData: FormData) => void;
   isPending: boolean;
   formState: any;
   renderInputs: React.ReactNode;
   renderOutput: React.ReactNode;
   buttonLabel: string;
 };
-
 
 const FormWrapper = ({
   formAction,
@@ -35,11 +35,11 @@ const FormWrapper = ({
 
     {isPending ? (
       <PulseGrid />
-    ) : formState?.success === 'false' ? (
-    <Error error={formState.error}/>
-    ) : formState?.success === true ? (
-      <>{renderOutput}</>
-    ) : null}
+    ) : formState?.success ? (
+      renderOutput
+    ) : (
+      formState?.success === false && <Error error={formState.error} />
+    )}
   </form>
 );
 

@@ -31,7 +31,7 @@ const ArticleGeneratorForm = () => {
           />
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data.article} />}
+      renderOutput={<AIOutput explanation={formState?.data?.article} />}
     />
   );
 };

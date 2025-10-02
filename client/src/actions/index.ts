@@ -60,7 +60,7 @@ export function explain(_prevState: unknown, formData: FormData, uid: string) {
       code: formData.get('code'),
       language: formData.get('language'),
     }),
-    getAssistantContent: (result) => result.data.explanation,
+    getAssistantContent: (result) => result?.data?.explanation,
   });
 }
 
@@ -72,7 +72,7 @@ export function refactor(_prevState: unknown, formData: FormData, uid: string) {
       code: formData.get('code'),
       language: formData.get('language'),
     }),
-    getAssistantContent: (result) => result.data.refactoredCode,
+    getAssistantContent: (result) => result?.data?.refactoredCode,
   });
 }
 
@@ -85,7 +85,7 @@ export function writeArticle(
     endpoint: '/generate-article',
     service: 'article-generator',
     getPayload: (formData) => ({ topic: formData.get('topic') }),
-    getAssistantContent: (result) => result.data.article,
+    getAssistantContent: (result) => result?.data?.article,
   });
 }
 
@@ -101,7 +101,7 @@ export function emailHelper(
       tone: formData.get('tone'),
       prompt: formData.get('prompt'),
     }),
-    getAssistantContent: (result) => result.data.email,
+    getAssistantContent: (result) => result?.data?.email,
   });
 }
 export function docSummarizer(
@@ -125,6 +125,6 @@ export function docSummarizer(
 
       return payload;
     },
-    getAssistantContent: (result) => result.data?.summary || '',
+    getAssistantContent: (result) => result?.data?.summary || '',
   });
 }

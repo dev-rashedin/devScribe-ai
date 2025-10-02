@@ -31,7 +31,7 @@ const CodeExplainForm = () => {
           />
         </>
       }
-      renderOutput={<AIOutput explanation={formState?.data.explanation} />}
+      renderOutput={<AIOutput explanation={formState?.data?.explanation} />}
     />
   );
 };
