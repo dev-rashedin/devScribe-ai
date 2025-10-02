@@ -1,8 +1,5 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
-import pdfParse from 'pdf-parse';
-import mammoth from 'mammoth';
-import fs from 'fs/promises';
 import {
   asyncHandler,
   NotFoundError,
@@ -10,6 +7,7 @@ import {
 } from 'express-error-toolkit';
 import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
+import { extractTextFromRequest } from '../utils';
 
 const resumeAssistantRouter = express.Router();
 const upload = multer({ dest: 'uploads/' });
@@ -18,32 +16,7 @@ resumeAssistantRouter.post(
   '/resume-assistant',
   upload.single('file'),
   asyncHandler(async (req: Request, res: Response) => {
-    let resumeText = '';
-
-    //  extracting resume text (from upload or pasted)
-    if (req.body.text && req.body.text.trim().length > 0) {
-      resumeText = req.body.text;
-    } else if (req.file) {
-      const file = req.file;
-
-      if (file.mimetype === 'application/pdf') {
-        const data = await fs.readFile(file.path);
-        resumeText = (await pdfParse(data)).text;
-      } else if (
-        file.mimetype ===
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-        file.mimetype === 'application/msword'
-      ) {
-        const result = await mammoth.extractRawText({ path: file.path });
-        resumeText = result.value;
-      } else if (file.mimetype === 'text/plain') {
-        resumeText = await fs.readFile(file.path, 'utf-8');
-      } else {
-        throw new BadRequestError('Unsupported file type');
-      }
-    } else {
-      throw new BadRequestError('Please upload a resume file or provide text');
-    }
+   const resumeText = await extractTextFromRequest(req.body, req.file);
 
     if (!resumeText || resumeText.trim().length === 0) {
       throw new BadRequestError('No content found in the resume');
