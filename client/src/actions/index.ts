@@ -26,8 +26,6 @@ async function handleServiceAction(
   config: ServiceConfig
 ) {
   const payload = config.getPayload(formData);
-
-  console.log('payload inside handleServiceAction', payload);
   
 
   const result = await fetchAction(config.endpoint, payload);

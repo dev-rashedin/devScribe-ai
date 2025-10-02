@@ -88,7 +88,6 @@ export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-
 export const sidebarClasses = (isOpen: boolean, type = 'div') => {
   if (type === 'div') {
     return isOpen ? 'justify-start' : 'justify-center';
@@ -130,3 +129,15 @@ export const submitFormOnEnter = (
   }
 };
 
+export const generateButtonLabel = (buttonLabel: string): string => {
+  const label = buttonLabel.toLowerCase();
+
+  if (label.includes('explain')) return 'Explaining...';
+  if (label.includes('reactor')) return 'Refactoring...';
+
+  if (label.includes('summarize')) return 'Summarizing...';
+  if (label.includes('optimize')) return 'Optimizing...';
+  if (label.includes('generate')) return 'Generating...';
+
+  return 'Thinking...';
+};

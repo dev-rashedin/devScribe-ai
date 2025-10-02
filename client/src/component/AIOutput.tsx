@@ -6,11 +6,11 @@ import { CopyButton } from './ui';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from '../data/icons';
 
-const AIOutput = ({ activeChatId, title, explanation }: TExplanation) => {
+const AIOutput = ({ activeChatId, title, explanation, isSuccess }: TExplanation) => {
   const [showPrompt, setShowPrompt] = useState(true);
   return (
     <main>
-      {activeChatId && (
+      {(activeChatId ||!isSuccess) && (
         <div className=' mb-6'>
           <div className='flex justify-between items-center'>
             <h3 className='text-lg font-semibold'>Prompt: </h3>

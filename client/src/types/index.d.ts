@@ -30,7 +30,12 @@ declare interface ExplainResult {
   error?: string;
 }
 
-declare type TExplanation = { activeChatId?: string; title?: string; explanation: string };
+declare type TExplanation = {
+  activeChatId?: string;
+  title?: string;
+  explanation: string;
+  isSuccess?: boolean;
+};
 
 declare type ServiceConfig = {
   endpoint: string;
@@ -64,9 +69,10 @@ declare type FAQItem = {
   answer: string;
 };
 
-
-declare interface LogoProps { size?: 'sm' | 'md' | 'lg', isService?: boolean }
-
+declare interface LogoProps {
+  size?: 'sm' | 'md' | 'lg';
+  isService?: boolean;
+}
 
 declare interface FirebaseConfig {
   apiKey: string;
@@ -90,18 +96,18 @@ declare interface UserInfo {
   photoURL: string;
 }
 
-declare interface Message  {
+declare interface Message {
   role: 'user' | 'assistant';
   content: string;
   _id: string;
   createdAt: string;
-};
+}
 
-declare interface HistoryItem  {
+declare interface HistoryItem {
   title: string;
   messages: Message[];
   _id: string;
-};
+}
 
 declare interface SidebarProps {
   isOpen: boolean;
@@ -129,13 +135,5 @@ declare interface DeleteModalProps {
   isOpen: boolean;
   id: string | null;
   onCancel: () => void;
-  refetch?: () => void; 
+  refetch?: () => void;
 }
-
-
-
-
-
-
-
-

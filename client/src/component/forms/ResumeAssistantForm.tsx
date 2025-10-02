@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { resumeAssistant } from '../../actions';
 import { AIOutput, FileUpload } from '../ui';
 import { useCustomForm } from '../../hooks';
@@ -20,6 +20,16 @@ const ResumeAssistantForm = () => {
   const handleFileUpload = (files: File[]) => {
     setFiles(files);
   };
+
+  useEffect(() => {
+    if (formState?.success) {
+      setText('');
+      setFiles([]);
+      setJobDescription('');
+      setTone('professional');
+      setRole('');
+    }
+  }, [formState?.success]);
 
   return (
     <FormWrapper
@@ -88,8 +98,6 @@ const ResumeAssistantForm = () => {
           </div>
         </>
       }
-
-      
       renderOutput={<AIOutput explanation={formState?.data?.optimizedResume} />}
     />
   );

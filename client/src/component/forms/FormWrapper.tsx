@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, PulseGrid } from '../ui';
 import Error from '../Error';
+import { generateButtonLabel } from '../../utils';
 
 
 type FormWrapperProps = {
@@ -21,20 +22,21 @@ const FormWrapper = ({
   buttonLabel,
 }: FormWrapperProps) => (
   <form action={formAction}>
-    {renderInputs}
-    <div className='flex justify-end'>
-      {formState?.success && buttonLabel.includes('Summarize') ? (
-        ''
-      ) : (
-        <Button
-          label={isPending ? 'Loading...' : buttonLabel}
-          type='primary'
-          isSubmit
-          isChecked
-          className='mt-4'
-        />
-      )}
-    </div>
+    {!formState?.success && (
+      <>
+        {renderInputs}
+        <div className='flex justify-end'>
+          <Button
+            label={isPending ?  generateButtonLabel(buttonLabel) : buttonLabel}
+            type='primary'
+            isSubmit
+            isChecked
+            className='mt-4 min-'
+          />
+        </div>
+      </>
+    )}
+
     {isPending ? (
       <PulseGrid />
     ) : formState?.success ? (

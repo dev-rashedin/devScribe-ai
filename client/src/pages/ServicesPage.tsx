@@ -52,8 +52,8 @@ const ServicesPage = () => {
         </div>
       ) : (
         <>
-          {isArticleGenerator && <ArticleGeneratorForm />}
-          {isCodeExplainer && <CodeExplainForm />}
+          {isArticleGenerator && <ArticleGeneratorForm  />}
+          {isCodeExplainer && <CodeExplainForm  />}
           {isCodeReactor && <CodeRefactorForm />}
           {isDocSummarizer && <DocSummarizerForm />}
           {isEmailHelper && <EmailHelperForm />}
