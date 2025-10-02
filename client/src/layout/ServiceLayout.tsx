@@ -10,6 +10,7 @@ import { generateServiceDesc } from '../utils';
 const ServiceLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
+  const [isFormVisible, setIsFormVisible] = useState(true);
 
   // const [history, setHistory] = useState<HistoryItem[]>([]);
   const { user } = useAuth();
@@ -59,7 +60,8 @@ const ServiceLayout = () => {
           history={history}
           activeChatId={activeChatId}
           setActiveChatId={setActiveChatId}
-         refetch={refetch}
+          refetch={refetch}
+          setIsFormVisible={setIsFormVisible}
         />
 
         {/* Main content */}
@@ -70,7 +72,7 @@ const ServiceLayout = () => {
               <Logo size='lg' />
               {generateServiceDesc(serviceName)}
             </div>
-            <Outlet context={{ activeChatId, setActiveChatId }} />
+            <Outlet context={{ activeChatId, isFormVisible, setIsFormVisible }} />
           </div>
         </section>
       </div>

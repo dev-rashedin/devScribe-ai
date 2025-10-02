@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-toolkit';
 
 
 
-const DeleteModal = ({ isOpen, id, onCancel, refetch, }: DeleteModalProps) => {
+const DeleteModal = ({ isOpen, id, onCancel, refetch, setActiveChatId }: DeleteModalProps & { setActiveChatId: (id: string) => void }) => {
   if (!isOpen || !id) return null;
 
   const handleDelete = async () => {
@@ -13,6 +13,7 @@ const DeleteModal = ({ isOpen, id, onCancel, refetch, }: DeleteModalProps) => {
       if (res.status === StatusCodes.OK) {
         refetch?.(); 
         onCancel(); 
+        setActiveChatId(null!)
       } else {
         console.error('Failed to delete history');
       }

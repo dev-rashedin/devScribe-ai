@@ -27,7 +27,8 @@ const Sidebar = ({
   activeChatId,
   setActiveChatId,
   refetch,
-}: SidebarProps) => {
+  setIsFormVisible,
+}: SidebarProps & { setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -106,7 +107,10 @@ const Sidebar = ({
 
       {/* New Chat button */}
       <button
-        onClick={() => setActiveChatId(null!)}
+        onClick={() => {
+          setActiveChatId(null!);
+          setIsFormVisible(true);
+        }}
         className={`sidebar-content mb-4 rounded-lg text-sm font-medium  ${sidebarClasses(
           isOpen
         )}`}
@@ -244,6 +248,7 @@ const Sidebar = ({
           id={deleteModalId}
           onCancel={() => setDeleteModalId(null)}
           refetch={refetch}
+          setActiveChatId={setActiveChatId}
         />
       )}
     </aside>

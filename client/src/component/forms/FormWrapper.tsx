@@ -15,7 +15,7 @@ type FormWrapperProps = {
   buttonLabel: string;
 };
 
-type ContextType = { activeChatId: string | null; setActiveChatId: (id: string) => void };
+type ContextType = { isFormVisible: boolean; setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> };
 
 const FormWrapper = ({
   formAction,
@@ -25,15 +25,26 @@ const FormWrapper = ({
   renderOutput,
   buttonLabel,
 }: FormWrapperProps) => {
-  const { activeChatId, setActiveChatId } = useOutletContext<ContextType>();
+  // const { isFormVisible } = useOutletContext<ContextType>();
 
+  const { isFormVisible, setIsFormVisible } = useOutletContext<ContextType>();
+  
   useEffect(() => {
-    setActiveChatId(new Date().getTime().toString());
-  }, [setActiveChatId, formState?.success]);
+    if (formState?.success) {
+      setIsFormVisible(false);
+    }
+  }, [formState?.success, setIsFormVisible]);
+
+
+  console.log('isFormVisible', isFormVisible);
+  
+  
+
+
 
   return (
     <form action={formAction}>
-    {(!formState?.success || activeChatId) && (
+    {!formState?.success && (
       <div className={isPending ? 'bg-opacity-50' : ''}>
         {renderInputs}
         <div className='flex justify-end'>

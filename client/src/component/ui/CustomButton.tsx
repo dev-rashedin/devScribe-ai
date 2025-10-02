@@ -12,7 +12,9 @@ const Button = ({
   isPending = false,
   className = '',
 }: ButtonProps) => {
-  let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out disabled:cursor-not-allowed disabled:opacity-50  ${
+  let buttonClass = `group relative flex-center  font-semibold rounded-lg hover:shadow-lg cursor-pointer transition duration-300 ease-in-out disabled:cursor-not-allowed ${
+    isPending ? 'disabled:opacity-90' : 'disabled:opacity-50'
+  }  ${
     type === 'submit'
       ? 'w-full h-12'
       : type === 'login' || type === 'logout'
