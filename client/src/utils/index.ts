@@ -141,3 +141,93 @@ export const generateButtonLabel = (buttonLabel: string): string => {
 
   return 'Thinking...';
 };
+
+// export function getUserInput(
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   payload: FormData | Record<string, any> | null | undefined
+// ): string {
+//   let userInput = 'Untitled request';
+
+//   if (!payload) return userInput;
+
+//   if (typeof FormData !== 'undefined' && payload instanceof FormData) {
+//     const text = payload.get('text') as string | null;
+//     if (text && text.trim()) {
+//       userInput = text.slice(0, 100) + (text.length > 100 ? '...' : '');
+//     } else {
+//       const file = payload.get('file') as File | null;
+//       if (file) {
+//         userInput = file.name;
+//       }
+//     }
+//   } else if (payload && typeof payload === 'object') {
+
+//       console.log('payload inside typeof object', payload);
+
+//     if (
+//       'text' in payload &&
+//       typeof payload.text === 'string' &&
+//       payload.text.trim()
+//     ) {
+//       userInput =
+//         payload.text.slice(0, 100) + (payload.text.length > 100 ? '...' : '');
+//     }
+//     if (
+//       'file' in payload &&
+//       payload.file &&
+//       typeof payload.file.name === 'string'
+//     ) {
+//       console.log('payload.file.name', payload.file.name);
+
+//       userInput = payload.file.name;
+//     }
+
+//     if ('prompt' in payload && typeof payload.prompt === 'string') {
+//       userInput =
+//         payload.prompt.slice(0, 100) +
+//         (payload.prompt.length > 100 ? '...' : '');
+//     } else {
+//       const firstValue = Object.values(payload)[0];
+//       if (typeof firstValue === 'string') {
+//         userInput =
+//           firstValue.slice(0, 100) + (firstValue.length > 100 ? '...' : '');
+//       }
+//     }
+//   }
+
+//   console.log('userInput', userInput);
+
+//   return userInput;
+// }
+
+export function getUserInput(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload: FormData | Record<string, any> | null | undefined
+): string {
+  let userInput = 'Untitled request';
+
+  if (payload instanceof FormData) {
+    const text = payload.get('text') as string | null;
+    if (text) {
+      userInput = text.slice(0, 100) + (text.length > 100 ? '...' : '');
+    } else {
+      const file = payload.get('file') as File | null;
+      if (file) {
+        userInput = file.name;
+      }
+    }
+  } else if (payload && typeof payload === 'object') {
+    if ('prompt' in payload && typeof payload.prompt === 'string') {
+      userInput =
+        payload.prompt.slice(0, 100) +
+        (payload.prompt.length > 100 ? '...' : '');
+    } else {
+      const firstValue = Object.values(payload)[0];
+      if (typeof firstValue === 'string') {
+        userInput = firstValue;
+      }
+    }
+  }
+
+  return userInput;
+}

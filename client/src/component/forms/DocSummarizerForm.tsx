@@ -56,7 +56,7 @@ const DocSummarizerForm = () => {
           )}
         </>
       }
-      renderOutput={<AIOutput isSuccess={formState?.success} explanation={formState?.data?.summary} />}
+      renderOutput={<AIOutput explanation={formState?.data?.summary} />}
     />
   );
 };

@@ -1,4 +1,5 @@
 import { axiosSecureApi } from '../api';
+import { getUserInput } from '../utils';
 
 async function fetchAction(endpoint: string, body: object) {
   try {
@@ -31,29 +32,7 @@ async function handleServiceAction(
   const result = await fetchAction(config.endpoint, payload);
   if (!result.success) return result;
 
-  let userInput = 'Untitled request';
-
-  if (payload instanceof FormData) {
-    const text = payload.get('text') as string | null;
-    if (text) {
-      userInput = text.slice(0, 100) + (text.length > 100 ? '...' : ''); 
-    } else {
-      const file = payload.get('file') as File | null;
-      if (file) {
-        userInput = file.name;
-      }
-    }
-  } else if (payload && typeof payload === 'object') {
-    if ('prompt' in payload && typeof payload.prompt === 'string') {
-      userInput =
-        payload.prompt.slice(0, 100) + (payload.prompt.length > 100 ? '...' : '');;
-    } else {
-      const firstValue = Object.values(payload)[0];
-      if (typeof firstValue === 'string') {
-        userInput = firstValue;
-      }
-    }
-  }
+  const userInput = getUserInput(payload);
  
 
   const messages = [

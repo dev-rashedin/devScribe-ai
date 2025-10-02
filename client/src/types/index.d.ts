@@ -34,7 +34,6 @@ declare type TExplanation = {
   activeChatId?: string;
   title?: string;
   explanation: string;
-  isSuccess?: boolean;
 };
 
 declare type ServiceConfig = {
