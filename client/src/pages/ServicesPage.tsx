@@ -13,10 +13,10 @@ import { fetchHistoryById } from '../api';
 import { AIOutput, Error } from '../component';
 import { LoadingDots } from '../component/ui';
 
-type ContextType = { activeChatId: string | null };
+type ContextType = { activeChatId: string | null; formKey: number };
 
 const ServicesPage = () => {
-  const { activeChatId } = useOutletContext<ContextType>();
+  const { activeChatId, formKey } = useOutletContext<ContextType>();
   const {
     isArticleGenerator,
     isCodeExplainer,
@@ -52,12 +52,12 @@ const ServicesPage = () => {
         </div>
       ) : (
         <>
-          {isArticleGenerator && <ArticleGeneratorForm  />}
-          {isCodeExplainer && <CodeExplainForm  />}
-          {isCodeReactor && <CodeRefactorForm />}
-          {isDocSummarizer && <DocSummarizerForm />}
-          {isEmailHelper && <EmailHelperForm />}
-          {isResumeAssistant && <ResumeAssistantForm />}
+          {isArticleGenerator && <ArticleGeneratorForm key={formKey} />}
+          {isCodeExplainer && <CodeExplainForm key={formKey} />}
+          {isCodeReactor && <CodeRefactorForm key={formKey} />}
+          {isDocSummarizer && <DocSummarizerForm key={formKey} />}
+          {isEmailHelper && <EmailHelperForm key={formKey} />}
+          {isResumeAssistant && <ResumeAssistantForm key={formKey} />}
         </>
       )}
     </>

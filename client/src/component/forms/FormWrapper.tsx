@@ -2,8 +2,6 @@
 import { Button, PulseGrid } from '../ui';
 import Error from '../Error';
 import { generateButtonLabel } from '../../utils';
-import { useOutletContext } from 'react-router';
-import { useEffect } from 'react';
 
 
 type FormWrapperProps = {
@@ -15,7 +13,6 @@ type FormWrapperProps = {
   buttonLabel: string;
 };
 
-type ContextType = { isFormVisible: boolean; setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> };
 
 const FormWrapper = ({
   formAction,
@@ -25,22 +22,6 @@ const FormWrapper = ({
   renderOutput,
   buttonLabel,
 }: FormWrapperProps) => {
-  // const { isFormVisible } = useOutletContext<ContextType>();
-
-  const { isFormVisible, setIsFormVisible } = useOutletContext<ContextType>();
-  
-  useEffect(() => {
-    if (formState?.success) {
-      setIsFormVisible(false);
-    }
-  }, [formState?.success, setIsFormVisible]);
-
-
-  console.log('isFormVisible', isFormVisible);
-  
-  
-
-
 
   return (
     <form action={formAction}>

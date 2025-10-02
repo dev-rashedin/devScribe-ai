@@ -8,8 +8,6 @@ import { FaEye, FaEyeSlash } from '../data/icons';
 
 const AIOutput = ({ activeChatId, title, explanation }: TExplanation) => {
   const [showPrompt, setShowPrompt] = useState(true);
-
-  console.log('title inside AIOutput', title);
   
 
   return (

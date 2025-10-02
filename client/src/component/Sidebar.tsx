@@ -27,8 +27,8 @@ const Sidebar = ({
   activeChatId,
   setActiveChatId,
   refetch,
-  setIsFormVisible,
-}: SidebarProps & { setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>> }) => {
+  setFormKey,
+}: SidebarProps & { setFormKey: React.Dispatch<React.SetStateAction<number>> }) => {
   const [logoDisplay, setLogoDisplay] = useState(true);
   const [popoverOpenId, setPopoverOpenId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -109,7 +109,7 @@ const Sidebar = ({
       <button
         onClick={() => {
           setActiveChatId(null!);
-          setIsFormVisible(true);
+         setFormKey(Date.now());
         }}
         className={`sidebar-content mb-4 rounded-lg text-sm font-medium  ${sidebarClasses(
           isOpen
