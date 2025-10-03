@@ -44,7 +44,7 @@ const ServiceLayout = () => {
     enabled: !!user.uid,
   });
 
-  // console.log('history', history);
+  console.log('history inside service layout', history);
 
   return (
     <main className='flex flex-col h-screen'>
