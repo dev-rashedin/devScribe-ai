@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import multer from 'multer';
 import pdf from 'pdf-parse';
 import mammoth from 'mammoth';
-import fs from 'fs/promises';
 import {
   asyncHandler,
   NotFoundError,
@@ -12,7 +11,8 @@ import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
 
 const docSummarizerRouter = express.Router();
-const upload = multer({ dest: 'uploads/documents' });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 docSummarizerRouter.post(
   '/doc-summarizer',
@@ -26,19 +26,18 @@ docSummarizerRouter.post(
    const file = req.file;
 
    if (file.mimetype === 'application/pdf') {
-     const data = await fs.readFile(file.path);
-      const textResult = await pdf(data);
+      const textResult = await pdf(file.buffer);
 
-      text = textResult?.text ?? textResult;  
+      text = textResult?.text
    } else if (
      file.mimetype ===
        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
      file.mimetype === 'application/msword'
    ) {
-     const result = await mammoth.extractRawText({ path: file.path });
+     const result = await mammoth.extractRawText({ buffer: file.buffer });
      text = result.value;
    } else if (file.mimetype === 'text/plain') {
-     text = await fs.readFile(file.path, 'utf-8');
+     text = file.buffer.toString('utf-8');
    } else {
      throw new BadRequestError('Unsupported file type');
    }
@@ -46,9 +45,8 @@ docSummarizerRouter.post(
    throw new BadRequestError('Please upload a file or provide text');
  }
 
-    if (!text || text.trim().length === 0) {
-      throw new BadRequestError('No text found in the document');
-    }
+   text = text?.trim();
+   if (!text) throw new BadRequestError('No text found in the document');
     
 
     // Summarize with AI

@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import multer from 'multer';
 import pdf from 'pdf-parse';
 import mammoth from 'mammoth';
-import fs from 'fs/promises';
 import {
   asyncHandler,
   NotFoundError,
@@ -12,7 +11,8 @@ import { StatusCodes } from 'http-status-toolkit';
 import { client } from '../lib/utils';
 
 const resumeAssistantRouter = express.Router();
-const upload = multer({ dest: 'uploads/resumes' });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 resumeAssistantRouter.post(
   '/resume-assistant',
@@ -29,19 +29,18 @@ resumeAssistantRouter.post(
       const file = req.file;
 
       if (file.mimetype === 'application/pdf') {
-        const data = await fs.readFile(file.path);
-       const textResult = await pdf(data);
+        const textResult = await pdf(file.buffer);
 
-      resumeText = textResult.text ?? textResult;    
+        resumeText = textResult.text;
       } else if (
         file.mimetype ===
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
         file.mimetype === 'application/msword'
       ) {
-        const result = await mammoth.extractRawText({ path: file.path });
+        const result = await mammoth.extractRawText({ buffer: file.buffer });
         resumeText = result.value;
       } else if (file.mimetype === 'text/plain') {
-        resumeText = await fs.readFile(file.path, 'utf-8');
+        resumeText = file.buffer.toString('utf-8');
       } else {
         throw new BadRequestError('Unsupported file type');
       }
@@ -49,9 +48,9 @@ resumeAssistantRouter.post(
       throw new BadRequestError('Please upload a file or provide text');
     }
 
-    if (!resumeText || resumeText.trim().length === 0) {
+    resumeText = resumeText.trim();
+    if (!resumeText)
       throw new BadRequestError('No content found in the resume');
-    }
 
     // optional job description (for tailoring)
     const jobDescription = req.body.jobDescription || '';
