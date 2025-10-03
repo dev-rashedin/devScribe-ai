@@ -109,7 +109,7 @@ const Sidebar = ({
       <button
         onClick={() => {
           setActiveChatId(null!);
-         setFormKey(Date.now());
+          setFormKey(Date.now());
         }}
         className={`sidebar-content mb-4 rounded-lg text-sm font-medium  ${sidebarClasses(
           isOpen
@@ -135,7 +135,11 @@ const Sidebar = ({
         </h3>
 
         {/* Loading/Error */}
-        {isLoading && <LoadingDots />}
+        {isLoading && (
+          <div className='mt-8'>
+            <LoadingDots />
+          </div>
+        )}
         {isError && <Error error='Error loading chat history' />}
 
         {history.map((conversation) => (
