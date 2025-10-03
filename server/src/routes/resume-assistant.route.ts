@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
-import pdfParse from 'pdf-parse';
+import { PDFParse } from 'pdf-parse';
 import mammoth from 'mammoth';
 import fs from 'fs/promises';
 import {
@@ -30,7 +30,15 @@ resumeAssistantRouter.post(
 
       if (file.mimetype === 'application/pdf') {
         const data = await fs.readFile(file.path);
-        resumeText = (await pdfParse(data)).text;
+        const buffer = new Uint8Array(data);
+       const parser = new PDFParse({ data: buffer });
+       // some versions expose GetText() (capitalized) or getText()
+       const textResult =
+         typeof (parser as any).GetText === 'function'
+           ? await(parser as any).GetText()
+           : await(parser as any).getText();
+
+      resumeText = textResult?.text ?? textResult;    
       } else if (
         file.mimetype ===
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
