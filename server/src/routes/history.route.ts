@@ -12,6 +12,8 @@ historyRouter.get(
   asyncHandler(async (req: Request, res: Response) => {
     const { service, uid } = req.params;
 
+      console.log('Fetching history for:', service, uid);
+
     if (!service || !uid) {
       throw new BadRequestError('Please provide service and uid');
     }
@@ -21,8 +23,9 @@ historyRouter.get(
       messages: 1
     }).sort({ createdAt: -1 });
 
+        console.log('Fetched history:', history);
 
-    if (!history) {
+    if (!history || history.length === 0) {
       throw new BadRequestError('History not found');
     }
 
