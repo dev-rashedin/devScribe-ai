@@ -5,14 +5,14 @@ import { HomeSectionHeading, StickyScroll } from './ui';
 
 const services = [
   {
-    title: 'Code Explainer',
-    desc: 'Paste your code and get a clear, in-depth explanation. Perfect for learning, debugging, and quickly understanding complex logic.',
-    icon: FiCode,
-    path: '/services/code-explainer',
-    cta: 'Explain Code',
+    title: 'Resume Assistant',
+    desc: 'Polish your resume or cover letter with AI expertise. Ensures professional formatting, clear phrasing and strong impact.',
+    icon: FiUserCheck,
+    path: '/services/resume-assistant',
+    cta: 'Improve Resume',
     content: (
-      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white'>
-        Code Explainer
+      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--pink-500),var(--indigo-500))] text-white'>
+        Resume Assistant
       </div>
     ),
   },
@@ -29,14 +29,14 @@ const services = [
     ),
   },
   {
-    title: 'Article Generator',
-    desc: 'Generate professional articles, blogs, or notes effortlessly. Helps produce structured, creative, and engaging content quickly.',
-    icon: FiPenTool,
-    path: '/services/article-generator',
-    cta: 'Generate Article',
+    title: 'Code Explainer',
+    desc: 'Paste your code and get a clear, in-depth explanation. Perfect for learning, debugging, and quickly understanding complex logic.',
+    icon: FiCode,
+    path: '/services/code-explainer',
+    cta: 'Explain Code',
     content: (
-      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--pink-500),var(--indigo-500))] text-white'>
-        Article Generator
+      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white'>
+        Code Explainer
       </div>
     ),
   },
@@ -53,6 +53,18 @@ const services = [
     ),
   },
   {
+    title: 'Article Generator',
+    desc: 'Generate professional articles, blogs, or notes effortlessly. Helps produce structured, creative, and engaging content quickly.',
+    icon: FiPenTool,
+    path: '/services/article-generator',
+    cta: 'Generate Article',
+    content: (
+      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--pink-500),var(--indigo-500))] text-white'>
+        Article Generator
+      </div>
+    ),
+  },
+  {
     title: 'Email Helper',
     desc: 'Draft clear, professional emails instantly without hassle. Perfect for concise, polite, and persuasive communication every time.',
     icon: FiMail,
@@ -61,18 +73,6 @@ const services = [
     content: (
       <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white'>
         Email Helper
-      </div>
-    ),
-  },
-  {
-    title: 'Resume Assistant',
-    desc: 'Polish your resume or cover letter with AI expertise. Ensures professional formatting, clear phrasing and strong impact.',
-    icon: FiUserCheck,
-    path: '/services/resume-assistant',
-    cta: 'Improve Resume',
-    content: (
-      <div className='flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--pink-500),var(--indigo-500))] text-white'>
-        Resume Assistant
       </div>
     ),
   },

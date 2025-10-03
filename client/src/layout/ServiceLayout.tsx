@@ -46,6 +46,8 @@ const ServiceLayout = () => {
 
   console.log('history inside service layout', history);
 
+  
+
   return (
     <main className='flex flex-col h-screen'>
       <div className='flex flex-1'>

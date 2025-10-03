@@ -15,6 +15,7 @@ import Error from './Error';
 import { fetchUserById } from '../api';
 import { Link } from 'react-router';
 import RenamingInput from './ui/RenamingInput';
+import { Helmet } from 'react-helmet-async';
 
 const Sidebar = ({
   isOpen,
@@ -37,6 +38,12 @@ const Sidebar = ({
   const [renamingId, setRenamingId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState('');
 
+  const serviceNameDisplay = serviceName.includes('-')
+    ? capitalizeFirstLetter(serviceName.split('-')[0]) +
+      ' ' +
+      capitalizeFirstLetter(serviceName.split('-')[1])
+    : capitalizeFirstLetter(serviceName);
+
   // fetch user data
   const {
     data: user = {},
@@ -54,6 +61,9 @@ const Sidebar = ({
         transition-[width] duration-300 ease-in-out
         ${isOpen ? 'w-60' : 'w-16'} flex flex-col sticky top-0 z-30`}
     >
+       <Helmet>
+        <title>DevScribe-AI ||  {serviceNameDisplay}</title>
+            </Helmet>
       {/* Top Section */}
       <div className='flex items-center justify-between px-2.5'>
         <section className='h-20 flex-center'>
@@ -97,11 +107,7 @@ const Sidebar = ({
             'span'
           )}`}
         >
-          {serviceName.includes('-')
-            ? capitalizeFirstLetter(serviceName.split('-')[0]) +
-              ' ' +
-              capitalizeFirstLetter(serviceName.split('-')[1])
-            : capitalizeFirstLetter(serviceName)}
+          {serviceNameDisplay}
         </span>
       </h3>
 
