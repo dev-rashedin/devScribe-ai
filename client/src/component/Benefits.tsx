@@ -11,7 +11,7 @@ const Benefits = () => {
   const benefitsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className='bg-blackNWhite py-16 lg:py-24' ref={benefitsRef}>
+    <section className='bg-blackNWhite py-16 lg:py-24 lg:px-12' ref={benefitsRef}>
       <HomeSectionHeading
         title='Why Choose DevScribe-AI'
         subtitle='Discover how DevScribe-AI helps developers, writers, and teams save time, reduce errors, and boost productivity with AI'

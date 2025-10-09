@@ -19,7 +19,7 @@ export default function FAQ() {
 
 
   return (
-    <div className='bg-blackNWhite py-16 lg:py-24' ref={faqsRef}>
+    <div className='bg-blackNWhite py-16 lg:py-24 lg:px-12' ref={faqsRef}>
       <HomeSectionHeading
         title='Your Questions, Answered'
         subtitle='Explore our most asked questions to understand how DevScribe-AI can support you, your team, and your business.'
